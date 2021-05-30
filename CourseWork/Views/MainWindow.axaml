@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CourseWork.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:widgets="clr-namespace:CourseWork.Views.Widgets"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CourseWork.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="CourseWork">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <Window.Styles>
+        <Style Selector="widgets|MenuItem">
+            <Setter Property="Background" Value="Cyan" />
+        </Style>
+        <Style Selector="widgets|MenuItem:hover">
+            <Setter Property="Background" Value="Red" />
+        </Style>
+    </Window.Styles>
+
+    <Panel>
+        <widgets:MenuItem Width="64" Height="96" IconSize="64" ItemName="Hey on!" IconSource="avalonia-logo.ico"></widgets:MenuItem>
+    </Panel>
+
+</Window>

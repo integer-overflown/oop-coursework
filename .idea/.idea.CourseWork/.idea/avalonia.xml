@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="CourseWork/App.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/MainWindow.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/MenuScreens/OverviewScreen.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/MenuScreens/SearchScreen.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/Widgets/MenuItem.axaml" value="CourseWork/CourseWork.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
