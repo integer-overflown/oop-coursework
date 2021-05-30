@@ -13,5 +13,6 @@
         <PackageReference Include="Avalonia.Desktop" Version="0.10.3" />
         <PackageReference Include="Avalonia.Diagnostics" Version="0.10.3" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.6" />
     </ItemGroup>
 </Project>
