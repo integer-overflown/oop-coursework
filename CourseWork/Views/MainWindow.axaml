@@ -19,10 +19,10 @@
     </Window.Resources>
 
     <StackPanel HorizontalAlignment="Left" Width="192" Orientation="Vertical">
-        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-globe.png"></widgets:MenuItem>
-        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-search.png"></widgets:MenuItem>
-        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-plus.png"></widgets:MenuItem>
-        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-help.png"></widgets:MenuItem>
+        <widgets:MenuItem IconSize="64" ItemName="Main page" IconSource="ic-globe.png"></widgets:MenuItem>
+        <widgets:MenuItem IconSize="64" ItemName="Search" IconSource="ic-search.png"></widgets:MenuItem>
+        <widgets:MenuItem IconSize="64" ItemName="Add a book" IconSource="ic-plus.png"></widgets:MenuItem>
+        <widgets:MenuItem IconSize="64" ItemName="Help" IconSource="ic-help.png"></widgets:MenuItem>
     </StackPanel>
 
 </Window>
