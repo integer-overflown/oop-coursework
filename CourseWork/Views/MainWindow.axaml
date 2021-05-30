@@ -22,7 +22,7 @@
         <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-globe.png"></widgets:MenuItem>
         <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-search.png"></widgets:MenuItem>
         <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-plus.png"></widgets:MenuItem>
-        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="avalonia-logo.ico"></widgets:MenuItem>
+        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-help.png"></widgets:MenuItem>
     </StackPanel>
 
 </Window>
