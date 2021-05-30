@@ -13,14 +13,10 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <Window.Styles>
-        <Style Selector="widgets|MenuItem">
-            <Setter Property="Background" Value="Cyan" />
-        </Style>
-        <Style Selector="widgets|MenuItem:hover">
-            <Setter Property="Background" Value="Red" />
-        </Style>
-    </Window.Styles>
+    <Window.Resources>
+        <SolidColorBrush x:Key="MenuItemNameColor">#2196F3</SolidColorBrush>
+        <SolidColorBrush x:Key="MenuItemBackground">#E3F2FD</SolidColorBrush>
+    </Window.Resources>
 
     <Panel>
         <widgets:MenuItem Width="64" Height="96" IconSize="64" ItemName="Hey on!" IconSource="avalonia-logo.ico"></widgets:MenuItem>
