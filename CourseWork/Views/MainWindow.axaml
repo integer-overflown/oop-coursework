@@ -18,8 +18,11 @@
         <SolidColorBrush x:Key="MenuItemBackground">#E3F2FD</SolidColorBrush>
     </Window.Resources>
 
-    <Panel>
-        <widgets:MenuItem Width="64" Height="96" IconSize="64" ItemName="Hey on!" IconSource="avalonia-logo.ico"></widgets:MenuItem>
-    </Panel>
+    <StackPanel HorizontalAlignment="Left" Width="192" Orientation="Vertical">
+        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-globe.png"></widgets:MenuItem>
+        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-search.png"></widgets:MenuItem>
+        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="ic-plus.png"></widgets:MenuItem>
+        <widgets:MenuItem IconSize="64" ItemName="Hey on!" IconSource="avalonia-logo.ico"></widgets:MenuItem>
+    </StackPanel>
 
 </Window>
