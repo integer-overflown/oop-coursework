@@ -6,6 +6,7 @@
              x:Class="CourseWork.Views.Widgets.MenuItem">
     <UserControl.Styles>
         <StyleInclude Source="avares://CourseWork/Styles/Dimens.axaml"/>
+        <StyleInclude Source="avares://CourseWork/Styles/Fonts.axaml"/>
     </UserControl.Styles>
     <Border Classes="menu-item-border" Background="{DynamicResource MenuItemBackground}">
         <StackPanel Spacing="4">

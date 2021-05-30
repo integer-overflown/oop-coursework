@@ -1,0 +1,17 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:widgets="clr-namespace:CourseWork.Views.Widgets">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="TextBlock">
+        <Setter Property="FontFamily" Value="avares://CourseWork/Assets/Fonts#Roboto" />
+    </Style>
+    <Style Selector="widgets|MenuItem TextBlock">
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+</Styles>
