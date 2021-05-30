@@ -1,3 +1,4 @@
+using System.IO;
 using Avalonia.Media.Imaging;
 
 namespace CourseWork.Database
@@ -6,12 +7,15 @@ namespace CourseWork.Database
     {
         public static byte[] FromBitmapToByteArray(IBitmap bitmap)
         {
-            return null;
+            var outputStream = new MemoryStream();
+            bitmap.Save(outputStream);
+            return outputStream.GetBuffer();
         }
         
         public static IBitmap FromByteArrayToBitmap(byte[] bitmap)
         {
-            return null;
+            var inputStream = new MemoryStream(bitmap);
+            return new Bitmap(inputStream);
         }
     }
 }
