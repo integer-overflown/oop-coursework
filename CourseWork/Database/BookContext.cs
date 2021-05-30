@@ -12,7 +12,7 @@ namespace CourseWork.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var byteArrayToBitmap = new ValueConverter<IBitmap, byte[]>(v => Conversion.FromBitmapToByteArray(v),
+            var byteArrayToBitmap = new ValueConverter<IBitmap?, byte[]>(v => Conversion.FromBitmapToByteArray(v),
                 v => Conversion.FromByteArrayToBitmap(v));
             modelBuilder
                 .Entity<Book>()
