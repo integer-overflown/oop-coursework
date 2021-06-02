@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseWork", "CourseWork\CourseWork.csproj", "{FC6B4F3C-C745-473C-A171-2EF0F8EF5AD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseWork.Tests", "CourseWork.Tests\CourseWork.Tests.csproj", "{B20E0793-B293-4BC5-9A1C-E505FFF58A62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{FC6B4F3C-C745-473C-A171-2EF0F8EF5AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC6B4F3C-C745-473C-A171-2EF0F8EF5AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC6B4F3C-C745-473C-A171-2EF0F8EF5AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B20E0793-B293-4BC5-9A1C-E505FFF58A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B20E0793-B293-4BC5-9A1C-E505FFF58A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B20E0793-B293-4BC5-9A1C-E505FFF58A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B20E0793-B293-4BC5-9A1C-E505FFF58A62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
