@@ -1,0 +1,32 @@
+using CourseWork.Models;
+using CourseWork.Networking;
+using NUnit.Framework;
+
+namespace CourseWork.Tests
+{
+    [TestFixture]
+    public class BookInfoParserTests
+    {
+        private readonly IParser<Book> _parser = new BookJsonInfoParser();
+
+        [Test]
+        public void ParseJson_ReceivedEmpty_ReturnsNull()
+        {
+            Assert.That(_parser.Parse("{}"), Is.Null);
+        }
+
+        [Test]
+        public void ParseJson_ValidInput_SetsModelFieldsCorrectly()
+        {
+            // TODO: move this to file
+            const string example = @"{""ISBN:9780980200447"": {""url"": ""https://openlibrary.org/books/OL22853304M/Slow_reading"", ""key"": ""/books/OL22853304M"", ""title"": ""Slow reading"", ""authors"": [{""url"": ""https://openlibrary.org/authors/OL6548935A/John_Miedema"", ""name"": ""John Miedema""}], ""number_of_pages"": 92, ""pagination"": ""80p."", ""weight"": ""1 grams"", ""by_statement"": ""by John Miedema."", ""identifiers"": {""amazon"": [""098020044X""], ""google"": [""4LQU1YwhY6kC""], ""librarything"": [""8071257""], ""goodreads"": [""6383507""], ""isbn_10"": [""1936117363""], ""isbn_13"": [""9780980200447"", ""9781936117369""], ""lccn"": [""2008054742""], ""oclc"": [""297222669""], ""openlibrary"": [""OL22853304M""]}, ""classifications"": {""lc_classifications"": [""Z1003 .M58 2009""], ""dewey_decimal_class"": [""028/.9""]}, ""publishers"": [{""name"": ""Litwin Books""}], ""publish_places"": [{""name"": ""Duluth, Minn""}], ""publish_date"": ""March 2009"", ""subjects"": [{""name"": ""Books and reading"", ""url"": ""https://openlibrary.org/subjects/books_and_reading""}, {""name"": ""Reading"", ""url"": ""https://openlibrary.org/subjects/reading""}], ""notes"": ""Includes bibliographical references and index."", ""table_of_contents"": [{""level"": 0, ""label"": """", ""title"": ""The personal nature of slow reading"", ""pagenum"": """"}, {""level"": 0, ""label"": """", ""title"": ""Slow reading in an information ecology"", ""pagenum"": """"}, {""level"": 0, ""label"": """", ""title"": ""The slow movement and slow reading"", ""pagenum"": """"}, {""level"": 0, ""label"": """", ""title"": ""The psychology of slow reading"", ""pagenum"": """"}, {""level"": 0, ""label"": """", ""title"": ""The practice of slow reading."", ""pagenum"": """"}], ""links"": [{""title"": ""Author's Website"", ""url"": ""http://johnmiedema.ca""}, {""title"": ""Chapter 2"", ""url"": ""http://litwinbooks.com/slowreading-ch2.php""}, {""title"": ""Get the e-book"", ""url"": ""http://www.powells.com/biblio/91-9781936117369-0""}], ""ebooks"": [{""preview_url"": ""https://archive.org/details/slowreading00mied"", ""availability"": ""borrow"", ""formats"": {}, ""borrow_url"": ""https://openlibrary.org/books/OL22853304M/Slow_reading/borrow"", ""checkedout"": false}], ""cover"": {""small"": ""https://covers.openlibrary.org/b/id/5546156-S.jpg"", ""medium"": ""https://covers.openlibrary.org/b/id/5546156-M.jpg"", ""large"": ""https://covers.openlibrary.org/b/id/5546156-L.jpg""}}}";
+            var result = _parser.Parse(example);
+            Assert.That(result, Is.Not.Null);
+            Assume.That(result.PublishingYear, Is.EqualTo(2009));
+            Assume.That(result.NumberOfPages, Is.EqualTo(92));
+            Assume.That(result.Name, Is.EqualTo("Slow reading"));
+            Assume.That(result.Authors.Count, Is.GreaterThan(0));
+            Assume.That(result.Subjects.Count, Is.GreaterThan(0));
+        }
+    }
+}
