@@ -28,6 +28,13 @@ namespace CourseWork.Tests
         public void Setup()
         {
             _context = new BookContext();
+            _context.Database.EnsureCreated();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _context.Database.EnsureDeleted();
         }
 
         [Test]
@@ -36,7 +43,7 @@ namespace CourseWork.Tests
             var book = new Book
             {
                 Name = "",
-                Cover = null
+                Cover = null,
             };
             _context.Add(book);
             Assert.That(_context.SaveChanges, Throws.Nothing);
