@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace CourseWork.Networking
         {
             var result = JObject.Parse(input);
             JToken? book;
-            if (!result.HasValues || (book = result.Root.First) == null) return null;
+            if (!result.HasValues || (book = result.Root.First?.First) == null) return null;
 
             var authors = book
                 .SelectTokens("$.authors..name")
@@ -32,9 +33,17 @@ namespace CourseWork.Networking
                 .SelectTokens("$.subjects..name")
                 .Select(token => new Subject {Name = token.ToString()})
                 .ToList();
+
             var publisher = book.SelectToken("$.publishers..name")?.ToString();
-            var publishingDate =
-                JsonConvert.DeserializeObject<DateTime>(book["publish_date"]?.ToString()!, PublishDateConverter);
+            var publishingDateString = book["publish_date"]?.ToString();
+
+            if (publisher == null || publishingDateString == null)
+            {
+                Console.Error.Write("Cannot retrieve publishing info");
+                return null;
+            }
+
+            var publishingDate = DateTime.ParseExact(publishingDateString, PublishDateFormat, new CultureInfo("en-US"));
 
             return new Book
             {
