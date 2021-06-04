@@ -12,7 +12,7 @@ namespace CourseWork.Networking
             "https://openlibrary.org/api/books?bibkeys=ISBN:{0}&jscmd=data&format=json";
 
         private readonly HttpClient _client = new();
-        private readonly IParser<Book> _parser = new JsonParser();
+        private readonly IParser<Book> _parser = new BookJsonInfoParser();
 
         public async Task<Book?> QueryBookByIsbnAsync(string isbn)
         {

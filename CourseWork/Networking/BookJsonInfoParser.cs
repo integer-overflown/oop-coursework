@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CourseWork.Networking
 {
-    public class JsonParser : IParser<Book>
+    public class BookJsonInfoParser : IParser<Book>
     {
         private const string PublishDateFormat = "MMMM yyyy";
 
