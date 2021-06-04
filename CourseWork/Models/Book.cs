@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using Avalonia.Media.Imaging;
 
 namespace CourseWork.Models
@@ -7,16 +9,16 @@ namespace CourseWork.Models
     public class Book
     {
         public long Id { get; set; }
-        public int NumberOfPages { get; set; } = 0;
+        public int NumberOfPages { get; init; } = 0;
         [Required]
-        public string? Name { get; set; }
-        public string? Publisher { get; set; }
-        public string Isbn10 { get; set; } = "";
-        public string Isbn13 { get; set; } = "";
-        public IBitmap? Cover { get; set; }
+        public string? Name { get; init; }
+        public string? Publisher { get; init; }
+        public IBitmap? Cover { get; init; }
+        [NotMapped]
+        public string? CoverUrl { get; set; }
         public bool IsPresent { get; set; } = true;
-        public int PublishingYear { get; set; } = 0;
-        public IList<Author> Authors { get; set; } = new List<Author>();
-        public IList<Subject> Subjects { get; set; } = new List<Subject>();
+        public int PublishingYear { get; init; } = 0;
+        public IEnumerable<Author> Authors { get; init; } = Enumerable.Empty<Author>();
+        public IEnumerable<Subject> Subjects { get; init; } = Enumerable.Empty<Subject>();
     }
 }

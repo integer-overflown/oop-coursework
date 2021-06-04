@@ -1,3 +1,4 @@
+using System.Linq;
 using CourseWork.Models;
 using CourseWork.Networking;
 using NUnit.Framework;
@@ -25,8 +26,8 @@ namespace CourseWork.Tests
             Assume.That(result.PublishingYear, Is.EqualTo(2009));
             Assume.That(result.NumberOfPages, Is.EqualTo(92));
             Assume.That(result.Name, Is.EqualTo("Slow reading"));
-            Assume.That(result.Authors.Count, Is.GreaterThan(0));
-            Assume.That(result.Subjects.Count, Is.GreaterThan(0));
+            Assume.That(result.Authors.Count(), Is.GreaterThan(0));
+            Assume.That(result.Subjects.Count(), Is.GreaterThan(0));
         }
     }
 }
