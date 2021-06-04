@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 using CourseWork.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -8,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CourseWork.Networking
 {
-    public static class JsonParser
+    public class JsonParser : IParser<Book>
     {
         private const string PublishDateFormat = "MMMM yyyy";
 
@@ -17,9 +18,9 @@ namespace CourseWork.Networking
             DateTimeFormat = PublishDateFormat
         };
 
-        public static Book? ParseBookInfo(string json)
+        public Book? Parse(string input)
         {
-            var result = JObject.Parse(json);
+            var result = JObject.Parse(input);
             JToken? book;
             if (!result.HasValues || (book = result.Root.First) == null) return null;
 

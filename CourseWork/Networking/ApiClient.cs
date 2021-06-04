@@ -12,6 +12,7 @@ namespace CourseWork.Networking
             "https://openlibrary.org/api/books?bibkeys=ISBN:{0}&jscmd=data&format=json";
 
         private readonly HttpClient _client = new();
+        private readonly IParser<Book> _parser = new JsonParser();
 
         public async Task<Book?> QueryBookByIsbnAsync(string isbn)
         {
@@ -20,7 +21,7 @@ namespace CourseWork.Networking
             {
                 var response = await _client.GetAsync(url);
                 var responseString = await response.Content.ReadAsStringAsync();
-                return JsonParser.ParseBookInfo(responseString);
+                return _parser.Parse(responseString);
             }
             catch (HttpRequestException e)
             {
