@@ -10,7 +10,7 @@ namespace CourseWork.Models
         public int NumberOfPages { get; set; } = 0;
         [Required]
         public string? Name { get; set; }
-        public string Publisher { get; set; } = "";
+        public string? Publisher { get; set; }
         public string Isbn10 { get; set; } = "";
         public string Isbn13 { get; set; } = "";
         public IBitmap? Cover { get; set; }
