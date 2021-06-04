@@ -36,6 +36,7 @@ namespace CourseWork.Networking
 
             var publisher = book.SelectToken("$.publishers..name")?.ToString();
             var publishingDateString = book["publish_date"]?.ToString();
+            var coverLargeSource = book["cover"]?["large"]?.ToString();
 
             if (publisher == null || publishingDateString == null)
             {
@@ -48,7 +49,7 @@ namespace CourseWork.Networking
             return new Book
             {
                 Authors = authors,
-                Cover = null, // TODO
+                CoverUrl = coverLargeSource,
                 Name = book["title"]?.ToObject<string>(),
                 Subjects = subjects,
                 Publisher = publisher,

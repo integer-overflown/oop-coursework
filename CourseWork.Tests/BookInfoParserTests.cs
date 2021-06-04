@@ -28,6 +28,7 @@ namespace CourseWork.Tests
             Assume.That(result.Name, Is.EqualTo("Slow reading"));
             Assume.That(result.Authors.Count(), Is.GreaterThan(0));
             Assume.That(result.Subjects.Count(), Is.GreaterThan(0));
+            Assume.That(result.CoverUrl, Is.Not.Null);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace CourseWork.Models
         public string? Publisher { get; init; }
         public IBitmap? Cover { get; init; }
         [NotMapped]
-        public string? CoverUrl { get; set; }
+        public string? CoverUrl { get; init; }
         public bool IsPresent { get; set; } = true;
         public int PublishingYear { get; init; } = 0;
         public IEnumerable<Author> Authors { get; init; } = Enumerable.Empty<Author>();
