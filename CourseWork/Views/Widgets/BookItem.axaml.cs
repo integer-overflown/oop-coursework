@@ -7,13 +7,20 @@ namespace CourseWork.Views.Widgets
 {
     public class BookItem : UserControl
     {
-        private string _title;
-        private string _subtitle;
-        private IImage _cover;
+        private string _title = "";
+        private string _subtitle = "";
+        private IImage? _cover;
+
+        private readonly Image _coverView;
+        private readonly TextBlock _titleView;
+        private readonly TextBlock _subtitleView;
 
         public BookItem()
         {
             InitializeComponent();
+            _coverView = this.FindControlStrict<Image>("Cover");
+            _titleView = this.FindControlStrict<TextBlock>("Title");
+            _subtitleView = this.FindControlStrict<TextBlock>("Subtitle");
         }
 
         private void InitializeComponent()
@@ -35,19 +42,37 @@ namespace CourseWork.Views.Widgets
         public string Title
         {
             get => _title;
-            set => SetAndRaise(TitleProperty, ref _title, value);
+            set => SetTitle(value);
+        }
+
+        private void SetTitle(string value)
+        {
+            _titleView.Text = value;
+            SetAndRaise(TitleProperty, ref _title, value);
         }
 
         public string Subtitle
         {
             get => _subtitle;
-            set => SetAndRaise(SubtitleProperty, ref _subtitle, value);
+            set => SetSubtitle(value);
+        }
+
+        private void SetSubtitle(string value)
+        {
+            _subtitleView.Text = value;
+            SetAndRaise(SubtitleProperty, ref _subtitle, value);
         }
 
         public IImage Cover
         {
-            get => _cover;
-            set => SetAndRaise(CoverProperty, ref _cover, value);
+            get => _cover; // add default cover
+            set => LoadCover(value);
+        }
+
+        private void LoadCover(IImage value)
+        {
+            _coverView.Source = value;
+            SetAndRaise(CoverProperty, ref _cover, value);
         }
     }
 }
