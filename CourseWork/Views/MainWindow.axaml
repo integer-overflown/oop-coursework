@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:widgets="clr-namespace:CourseWork.Views.Widgets"
+        xmlns:screens="clr-namespace:CourseWork.Views.MenuScreens"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CourseWork.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -18,11 +19,17 @@
         <SolidColorBrush x:Key="MenuItemBackground">#E3F2FD</SolidColorBrush>
     </Window.Resources>
 
-    <StackPanel HorizontalAlignment="Left" Width="192" Orientation="Vertical">
-        <widgets:MenuItem IconSize="64" ItemName="Main page" IconSource="ic-globe.png"></widgets:MenuItem>
-        <widgets:MenuItem IconSize="64" ItemName="Search" IconSource="ic-search.png"></widgets:MenuItem>
-        <widgets:MenuItem IconSize="64" ItemName="Add a book" IconSource="ic-plus.png"></widgets:MenuItem>
-        <widgets:MenuItem IconSize="64" ItemName="Help" IconSource="ic-help.png"></widgets:MenuItem>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" Width="192" Orientation="Vertical">
+            <widgets:MenuItem IconSize="64" ItemName="Main page" IconSource="ic-globe.png"></widgets:MenuItem>
+            <widgets:MenuItem IconSize="64" ItemName="Search" IconSource="ic-search.png"></widgets:MenuItem>
+            <widgets:MenuItem IconSize="64" ItemName="Add a book" IconSource="ic-plus.png"></widgets:MenuItem>
+            <widgets:MenuItem IconSize="64" ItemName="Help" IconSource="ic-help.png"></widgets:MenuItem>
+        </StackPanel>
+        <Carousel>
+            <screens:OverviewScreen />
+            <screens:SearchScreen />
+        </Carousel>
     </StackPanel>
 
 </Window>

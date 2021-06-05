@@ -2,9 +2,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:widgets="clr-namespace:CourseWork.Views.Widgets"
+             xmlns:vm="clr-namespace:CourseWork.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.OverviewScreen">
-    <Grid ColumnDefinitions="*" RowDefinitions="*">
-        <TextBlock VerticalAlignment="Center" TextAlignment="Center">Welcome!</TextBlock>
-    </Grid>
+    <Control.DataContext>
+        <vm:OverviewScreenViewModel />
+    </Control.DataContext>
+    <ItemsControl Items="{Binding Books}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <!-- TODO: Authors is a list -->
+                <widgets:BookItem Title="{Binding Name}" 
+                                  Subtitle="{Binding Authors}"
+                                  Cover="{Binding Cover}" />
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </UserControl>
