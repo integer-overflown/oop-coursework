@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CourseWork.Views.MenuScreens.AddBookScreen">
+    <StackPanel Classes="root-view">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Classes="h1" Text="Search a book by " />
+            <TextBlock Classes="h1" TextDecorations="Underline" Text="ISBN">
+                <ToolTip.Tip>
+                    The ISBN is the special code, denoted by 10 or 13 digits, sometimes separated by dashes for better readability. It's usually placed on the backside of the book, or the one of the first pages, beside the information about the publisher
+                </ToolTip.Tip>
+            </TextBlock>
+            <TextBlock Classes="h1" Text=" code" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

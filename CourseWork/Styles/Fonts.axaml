@@ -10,15 +10,15 @@
     <Style Selector=":is(TextBlock)">
         <Setter Property="FontFamily" Value="avares://CourseWork/Assets/Fonts#Roboto" />
     </Style>
-    
+
     <!-- Widget styles -->
-    
+
     <!-- Menu item styles -->
     <Style Selector="widgets|MenuItem TextBlock">
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="FontSize" Value="14" />
     </Style>
-    
+
     <!-- BookItem styles -->
     <Style Selector="widgets|BookItem TextBlock.title">
         <Setter Property="FontSize" Value="20" />
@@ -27,5 +27,11 @@
     <Style Selector="widgets|BookItem TextBlock.subtitle">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Regular" />
+    </Style>
+
+    <!-- HTML-like titles and paragraphs -->
+    <Style Selector=":is(TextBlock).h1">
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="FontWeight" Value="Medium" />
     </Style>
 </Styles>

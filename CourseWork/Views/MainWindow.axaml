@@ -15,8 +15,6 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <SolidColorBrush x:Key="MenuItemNameColor">#2196F3</SolidColorBrush>
-        <SolidColorBrush x:Key="MenuItemBackground">#E3F2FD</SolidColorBrush>
     </Window.Resources>
 
     <StackPanel Orientation="Horizontal">
@@ -29,6 +27,7 @@
         <Carousel Name="Pages">
             <screens:OverviewScreen />
             <screens:SearchScreen />
+            <screens:AddBookScreen />
         </Carousel>
     </StackPanel>
 
