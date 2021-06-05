@@ -7,11 +7,25 @@
         </Border>
     </Design.PreviewWith>
 
-    <Style Selector="TextBlock">
+    <Style Selector=":is(TextBlock)">
         <Setter Property="FontFamily" Value="avares://CourseWork/Assets/Fonts#Roboto" />
     </Style>
+    
+    <!-- Widget styles -->
+    
+    <!-- Menu item styles -->
     <Style Selector="widgets|MenuItem TextBlock">
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="FontSize" Value="14" />
+    </Style>
+    
+    <!-- BookItem styles -->
+    <Style Selector="widgets|BookItem TextBlock.title">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Medium" />
+    </Style>
+    <Style Selector="widgets|BookItem TextBlock.subtitle">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Regular" />
     </Style>
 </Styles>

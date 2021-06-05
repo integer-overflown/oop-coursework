@@ -9,8 +9,8 @@
             <Image Stretch="Uniform" Name="Cover" />
             <Border Classes="title-box-border">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Name="Title" />
-                    <TextBlock TextTrimming="CharacterEllipsis" Name="Subtitle" />
+                    <TextBlock Classes="title" Name="Title" />
+                    <TextBlock Classes="subtitle" TextTrimming="CharacterEllipsis" Name="Subtitle" />
                 </StackPanel>
             </Border>
         </StackPanel>
