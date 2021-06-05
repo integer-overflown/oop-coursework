@@ -3,10 +3,12 @@
              xmlns:local="using:CourseWork"
              x:Class="CourseWork.App">
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-    
+
     <Application.Styles>
-        <FluentTheme Mode="Light"/>
+        <FluentTheme Mode="Light" />
+        <StyleInclude Source="avares://CourseWork/Styles/Dimens.axaml" />
+        <StyleInclude Source="avares://CourseWork/Styles/Fonts.axaml" />
     </Application.Styles>
 </Application>

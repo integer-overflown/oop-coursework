@@ -4,10 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.Widgets.MenuItem">
-    <UserControl.Styles>
-        <StyleInclude Source="avares://CourseWork/Styles/Dimens.axaml"/>
-        <StyleInclude Source="avares://CourseWork/Styles/Fonts.axaml"/>
-    </UserControl.Styles>
     <Border Classes="menu-item-border" Background="{DynamicResource MenuItemBackground}">
         <StackPanel Spacing="4">
             <Image Name="Icon" />
