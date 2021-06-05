@@ -12,7 +12,6 @@ namespace CourseWork.Views.Widgets
     {
         private string _title = "";
         private string _subtitle = "";
-        private IImage? _cover;
 
         private readonly Image _coverView;
         private readonly TextBlock _titleView;
@@ -81,27 +80,30 @@ namespace CourseWork.Views.Widgets
 
         public IImage Cover
         {
-            get
-            {
-                if (_cover is not null) return _cover;
-                if (UnknownCover.TryGetTarget(out var cover))
-                {
-                    Console.WriteLine("Reused cached default cover");
-                    return cover;
-                }
-
-                var temp = GetUnknownIcon();
-                UnknownCover.SetTarget(temp);
-                return temp;
-
-            }
-            set => LoadCover(value);
+            get => _coverView.Source;
+            set => LoadCover(value); // TODO: this doesn't raise PropertyChanged event
         }
 
-        private void LoadCover(IImage value)
+        private void LoadCover(IImage? value)
         {
-            _coverView.Source = value;
-            SetAndRaise(CoverProperty, ref _cover, value);
+            IImage cover;
+            if (value is null)
+            {
+                if (UnknownCover.TryGetTarget(out var unknown))
+                {
+                    Console.WriteLine("Reused cached default cover");
+                    cover = unknown;
+                }
+                else
+                {
+                    var temp = GetUnknownIcon();
+                    UnknownCover.SetTarget(temp);
+                    cover = temp;
+                }
+            }
+            else cover = value;
+
+            _coverView.Source = cover;
         }
     }
 }

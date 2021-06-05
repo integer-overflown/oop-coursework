@@ -8,6 +8,15 @@ namespace CourseWork.ViewModels
     {
         private ObservableCollection<Book> _books = new();
 
+        public OverviewScreenViewModel()
+        {
+            _books.Add(new Book
+            {
+                Authors = new []{new Author {Name = "Erich Maria Remarque"}},
+                Name = "Three Comrades"
+            });
+        }
+        
         public ObservableCollection<Book> Books
         {
             get => _books;
