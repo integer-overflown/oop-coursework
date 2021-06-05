@@ -1,7 +1,10 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using CourseWork.Utils;
 
 namespace CourseWork.Views.Widgets
 {
@@ -14,6 +17,19 @@ namespace CourseWork.Views.Widgets
         private readonly Image _coverView;
         private readonly TextBlock _titleView;
         private readonly TextBlock _subtitleView;
+
+        private static readonly WeakReference<IImage> UnknownCover;
+        private const string UnknownCoverIconFile = "ic-unknown-cover.png";
+
+        static BookItem()
+        {
+            UnknownCover = new WeakReference<IImage>(GetUnknownIcon());
+        }
+
+        private static Bitmap GetUnknownIcon()
+        {
+            return new(AssetLoader.GetResourceAsStream(UnknownCoverIconFile));
+        }
 
         public BookItem()
         {
@@ -65,7 +81,20 @@ namespace CourseWork.Views.Widgets
 
         public IImage Cover
         {
-            get => _cover; // add default cover
+            get
+            {
+                if (_cover is not null) return _cover;
+                if (UnknownCover.TryGetTarget(out var cover))
+                {
+                    Console.WriteLine("Reused cached default cover");
+                    return cover;
+                }
+
+                var temp = GetUnknownIcon();
+                UnknownCover.SetTarget(temp);
+                return temp;
+
+            }
             set => LoadCover(value);
         }
 
