@@ -10,23 +10,23 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="CourseWork">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-    
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+
     <Window.Resources>
         <SolidColorBrush x:Key="MenuItemNameColor">#2196F3</SolidColorBrush>
         <SolidColorBrush x:Key="MenuItemBackground">#E3F2FD</SolidColorBrush>
     </Window.Resources>
 
     <StackPanel Orientation="Horizontal">
-        <StackPanel HorizontalAlignment="Left" Width="192" Orientation="Vertical">
-            <widgets:MenuItem IconSize="64" ItemName="Main page" IconSource="ic-globe.png"></widgets:MenuItem>
-            <widgets:MenuItem IconSize="64" ItemName="Search" IconSource="ic-search.png"></widgets:MenuItem>
-            <widgets:MenuItem IconSize="64" ItemName="Add a book" IconSource="ic-plus.png"></widgets:MenuItem>
-            <widgets:MenuItem IconSize="64" ItemName="Help" IconSource="ic-help.png"></widgets:MenuItem>
+        <StackPanel Name="MenuItemsSizeBar" HorizontalAlignment="Left" Width="192" Orientation="Vertical">
+            <widgets:MenuItem IconSize="64" ItemName="Main page" IconSource="ic-globe.png" />
+            <widgets:MenuItem IconSize="64" ItemName="Search" IconSource="ic-search.png" />
+            <widgets:MenuItem IconSize="64" ItemName="Add a book" IconSource="ic-plus.png" />
+            <widgets:MenuItem IconSize="64" ItemName="Help" IconSource="ic-help.png" />
         </StackPanel>
-        <Carousel>
+        <Carousel Name="Pages">
             <screens:OverviewScreen />
             <screens:SearchScreen />
         </Carousel>

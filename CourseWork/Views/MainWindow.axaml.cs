@@ -1,43 +1,52 @@
 using System;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using CourseWork.ViewModels;
 
 namespace CourseWork.Views
 {
     public partial class MainWindow : Window
     {
-        private Carousel _screens;
-
         public MainWindow()
         {
             InitializeComponent();
 #if DEBUG
             this.AttachDevTools();
 #endif
+            SetupPageChangeListeners();
+        }
+
+        private void SetupPageChangeListeners()
+        {
+            var pages = this.FindControlStrict<Carousel>("Pages");
+            if (DataContext is MainWindowViewModel viewModel)
+            {
+                viewModel.Changed.Subscribe(args =>
+                {
+                    if (args.PropertyName != nameof(viewModel.CurrentScreenIndex)) return;
+                    pages.SelectedIndex = viewModel.CurrentScreenIndex;
+                });
+            }
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
-            _screens = this.FindControl<Carousel>("Screens");
-        }
-        
-        
-        public void OnPreviousClicked()
-        {
-            _screens.Previous();
+            var menuItems = this.FindControlStrict<StackPanel>("MenuItemsSizeBar");
+            for (var i = 0; i < menuItems.Children.Count; ++i)
+            {
+                AttachIndexUpdateOnClick(menuItems.Children[i], i);
+            }
         }
 
-        private void Next_OnClick(object? sender, RoutedEventArgs e)
+        private void AttachIndexUpdateOnClick(IInputElement control, int index)
         {
-            _screens.Next();
-        }
-
-        private void Previous_OnClick(object? sender, RoutedEventArgs e)
-        {
-            _screens.Previous();
+            if (DataContext is MainWindowViewModel viewModel)
+            {
+                control.PointerPressed += (_, _) => { viewModel.CurrentScreenIndex = index; };
+            }
         }
     }
 }
