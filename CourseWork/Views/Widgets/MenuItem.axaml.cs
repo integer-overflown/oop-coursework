@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform;
+using CourseWork.Utils;
 using Bitmap = Avalonia.Media.Imaging.Bitmap;
 using Image = Avalonia.Controls.Image;
 
@@ -17,8 +18,6 @@ namespace CourseWork.Views.Widgets
         private string _itemName = "";
         private int _iconSize = 32;
         
-        private const string RootDirectory = "CourseWork";
-
         public MenuItem()
         {
             InitializeComponent();
@@ -48,19 +47,11 @@ namespace CourseWork.Views.Widgets
             get => _iconSource;
             set
             {
-                _icon.Source = new Bitmap(GetAssetStream(value));
+                _icon.Source = new Bitmap(AssetLoader.GetResourceAsStream(value));
                 _icon.Width = IconSize;
                 _icon.Height = IconSize;
                 SetAndRaise(IconSourceProperty, ref _iconSource, value);
             }
-        }
-
-        private static System.IO.Stream GetAssetStream(string name)
-        {
-            var assetLoader = AvaloniaLocator.Current.GetService<IAssetLoader>();
-            var source = $"avares://{RootDirectory}/Assets/{name}";
-            Console.WriteLine(source);
-            return assetLoader.Open(new Uri(source));
         }
 
         public int IconSize
