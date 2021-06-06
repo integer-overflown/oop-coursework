@@ -17,6 +17,7 @@ namespace CourseWork.ViewModels
         public AddBookScreenViewModel()
         {
             this.WhenAnyValue(o => o.Isbn).Subscribe(_ => ValidateAll());
+            ErrorsChanged += (_, _) => this.RaisePropertyChanged(nameof(HasErrors));
         }
 
         public string Isbn

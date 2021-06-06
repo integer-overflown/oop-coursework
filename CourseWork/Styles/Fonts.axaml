@@ -34,4 +34,10 @@
         <Setter Property="FontSize" Value="32" />
         <Setter Property="FontWeight" Value="Medium" />
     </Style>
+    
+    <Style Selector=":is(TextBlock).link">
+        <Setter Property="TextDecorations" Value="Underline" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Cursor" Value="UpArrow" />
+    </Style>
 </Styles>
