@@ -15,6 +15,9 @@
     </Window.DataContext>
 
     <Window.Resources>
+        <SolidColorBrush x:Key="MenuItemNameColor">#2196F3</SolidColorBrush>
+        <SolidColorBrush x:Key="MenuItemBackground">#E3F2FD</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryColor">#006DB3</SolidColorBrush>
     </Window.Resources>
 
     <StackPanel Orientation="Horizontal">
