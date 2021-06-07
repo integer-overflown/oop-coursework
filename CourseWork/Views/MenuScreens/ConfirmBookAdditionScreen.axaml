@@ -3,7 +3,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             xmlns:widgets="using:CourseWork.Views.Widgets"
              x:Class="CourseWork.Views.MenuScreens.ConfirmBookAdditionScreen">
     <UserControl.Styles>
         <Style Selector="TextBox.text-box_borderless:focus /template/ Border">
@@ -11,6 +10,10 @@
         </Style>
         <Style Selector="TextBox.text-box_borderless">
             <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style Selector="Border.icon-placeholder:hover">
+            <Setter Property="Background" Value="#f7f7f7" />
+            <Setter Property="Cursor" Value="UpArrow" />
         </Style>
     </UserControl.Styles>
     <DockPanel>
@@ -37,10 +40,24 @@
             </StackPanel>
         </Border>
         <Grid Classes="root-view" ColumnDefinitions="256 *">
+            <Button Classes="icon-placeholder"
+                    Margin="0 -16 0 0"
+                    Grid.Column="0"
+                    Height="396.8"
+                    HorizontalAlignment="Stretch"
+                    Background="#C4C4C4">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Width="128" Height="128" Source="avares://CourseWork/Assets/ic-picture.png" />
+                    <TextBlock FontWeight="Medium"
+                               FontSize="24"
+                               Foreground="{DynamicResource PrimaryColor}"
+                               Text="Add an icon" />
+                </StackPanel>
+            </Button>
             <Border Grid.Column="1" Padding="16 0 16 0">
                 <StackPanel Spacing="4">
                     <!-- Name -->
-                    <Border BorderThickness="0 0 0 4" 
+                    <Border BorderThickness="0 0 0 4"
                             Padding="0 0 0 4"
                             BorderBrush="{DynamicResource PrimaryColor}">
                         <StackPanel Orientation="Horizontal" Spacing="4">
@@ -52,7 +69,7 @@
                         </StackPanel>
                     </Border>
                     <!-- Author -->
-                    <Border BorderThickness="0 0 0 4" 
+                    <Border BorderThickness="0 0 0 4"
                             Padding="0 0 0 4"
                             BorderBrush="{DynamicResource PrimaryColor}">
                         <StackPanel Orientation="Horizontal" Spacing="4">
@@ -64,7 +81,7 @@
                         </StackPanel>
                     </Border>
                     <!-- Publisher -->
-                    <Border BorderThickness="0 0 0 4" 
+                    <Border BorderThickness="0 0 0 4"
                             Padding="0 0 0 4"
                             BorderBrush="{DynamicResource PrimaryColor}">
                         <StackPanel Orientation="Horizontal" Spacing="4">
@@ -76,7 +93,7 @@
                         </StackPanel>
                     </Border>
                     <!-- Subjects -->
-                    <Border BorderThickness="0 0 0 4" 
+                    <Border BorderThickness="0 0 0 4"
                             Padding="0 0 0 4"
                             BorderBrush="{DynamicResource PrimaryColor}">
                         <StackPanel Orientation="Horizontal" Spacing="4">
