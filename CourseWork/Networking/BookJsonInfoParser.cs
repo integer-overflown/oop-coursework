@@ -1,10 +1,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
 using CourseWork.Models;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
@@ -38,13 +35,17 @@ namespace CourseWork.Networking
             var publishingDateString = book["publish_date"]?.ToString();
             var coverLargeSource = book["cover"]?["large"]?.ToString();
 
-            if (publisher == null || publishingDateString == null)
+            if (publisher == null)
             {
-                Console.Error.Write("Cannot retrieve publishing info");
+                Console.WriteLine("INFO: no publisher");
                 return null;
             }
 
-            var publishingDate = DateTime.ParseExact(publishingDateString, PublishDateFormat, new CultureInfo("en-US"));
+            var publishingYear = publishingDateString == null
+                ? -1
+                : DateTime.ParseExact(publishingDateString,
+                    PublishDateFormat,
+                    new CultureInfo("en-US")).Year;
 
             return new Book
             {
@@ -54,7 +55,7 @@ namespace CourseWork.Networking
                 Subjects = subjects,
                 Publisher = publisher,
                 NumberOfPages = book["number_of_pages"]?.ToObject<int>() ?? 0,
-                PublishingYear = publishingDate.Year
+                PublishingYear = publishingYear
             };
         }
     }
