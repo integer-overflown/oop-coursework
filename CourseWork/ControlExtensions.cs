@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Avalonia.Controls;
 
 namespace CourseWork
@@ -11,6 +12,13 @@ namespace CourseWork
         {
             return control.FindControl<T>(name) ??
                    throw new ArgumentException($"Failed to find the control with name {name}");
+        }
+
+        public static void SelectScreenByName(this Carousel carousel, string name)
+        {
+            carousel.SelectedItem = carousel.Items
+                .OfType<IControl>()
+                .FirstOrDefault(control => control.Name == name);
         }
     }
 }
