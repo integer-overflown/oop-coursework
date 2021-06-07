@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:CourseWork.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CourseWork.Views.MenuScreens.AddBookScreen">
+             x:Class="CourseWork.Views.MenuScreens.SearchBookByIsbnScreen">
     <UserControl.DataContext>
         <vm:AddBookScreenViewModel />
     </UserControl.DataContext>

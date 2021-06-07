@@ -7,9 +7,9 @@ using CourseWork.ViewModels;
 
 namespace CourseWork.Views.MenuScreens
 {
-    public class AddBookScreen : UserControl, ISearchAgent<Book>
+    public class SearchBookByIsbnScreen : UserControl, ISearchAgent<Book>
     {
-        public AddBookScreen()
+        public SearchBookByIsbnScreen()
         {
             InitializeComponent();
             SubscribeToSearchResult();

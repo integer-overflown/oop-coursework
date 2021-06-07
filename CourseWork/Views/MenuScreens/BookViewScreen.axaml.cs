@@ -5,9 +5,9 @@ using CourseWork.ViewModels;
 
 namespace CourseWork.Views.MenuScreens
 {
-    public class ConfirmBookAdditionScreen : UserControl
+    public class BookViewScreen : UserControl
     {
-        public ConfirmBookAdditionScreen()
+        public BookViewScreen()
         {
             InitializeComponent();
         }

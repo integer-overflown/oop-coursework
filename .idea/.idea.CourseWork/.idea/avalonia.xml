@@ -9,6 +9,7 @@
         <entry key="CourseWork/Styles/Fonts.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MainWindow.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/AddBookScreen.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/MenuScreens/BookViewScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/ConfirmBookAdditionScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/OverviewScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/SearchScreen.axaml" value="CourseWork/CourseWork.csproj" />
