@@ -3,8 +3,8 @@ using System.Collections;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Subjects;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using CourseWork.Input;
 using CourseWork.Models;
 using ReactiveUI;
 
@@ -12,7 +12,6 @@ namespace CourseWork.ViewModels
 {
     public class AddBookScreenViewModel : ViewModelBase, INotifyDataErrorInfo
     {
-        private static readonly Regex IsbnRegex = new(@"^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d\re-]+$");
         private readonly Subject<Book> _searchResponse = new();
 
         private string _isbn = "";
@@ -48,18 +47,10 @@ namespace CourseWork.ViewModels
 
         private void ValidateAll()
         {
-            if (_isbn.Length is 10 or 13 && IsbnRegex.IsMatch(_isbn))
-            {
-                if (_isbnValidationError == null) return;
-                _isbnValidationError = null;
-                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Isbn)));
-            }
-            else
-            {
-                if (_isbnValidationError != null) return;
-                _isbnValidationError = "Invalid ISBN";
-                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Isbn)));
-            }
+            var isbnError = Validators.Isbn.IsValid(_isbn) ? null : "Given ISBN is malformed";
+            if (_isbnValidationError == isbnError) return;
+            _isbnValidationError = isbnError;
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Isbn)));
         }
 
         public async Task<Book?> SearchBook()
