@@ -6,16 +6,17 @@ using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using CourseWork.Input;
 using CourseWork.Models;
+using CourseWork.Networking;
 using ReactiveUI;
 
 namespace CourseWork.ViewModels
 {
     public class SearchBookByIsbnScreenViewModel : ViewModelBase, INotifyDataErrorInfo
     {
-        private readonly Subject<Book> _searchResponse = new();
-
+        private readonly Subject<Book?> _searchResponse = new();
         private string _isbn = "";
         private string? _isbnValidationError;
+        private bool _isSearchPending = false;
 
         public SearchBookByIsbnScreenViewModel()
         {
@@ -23,8 +24,28 @@ namespace CourseWork.ViewModels
             ErrorsChanged += (_, _) => this.RaisePropertyChanged(nameof(HasErrors));
         }
 
-        public bool IsSearchPending { get; private set; } = false;
-        public IObservable<Book> SearchResult => _searchResponse;
+        public bool IsSearchPending
+        {
+            get => _isSearchPending;
+            private set => this.RaiseAndSetIfChanged(ref _isSearchPending, value);
+        }
+
+        public IObservable<Book?> SearchResult => _searchResponse;
+
+        public IReactiveCommand PerformSearch => ReactiveCommand.CreateFromTask(async () =>
+        {
+            try
+            {
+                IsSearchPending = true;
+                _searchResponse.OnNext(await SearchBook(_isbn));
+            }
+            catch (ApiClientException e)
+            {
+                _searchResponse.OnError(e);
+            }
+
+            IsSearchPending = false;
+        });
 
         public string Isbn
         {
@@ -53,10 +74,11 @@ namespace CourseWork.ViewModels
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Isbn)));
         }
 
-        public async Task<Book?> SearchBook()
+        private static async Task<Book?> SearchBook(string isbnString)
         {
-            await Task.Delay(1000);
-            return new Book {Name = "Awesome"};
+            var isbn = InputHelpers.FilterIsbnDashes(isbnString);
+            var client = new ApiClient();
+            return await client.QueryBookByIsbnAsync(isbn);
         }
     }
 }
