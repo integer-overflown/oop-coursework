@@ -30,7 +30,8 @@
         <Carousel Grid.Column="1" Name="Pages">
             <screens:OverviewScreen />
             <screens:SearchScreen />
-            <screens:AddBookScreen />
+            <screens:SearchBookByIsbnScreen  />
+            <screens:HelpScreen />
         </Carousel>
     </Grid>
 
