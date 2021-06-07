@@ -2,8 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:CourseWork.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.ConfirmBookAdditionScreen">
+    <UserControl.DataContext>
+        <vm:BookViewScreenViewModel />
+    </UserControl.DataContext>
     <UserControl.Styles>
         <Style Selector="TextBox.text-box_borderless:focus /template/ Border">
             <Setter Property="BorderThickness" Value="0" />
@@ -65,7 +69,9 @@
                                    Height="24"
                                    Source="avares://CourseWork/Assets/ic-bookmark.png"
                                    Stretch="Uniform" />
-                            <TextBox Classes="text-box_borderless" Watermark="Enter a name" />
+                            <TextBox Classes="text-box_borderless" 
+                                     Watermark="Enter a name"
+                                     Text="{Binding Book.Name}" />
                         </StackPanel>
                     </Border>
                     <!-- Author -->
