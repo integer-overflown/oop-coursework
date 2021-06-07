@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:widgets="using:CourseWork.Views.Widgets"
+             x:Class="CourseWork.Views.MenuScreens.ConfirmBookAdditionScreen">
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Background="{DynamicResource PrimaryColor}">
+            <StackPanel Height="56" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Classes="image-button" Background="Transparent">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Image Source="avares://CourseWork/Assets/ic-confirm.png" Width="24" Height="24" />
+                        <TextBlock Classes="image-button__text" VerticalAlignment="Center">FINISH</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Classes="image-button" Background="Transparent">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Image Source="avares://CourseWork/Assets/ic-add.png" Width="24" Height="24" />
+                        <TextBlock Classes="image-button__text" VerticalAlignment="Center">ADD ANOTHER</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Classes="image-button" Background="Transparent">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Image Source="avares://CourseWork/Assets/ic-discard.png" Width="24" Height="24" />
+                        <TextBlock Classes="image-button__text" VerticalAlignment="Center">CANCEL</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+        <StackPanel />
+    </DockPanel>
+</UserControl>

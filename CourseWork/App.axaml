@@ -10,5 +10,6 @@
         <FluentTheme Mode="Light" />
         <StyleInclude Source="avares://CourseWork/Styles/Dimens.axaml" />
         <StyleInclude Source="avares://CourseWork/Styles/Fonts.axaml" />
+        <StyleInclude Source="avares://CourseWork/Styles/Colors.axaml" />
     </Application.Styles>
 </Application>

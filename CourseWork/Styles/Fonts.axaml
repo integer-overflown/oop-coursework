@@ -28,6 +28,11 @@
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Regular" />
     </Style>
+    
+    <!-- Customized standard controls -->
+    <Style Selector="TextBlock.image-button__text">
+        <Setter Property="FontWeight" Value="Medium" />
+    </Style>
 
     <!-- HTML-like titles and paragraphs -->
     <Style Selector=":is(TextBlock).h1">
