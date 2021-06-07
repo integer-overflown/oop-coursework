@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CourseWork.Input;
 using CourseWork.Models;
 using CourseWork.Networking;
@@ -14,6 +15,7 @@ namespace CourseWork.ViewModels
     public class SearchBookByIsbnScreenViewModel : ViewModelBase, INotifyDataErrorInfo
     {
         private readonly Subject<Book?> _searchResponse = new();
+        private bool _isAvailable;
         private string _isbn = "";
         private string? _isbnValidationError;
         private bool _isSearchPending = false;
@@ -27,12 +29,16 @@ namespace CourseWork.ViewModels
         public bool IsSearchPending
         {
             get => _isSearchPending;
-            private set => this.RaiseAndSetIfChanged(ref _isSearchPending, value);
+            private set
+            {
+                IsAvailable = !value;
+                this.RaiseAndSetIfChanged(ref _isSearchPending, value);
+            }
         }
 
         public IObservable<Book?> SearchResult => _searchResponse;
 
-        public IReactiveCommand PerformSearch => ReactiveCommand.CreateFromTask(async () =>
+        public ICommand PerformSearch => ReactiveCommand.CreateFromTask(async () =>
         {
             try
             {
@@ -53,6 +59,12 @@ namespace CourseWork.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isbn, value);
         }
 
+        public bool IsAvailable
+        {
+            get => _isAvailable;
+            set => this.RaiseAndSetIfChanged(ref _isAvailable, value);
+        }
+
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
         public IEnumerable GetErrors(string? propertyName)
@@ -68,7 +80,9 @@ namespace CourseWork.ViewModels
 
         private void ValidateAll()
         {
-            var isbnError = Validators.Isbn.IsValid(_isbn) ? null : "Given ISBN is malformed";
+            var isValid = Validators.Isbn.IsValid(_isbn);
+            IsAvailable = isValid;
+            var isbnError = isValid ? null : "Given ISBN is malformed";
             if (_isbnValidationError == isbnError) return;
             _isbnValidationError = isbnError;
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Isbn)));

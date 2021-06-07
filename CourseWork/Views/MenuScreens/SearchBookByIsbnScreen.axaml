@@ -8,23 +8,37 @@
     <UserControl.DataContext>
         <vm:SearchBookByIsbnScreenViewModel />
     </UserControl.DataContext>
-    <StackPanel Classes="root-view" Spacing="16">
-        <StackPanel Orientation="Horizontal" Spacing="8">
-            <TextBlock Classes="h1" Text="Search a book by " />
-            <TextBlock Classes="h1" Cursor="Help" TextDecorations="Underline" Text="ISBN">
-                <ToolTip.Tip>
-                    The ISBN is the special code, denoted by 10 or 13 digits, sometimes separated by dashes for better readability. It's usually placed on the backside of the book, or the one of the first pages, beside the information about the publisher
-                </ToolTip.Tip>
-            </TextBlock>
-            <TextBlock Classes="h1" Text=" code" />
+    <DockPanel>
+        <ProgressBar Height="8" 
+                     DockPanel.Dock="Bottom" 
+                     IsIndeterminate="True" 
+                     IsVisible="{Binding IsSearchPending}" />
+        <StackPanel Classes="root-view" Spacing="16">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Classes="h1" Text="Search a book by " />
+                <TextBlock Classes="h1" Cursor="Help" TextDecorations="Underline" Text="ISBN">
+                    <ToolTip.Tip>
+                        The ISBN is the special code, denoted by 10 or 13 digits, sometimes separated by dashes for better readability. It's usually placed on the backside of the book, or the one of the first pages, beside the information about the publisher
+                    </ToolTip.Tip>
+                </TextBlock>
+                <TextBlock Classes="h1" Text=" code" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="250"
+                         Name="IsbnInput"
+                         Text="{Binding Isbn}"
+                         MaxLength="16"
+                         Watermark="Enter the ISBN code" />
+                <Button Height="{Binding #IsbnInput.MinHeight}"
+                        VerticalAlignment="Top"
+                        IsEnabled="{Binding IsAvailable}"
+                        Command="{Binding PerformSearch}"
+                        Content="Search" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="You still can " />
+                <TextBlock Classes="link" Text="add a book manually" />
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBox Width="250" Name="IsbnInput" Text="{Binding Isbn}" MaxLength="16" Watermark="Enter the ISBN code" />
-            <Button Height="{Binding #IsbnInput.MinHeight}" VerticalAlignment="Top" IsEnabled="{Binding !HasErrors}">Search</Button>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="You still can " />
-            <TextBlock Classes="link" Text="add a book manually" />
-        </StackPanel>
-    </StackPanel>
+    </DockPanel>
 </UserControl>

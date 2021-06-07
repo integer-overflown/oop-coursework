@@ -13,6 +13,7 @@
         <entry key="CourseWork/Views/MenuScreens/ConfirmBookAdditionScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/HelpScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/OverviewScreen.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/MenuScreens/SearchBookByIsbnScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/SearchScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/BookItem.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/BookItemsSideBar.axaml" value="CourseWork/CourseWork.csproj" />
