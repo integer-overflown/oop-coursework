@@ -58,6 +58,7 @@ namespace CourseWork.Views
             if (args.Result == null) return;
             var screen = _screens.FindControlStrict<BookViewScreen>("BookViewScreen");
             screen.Book = args.Result;
+            _screens.SelectedItem = screen;
         }
 
         private void SearchBookByIsbnScreen_OnSearchFailed(ISearchAgent<Book>.SearchFailedEventArgs args)

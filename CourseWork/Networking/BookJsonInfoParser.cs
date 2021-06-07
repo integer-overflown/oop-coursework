@@ -1,20 +1,14 @@
 using System;
-using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using CourseWork.Models;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 namespace CourseWork.Networking
 {
     public class BookJsonInfoParser : IParser<Book>
     {
-        private const string PublishDateFormat = "MMMM yyyy";
-
-        private static readonly DateTimeConverterBase PublishDateConverter = new IsoDateTimeConverter
-        {
-            DateTimeFormat = PublishDateFormat
-        };
+        private static readonly Regex YearRegex = new(@"(\d{4})");
 
         public Book? Parse(string input)
         {
@@ -35,17 +29,21 @@ namespace CourseWork.Networking
             var publishingDateString = book["publish_date"]?.ToString();
             var coverLargeSource = book["cover"]?["large"]?.ToString();
 
-            if (publisher == null)
-            {
-                Console.WriteLine("INFO: no publisher");
-                return null;
-            }
+            if (publisher == null) Console.WriteLine("INFO: no publisher");
 
-            var publishingYear = publishingDateString == null
-                ? -1
-                : DateTime.ParseExact(publishingDateString,
-                    PublishDateFormat,
-                    new CultureInfo("en-US")).Year;
+            var publishingYear = -1;
+            if (publishingDateString != null)
+            {
+                var groups = YearRegex.Match(publishingDateString).Groups;
+                if (groups.Count < 1)
+                {
+                    Console.WriteLine("WARNING: failed to determine publishing year");
+                }
+                else
+                {
+                    publishingYear = int.Parse(groups[1].Value);
+                }
+            }
 
             return new Book
             {
