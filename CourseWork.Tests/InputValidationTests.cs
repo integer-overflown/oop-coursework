@@ -27,5 +27,16 @@ namespace CourseWork.Tests
             var validator = new IsbnValidator();
             Assert.That(validator.IsValid(isbn), Is.False);
         }
+
+        [Test]
+        [TestCase("1234567890")]
+        [TestCase("978-1234567890")]
+        [TestCase("978-3-16-148410-0")]
+        [TestCase("978-2-1234-5678-3")]
+        public void FilterIsbn_ValidIsbnEntry_ReturnsDigitsOnlyString(string isbn)
+        {
+            var result = InputHelpers.FilterIsbnDashes(isbn);
+            Assert.That(result, Does.Match(@"\d{10,13}"));
+        }
     }
 }
