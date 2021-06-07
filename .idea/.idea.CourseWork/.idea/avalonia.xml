@@ -4,14 +4,18 @@
     <option name="projectPerEditor">
       <map>
         <entry key="CourseWork/App.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Styles/Colors.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Styles/Dimens.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Styles/Fonts.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MainWindow.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/AddBookScreen.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/MenuScreens/ConfirmBookAdditionScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/OverviewScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/SearchScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/BookItem.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/BookItemsSideBar.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/Widgets/DecoratedTextBox.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/Widgets/ImageButton.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/MenuItem.axaml" value="CourseWork/CourseWork.csproj" />
       </map>
     </option>

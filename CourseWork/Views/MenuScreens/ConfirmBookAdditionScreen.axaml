@@ -5,6 +5,14 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:widgets="using:CourseWork.Views.Widgets"
              x:Class="CourseWork.Views.MenuScreens.ConfirmBookAdditionScreen">
+    <UserControl.Styles>
+        <Style Selector="TextBox.text-box_borderless:focus /template/ Border">
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style Selector="TextBox.text-box_borderless">
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </UserControl.Styles>
     <DockPanel>
         <Border DockPanel.Dock="Top" Background="{DynamicResource PrimaryColor}">
             <StackPanel Height="56" HorizontalAlignment="Right" Orientation="Horizontal">
@@ -28,6 +36,59 @@
                 </Button>
             </StackPanel>
         </Border>
-        <StackPanel />
+        <Grid Classes="root-view" ColumnDefinitions="256 *">
+            <Border Grid.Column="1" Padding="16 0 16 0">
+                <StackPanel Spacing="4">
+                    <!-- Name -->
+                    <Border BorderThickness="0 0 0 4" 
+                            Padding="0 0 0 4"
+                            BorderBrush="{DynamicResource PrimaryColor}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Image Width="24"
+                                   Height="24"
+                                   Source="avares://CourseWork/Assets/ic-bookmark.png"
+                                   Stretch="Uniform" />
+                            <TextBox Classes="text-box_borderless" Watermark="Enter a name" />
+                        </StackPanel>
+                    </Border>
+                    <!-- Author -->
+                    <Border BorderThickness="0 0 0 4" 
+                            Padding="0 0 0 4"
+                            BorderBrush="{DynamicResource PrimaryColor}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Image Width="24"
+                                   Height="24"
+                                   Source="avares://CourseWork/Assets/ic-copyright.png"
+                                   Stretch="Uniform" />
+                            <TextBox Classes="text-box_borderless" Watermark="Enter an author" />
+                        </StackPanel>
+                    </Border>
+                    <!-- Publisher -->
+                    <Border BorderThickness="0 0 0 4" 
+                            Padding="0 0 0 4"
+                            BorderBrush="{DynamicResource PrimaryColor}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Image Width="24"
+                                   Height="24"
+                                   Source="avares://CourseWork/Assets/ic-right-arrow.png"
+                                   Stretch="Uniform" />
+                            <TextBox Classes="text-box_borderless" Watermark="Enter a publisher" />
+                        </StackPanel>
+                    </Border>
+                    <!-- Subjects -->
+                    <Border BorderThickness="0 0 0 4" 
+                            Padding="0 0 0 4"
+                            BorderBrush="{DynamicResource PrimaryColor}">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Image Width="24"
+                                   Height="24"
+                                   Source="avares://CourseWork/Assets/ic-magic-sparkles.png"
+                                   Stretch="Uniform" />
+                            <TextBox Classes="text-box_borderless" Watermark="Enter a genre" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
     </DockPanel>
 </UserControl>
