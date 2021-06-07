@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.SearchBookByIsbnScreen">
     <UserControl.DataContext>
-        <vm:AddBookScreenViewModel />
+        <vm:SearchBookByIsbnScreenViewModel />
     </UserControl.DataContext>
     <StackPanel Classes="root-view" Spacing="16">
         <StackPanel Orientation="Horizontal" Spacing="8">

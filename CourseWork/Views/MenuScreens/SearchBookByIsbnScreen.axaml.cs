@@ -20,7 +20,7 @@ namespace CourseWork.Views.MenuScreens
 
         private void SubscribeToSearchResult()
         {
-            var viewModel = (AddBookScreenViewModel) DataContext!;
+            var viewModel = (SearchBookByIsbnScreenViewModel) DataContext!;
             viewModel.SearchResult.Subscribe(Observer.Create<Book?>(HandleBookSearchResult, HandleBookSearchError));
         }
 

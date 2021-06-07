@@ -10,14 +10,14 @@ using ReactiveUI;
 
 namespace CourseWork.ViewModels
 {
-    public class AddBookScreenViewModel : ViewModelBase, INotifyDataErrorInfo
+    public class SearchBookByIsbnScreenViewModel : ViewModelBase, INotifyDataErrorInfo
     {
         private readonly Subject<Book> _searchResponse = new();
 
         private string _isbn = "";
         private string? _isbnValidationError;
 
-        public AddBookScreenViewModel()
+        public SearchBookByIsbnScreenViewModel()
         {
             this.WhenAnyValue(o => o.Isbn).Subscribe(_ => ValidateAll());
             ErrorsChanged += (_, _) => this.RaisePropertyChanged(nameof(HasErrors));
