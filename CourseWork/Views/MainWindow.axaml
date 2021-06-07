@@ -20,18 +20,18 @@
         <SolidColorBrush x:Key="PrimaryColor">#006DB3</SolidColorBrush>
     </Window.Resources>
 
-    <StackPanel Orientation="Horizontal">
+    <Grid ColumnDefinitions="Auto *">
         <StackPanel Name="MenuItemsSizeBar" HorizontalAlignment="Left" Width="192" Orientation="Vertical">
             <widgets:MenuItem IconSize="64" ItemName="Main page" IconSource="ic-globe.png" />
             <widgets:MenuItem IconSize="64" ItemName="Search" IconSource="ic-search.png" />
             <widgets:MenuItem IconSize="64" ItemName="Add a book" IconSource="ic-plus.png" />
             <widgets:MenuItem IconSize="64" ItemName="Help" IconSource="ic-help.png" />
         </StackPanel>
-        <Carousel Name="Pages">
+        <Carousel Grid.Column="1" Name="Pages">
             <screens:OverviewScreen />
             <screens:SearchScreen />
             <screens:AddBookScreen />
         </Carousel>
-    </StackPanel>
+    </Grid>
 
 </Window>
