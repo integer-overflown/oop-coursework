@@ -108,7 +108,8 @@
                                                Stretch="Uniform" />
                                         <TextBox Text="{Binding Name}" 
                                                  Classes="text-box_borderless" 
-                                                 Watermark="Enter an author" />
+                                                 Watermark="Enter an author"
+                                                 KeyDown="PopulatedTextBox_KeyDown"/>
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
