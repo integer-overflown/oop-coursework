@@ -26,10 +26,8 @@ namespace CourseWork.Input
 
             textBox.AddHandler(InputElement.TextInputEvent, (_, args) =>
             {
-                if (args.Text != null && !textValidator.IsPermitted(args.Text))
-                {
-                    args.Handled = true; // consume the event
-                }
+                if (args.Text == null || textValidator.IsPermitted(args.Text)) return;
+                args.Handled = true; // consume the event
             }, RoutingStrategies.Tunnel);
 
             return filter;
