@@ -10,12 +10,14 @@ namespace CourseWork.Models
     {
         public long Id { get; set; }
         public int NumberOfPages { get; init; } = 0;
-        [Required]
-        public string? Name { get; init; }
+
+        [Required] public string? Name { get; init; }
+
         public string? Publisher { get; init; }
-        public IBitmap? Cover { get; init; }
-        [NotMapped]
-        public string? CoverUrl { get; init; }
+        public IBitmap? Cover { get; set; }
+
+        [NotMapped] public string? CoverUrl { get; init; }
+
         public bool IsPresent { get; set; } = true;
         public int PublishingYear { get; init; } = 0;
         public IEnumerable<Author> Authors { get; init; } = Enumerable.Empty<Author>();
