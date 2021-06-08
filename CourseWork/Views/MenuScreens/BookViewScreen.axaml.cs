@@ -8,6 +8,7 @@ namespace CourseWork.Views.MenuScreens
 {
     public class BookViewScreen : UserControl
     {
+        private const int MaxAuthorsCount = 5;
         private readonly BookViewScreenViewModel _viewModel;
 
         public BookViewScreen()
@@ -31,6 +32,7 @@ namespace CourseWork.Views.MenuScreens
         {
             if (e.Key != Key.Return) return;
             e.Handled = true;
+            if (_viewModel.Authors.Count >= MaxAuthorsCount) return;
             _viewModel.Authors.Add(new Author()); // adds new text box
         }
     }
