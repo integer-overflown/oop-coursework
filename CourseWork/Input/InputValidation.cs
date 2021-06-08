@@ -26,7 +26,6 @@ namespace CourseWork.Input
 
             textBox.AddHandler(InputElement.TextInputEvent, (_, args) =>
             {
-                Console.WriteLine($"Got {args.Text}");
                 if (args.Text != null && !textValidator.IsPermitted(args.Text))
                 {
                     args.Handled = true; // consume the event

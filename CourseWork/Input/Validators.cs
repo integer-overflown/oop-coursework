@@ -12,7 +12,7 @@ namespace CourseWork.Input
     public class IsbnValidator : IValidator<string>
     {
         private static readonly Regex IsbnRegex = new(@"^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d\re\-]+$");
-        private static readonly Regex SequenceRegex = new(@"[0-9\-]*");
+        private static readonly Regex SequenceRegex = new(@"^[0-9\-]*$");
 
         public bool IsValid(string value)
         {

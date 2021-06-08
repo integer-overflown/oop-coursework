@@ -30,7 +30,7 @@
                          Text="{Binding Isbn}"
                          MaxLength="16"
                          Watermark="Enter the ISBN code"
-                         ext:InputValidation.InputFilter="Digits" />
+                         ext:InputValidation.InputFilter="Isbn" />
                 <Button Height="{Binding #IsbnInput.MinHeight}"
                         VerticalAlignment="Top"
                         IsEnabled="{Binding IsAvailable}"
