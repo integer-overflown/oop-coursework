@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:CourseWork.ViewModels"
+             xmlns:ext="clr-namespace:CourseWork.Input"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.SearchBookByIsbnScreen">
     <UserControl.DataContext>
@@ -28,7 +29,8 @@
                          Name="IsbnInput"
                          Text="{Binding Isbn}"
                          MaxLength="16"
-                         Watermark="Enter the ISBN code" />
+                         Watermark="Enter the ISBN code"
+                         ext:InputValidation.InputFilter="Digits" />
                 <Button Height="{Binding #IsbnInput.MinHeight}"
                         VerticalAlignment="Top"
                         IsEnabled="{Binding IsAvailable}"
