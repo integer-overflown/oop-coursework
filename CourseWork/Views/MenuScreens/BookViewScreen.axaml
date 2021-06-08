@@ -49,7 +49,8 @@
                     Grid.Column="0"
                     Height="396.8"
                     HorizontalAlignment="Stretch"
-                    Background="#C4C4C4">
+                    Background="#C4C4C4"
+                    Click="IconPlaceholder_Click">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Width="128" Height="128" Source="avares://CourseWork/Assets/ic-picture.png" />
                     <TextBlock FontWeight="Medium"
