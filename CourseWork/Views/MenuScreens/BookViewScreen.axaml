@@ -58,78 +58,80 @@
                                Text="Add an icon" />
                 </StackPanel>
             </Button>
-            <Border Grid.Column="1" Padding="16 0 16 0">
-                <StackPanel Spacing="4">
-                    <!-- Name -->
-                    <Border BorderThickness="0 0 0 4"
-                            Padding="0 0 0 4"
-                            BorderBrush="{DynamicResource PrimaryColor}">
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <Image Width="24"
-                                   Height="24"
-                                   Source="avares://CourseWork/Assets/ic-bookmark.png"
-                                   Stretch="Uniform" />
-                            <TextBox Classes="text-box_borderless" 
-                                     Watermark="Enter a name"
-                                     Text="{Binding Book.Name}" />
-                        </StackPanel>
-                    </Border>
-                    
-                    <!-- Publisher -->
-                    <Border BorderThickness="0 0 0 4"
-                            Padding="0 0 0 4"
-                            BorderBrush="{DynamicResource PrimaryColor}">
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <Image Width="24"
-                                   Height="24"
-                                   Source="avares://CourseWork/Assets/ic-right-arrow.png"
-                                   Stretch="Uniform" />
-                            <TextBox Classes="text-box_borderless" Watermark="Enter a publisher" />
-                        </StackPanel>
-                    </Border>
-                    
-                    <TextBlock>Authors</TextBlock>
-                    <ItemsControl Items="{Binding Authors}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Spacing="4" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <!-- Authors -->
-                                <Border BorderThickness="0 0 0 4"
-                                        Padding="0 0 0 4"
-                                        BorderBrush="{DynamicResource PrimaryColor}">
-                                    <StackPanel Orientation="Horizontal" Spacing="4">
-                                        <Image Width="24"
-                                               Height="24"
-                                               Source="avares://CourseWork/Assets/ic-copyright.png"
-                                               Stretch="Uniform" />
-                                        <TextBox Text="{Binding Name}" 
-                                                 Classes="text-box_borderless" 
-                                                 Watermark="Enter an author"
-                                                 KeyDown="PopulatedTextBox_KeyDown"/>
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    
-                    <!-- Subjects -->
-                    <Border BorderThickness="0 0 0 4"
-                            Padding="0 0 0 4"
-                            BorderBrush="{DynamicResource PrimaryColor}">
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <Image Width="24"
-                                   Height="24"
-                                   Source="avares://CourseWork/Assets/ic-magic-sparkles.png"
-                                   Stretch="Uniform" />
-                            <TextBox Classes="text-box_borderless" Watermark="Enter a genre" />
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Border>
+            <ScrollViewer Grid.Column="1">
+                <Border Padding="16 0 16 0">
+                    <StackPanel Spacing="4">
+                        <!-- Name -->
+                        <Border BorderThickness="0 0 0 4"
+                                Padding="0 0 0 4"
+                                BorderBrush="{DynamicResource PrimaryColor}">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <Image Width="24"
+                                       Height="24"
+                                       Source="avares://CourseWork/Assets/ic-bookmark.png"
+                                       Stretch="Uniform" />
+                                <TextBox Classes="text-box_borderless"
+                                         Watermark="Enter a name"
+                                         Text="{Binding Book.Name}" />
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Publisher -->
+                        <Border BorderThickness="0 0 0 4"
+                                Padding="0 0 0 4"
+                                BorderBrush="{DynamicResource PrimaryColor}">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <Image Width="24"
+                                       Height="24"
+                                       Source="avares://CourseWork/Assets/ic-right-arrow.png"
+                                       Stretch="Uniform" />
+                                <TextBox Classes="text-box_borderless" Watermark="Enter a publisher" />
+                            </StackPanel>
+                        </Border>
+
+                        <TextBlock>Authors</TextBlock>
+                        <ItemsControl Items="{Binding Authors}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Spacing="4" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- Authors -->
+                                    <Border BorderThickness="0 0 0 4"
+                                            Padding="0 0 0 4"
+                                            BorderBrush="{DynamicResource PrimaryColor}">
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Image Width="24"
+                                                   Height="24"
+                                                   Source="avares://CourseWork/Assets/ic-copyright.png"
+                                                   Stretch="Uniform" />
+                                            <TextBox Text="{Binding Name}"
+                                                     Classes="text-box_borderless"
+                                                     Watermark="Enter an author"
+                                                     KeyDown="PopulatedTextBox_KeyDown" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- Subjects -->
+                        <Border BorderThickness="0 0 0 4"
+                                Padding="0 0 0 4"
+                                BorderBrush="{DynamicResource PrimaryColor}">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <Image Width="24"
+                                       Height="24"
+                                       Source="avares://CourseWork/Assets/ic-magic-sparkles.png"
+                                       Stretch="Uniform" />
+                                <TextBox Classes="text-box_borderless" Watermark="Enter a genre" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </ScrollViewer>
         </Grid>
     </DockPanel>
 </UserControl>

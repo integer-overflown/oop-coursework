@@ -32,9 +32,10 @@
             <screens:SearchScreen />
             <screens:SearchBookByIsbnScreen SearchSucceeded="SearchBookByIsbnScreen_OnSearchSucceeded" 
                                             SearchFailed="SearchBookByIsbnScreen_OnSearchFailed" />
+            <screens:BookViewScreen Name="BookViewScreen" />
+
             <screens:HelpScreen />
             <!-- Named service screens, accessible only from code-behind -->
-            <screens:BookViewScreen Name="BookViewScreen" />
         </Carousel>
     </Grid>
 
