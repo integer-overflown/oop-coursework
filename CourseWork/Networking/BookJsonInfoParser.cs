@@ -8,6 +8,7 @@ namespace CourseWork.Networking
 {
     public class BookJsonInfoParser : IParser<Book>
     {
+        private const int SubjectsMaxCount = 5;
         private static readonly Regex YearRegex = new(@"(\d{4})");
 
         public Book? Parse(string input)
@@ -23,6 +24,7 @@ namespace CourseWork.Networking
             var subjects = book
                 .SelectTokens("$.subjects..name")
                 .Select(token => new Subject {Name = token.ToString()})
+                .Take(SubjectsMaxCount)
                 .ToList();
 
             var publisher = book.SelectToken("$.publishers..name")?.ToString();
