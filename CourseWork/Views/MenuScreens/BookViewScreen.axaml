@@ -74,18 +74,7 @@
                                      Text="{Binding Book.Name}" />
                         </StackPanel>
                     </Border>
-                    <!-- Author -->
-                    <Border BorderThickness="0 0 0 4"
-                            Padding="0 0 0 4"
-                            BorderBrush="{DynamicResource PrimaryColor}">
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <Image Width="24"
-                                   Height="24"
-                                   Source="avares://CourseWork/Assets/ic-copyright.png"
-                                   Stretch="Uniform" />
-                            <TextBox Classes="text-box_borderless" Watermark="Enter an author" />
-                        </StackPanel>
-                    </Border>
+                    
                     <!-- Publisher -->
                     <Border BorderThickness="0 0 0 4"
                             Padding="0 0 0 4"
@@ -98,6 +87,34 @@
                             <TextBox Classes="text-box_borderless" Watermark="Enter a publisher" />
                         </StackPanel>
                     </Border>
+                    
+                    <TextBlock>Authors</TextBlock>
+                    <ItemsControl Items="{Binding Authors}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Spacing="4" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!-- Authors -->
+                                <Border BorderThickness="0 0 0 4"
+                                        Padding="0 0 0 4"
+                                        BorderBrush="{DynamicResource PrimaryColor}">
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <Image Width="24"
+                                               Height="24"
+                                               Source="avares://CourseWork/Assets/ic-copyright.png"
+                                               Stretch="Uniform" />
+                                        <TextBox Text="{Binding Name}" 
+                                                 Classes="text-box_borderless" 
+                                                 Watermark="Enter an author" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    
                     <!-- Subjects -->
                     <Border BorderThickness="0 0 0 4"
                             Padding="0 0 0 4"
