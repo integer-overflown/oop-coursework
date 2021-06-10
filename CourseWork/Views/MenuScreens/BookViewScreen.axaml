@@ -99,7 +99,20 @@
 
                         <NumericUpDown Watermark="Enter the number of pages"
                                        Minimum="0"
-                                       BorderBrush="{DynamicResource PrimaryColor}" />
+                                       BorderBrush="{DynamicResource PrimaryColor}"
+                                       Value="{Binding NumberOfPages}"/>
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <Image Width="24"
+                                   Height="24"
+                                   Source="avares://CourseWork/Assets/ic-calendar.png"
+                                   Stretch="Uniform" />
+                            <TextBox Text="{Binding PublishingYear}"
+                                     Classes="text-box_borderless"
+                                     Watermark="Enter the publishing year"
+                                     MaxLength="8"
+                                     ext:InputValidation.InputFilter="Digits" />
+                        </StackPanel>
 
                         <TextBlock>Authors</TextBlock>
                         <ItemsControl Items="{Binding Authors}">
