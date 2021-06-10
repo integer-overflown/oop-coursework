@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -8,16 +7,19 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using Avalonia.Media.Imaging;
 using CourseWork.Input;
 using CourseWork.Models;
+using CourseWork.Utils;
 using CourseWork.ViewModels;
+using CourseWork.Views.Widgets;
+using ReactiveUI;
 
 namespace CourseWork.Views.MenuScreens
 {
     public class BookViewScreen : UserControl
     {
         private const int MaxAuthorsCount = 5;
+        private readonly PlaceholderImageButton _bookCover;
         private readonly BookViewScreenViewModel _viewModel;
         private int _isBusy;
 
@@ -25,12 +27,24 @@ namespace CourseWork.Views.MenuScreens
         {
             InitializeComponent();
             _viewModel = (BookViewScreenViewModel) DataContext!;
+            _bookCover = this.FindControlStrict<PlaceholderImageButton>("BookCover");
+            _viewModel.Changed.Subscribe(HandlePropertyChanged);
         }
 
         public Book Book
         {
             get => _viewModel.Book;
             set => _viewModel.Book = value;
+        }
+
+        private void HandlePropertyChanged(IReactivePropertyChangedEventArgs<IReactiveObject> args)
+        {
+            switch (args.PropertyName)
+            {
+                case nameof(_viewModel.Cover):
+                    _bookCover.ActualContent = new Image {Source = _viewModel.Cover};
+                    break;
+            }
         }
 
         private void InitializeComponent()
@@ -62,11 +76,8 @@ namespace CourseWork.Views.MenuScreens
             if (result is not null)
             {
                 var fileName = result[0];
-                var bitmap = ReadImage(fileName);
-                _viewModel.Book.Cover = bitmap;
-
-                var emitter = (Button) sender;
-                emitter.Content = new Image {Source = bitmap};
+                var cover = Files.ReadBitmap(fileName);
+                _viewModel.Cover = cover;
             }
 
             _isBusy = 0;
@@ -81,12 +92,6 @@ namespace CourseWork.Views.MenuScreens
 
             Console.WriteLine("Unsupported lifetime");
             return null;
-        }
-
-        private static Bitmap ReadImage(string fileName)
-        {
-            using var stream = File.Open(fileName, FileMode.Open);
-            return new Bitmap(stream);
         }
     }
 }
