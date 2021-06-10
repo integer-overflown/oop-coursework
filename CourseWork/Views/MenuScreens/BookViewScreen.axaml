@@ -28,7 +28,7 @@
     <DockPanel>
         <Border DockPanel.Dock="Top" Background="{DynamicResource PrimaryColor}">
             <StackPanel Height="56" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Classes="image-button" Background="Transparent">
+                <Button Classes="image-button" Background="Transparent" Click="FinishButton_Click">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <Image Source="avares://CourseWork/Assets/ic-confirm.png" Width="24" Height="24" />
                         <TextBlock Classes="image-button__text" VerticalAlignment="Center">FINISH</TextBlock>

@@ -109,5 +109,18 @@ namespace CourseWork.ViewModels
         {
             ResetBook(new Book());
         }
+
+        public async Task Save()
+        {
+            await using var context = new BookContext();
+            await context.AddAsync(_book);
+            var saved = await context.SaveChangesAsync();
+            Console.WriteLine($"INFO: saved {saved} records");
+        }
+
+        public bool ContainsValidItem()
+        {
+            return !string.IsNullOrWhiteSpace(_book.Name);
+        }
     }
 }

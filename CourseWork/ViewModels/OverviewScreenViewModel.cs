@@ -1,28 +1,25 @@
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using CourseWork.Database;
 using CourseWork.Models;
-using ReactiveUI;
+using Microsoft.EntityFrameworkCore;
 
 namespace CourseWork.ViewModels
 {
-    public class OverviewScreenViewModel : ViewModelBase
+    public class OverviewScreenViewModel : ViewModelBase, IAsyncInitialization
     {
-        private ObservableCollection<BookDisplayItem> _books = new();
-
         public OverviewScreenViewModel()
         {
-            _books.Add(new Book
-            {
-                Authors = new[] {new Author {Name = "Erich Maria Remarque"}},
-                Name = "Three Comrades"
-            });
+            var context = new BookContext();
+            Initialization = context.Books
+                .Select(entity => new BookDisplayItem(entity))
+                .ForEachAsync(Books.Add);
         }
 
-        public ObservableCollection<BookDisplayItem> Books
-        {
-            get => _books;
-            set => this.RaiseAndSetIfChanged(ref _books, value, nameof(Books));
-        }
+        public ObservableCollection<BookDisplayItem> Books { get; } = new();
+
+        public Task Initialization { get; }
 
         public readonly struct BookDisplayItem
         {
@@ -34,7 +31,7 @@ namespace CourseWork.ViewModels
                 return new(book);
             }
 
-            private BookDisplayItem(Book book)
+            public BookDisplayItem(Book book)
             {
                 Content = book;
                 FirstAuthorName = book.Authors.FirstOrDefault()?.Name;
