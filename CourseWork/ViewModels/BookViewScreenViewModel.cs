@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
+using CourseWork.Database;
 using CourseWork.Models;
 using DynamicData;
 using ReactiveUI;
@@ -19,13 +22,21 @@ namespace CourseWork.ViewModels
         public string? Name
         {
             get => _name;
-            set => this.RaiseAndSetIfChanged(ref _name, value, nameof(Name));
+            set
+            {
+                _book.Name = value;
+                this.RaiseAndSetIfChanged(ref _name, value, nameof(Name));
+            }
         }
 
         public string? Publisher
         {
             get => _publisher;
-            set => this.RaiseAndSetIfChanged(ref _publisher, value, nameof(Publisher));
+            set
+            {
+                _book.Publisher = value;
+                this.RaiseAndSetIfChanged(ref _publisher, value, nameof(Publisher));
+            }
         }
 
         public ObservableCollection<Author> Authors { get; } = new(Enumerable.Repeat(new Author(), 1));
