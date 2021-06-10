@@ -17,10 +17,9 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <!-- TODO: Authors is a list -->
-                <widgets:BookItem Title="{Binding Name}" 
-                                  Subtitle="{Binding Authors}"
-                                  Cover="{Binding Cover}" />
+                <widgets:BookItem Title="{Binding Content.Name}" 
+                                  Subtitle="{Binding FirstAuthorName}"
+                                  Cover="{Binding Content.Cover}" />
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
