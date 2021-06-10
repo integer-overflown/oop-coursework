@@ -93,15 +93,19 @@
                                        Height="24"
                                        Source="avares://CourseWork/Assets/ic-right-arrow.png"
                                        Stretch="Uniform" />
-                                <TextBox Classes="text-box_borderless" Watermark="Enter a publisher" />
+                                <TextBox Classes="text-box_borderless"
+                                         Watermark="Enter a publisher"
+                                         Text="{Binding Book.Publisher} " />
                             </StackPanel>
                         </Border>
 
+                        <!-- Publishing info -->
+                        <TextBlock>Publishing info</TextBlock>
                         <NumericUpDown Watermark="Enter the number of pages"
                                        Minimum="0"
                                        BorderBrush="{DynamicResource PrimaryColor}"
-                                       Value="{Binding NumberOfPages}"/>
-                        
+                                       Value="{Binding NumberOfPages}" />
+
                         <StackPanel Orientation="Horizontal" Spacing="4">
                             <Image Width="24"
                                    Height="24"
