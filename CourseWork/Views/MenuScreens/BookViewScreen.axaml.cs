@@ -43,7 +43,8 @@ namespace CourseWork.Views.MenuScreens
             switch (args.PropertyName)
             {
                 case nameof(_viewModel.Cover):
-                    _bookCover.ActualContent = new Image {Source = _viewModel.Cover};
+                    var cover = _viewModel.Cover;
+                    _bookCover.ActualContent = cover is null ? null : new Image {Source = cover};
                     break;
             }
         }
@@ -103,6 +104,11 @@ namespace CourseWork.Views.MenuScreens
 
             Console.WriteLine("Unsupported lifetime");
             return null;
+        }
+
+        private void AddAnother_Click(object? sender, RoutedEventArgs e)
+        {
+            _viewModel.Reset();
         }
     }
 }

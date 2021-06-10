@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Avalonia.Media.Imaging;
@@ -10,8 +11,22 @@ namespace CourseWork.ViewModels
     public class BookViewScreenViewModel : ViewModelBase
     {
         private Book _book = new();
+        private string? _name;
         private double _numberOfPages;
+        private string? _publisher;
         private string? _publishingYear;
+
+        public string? Name
+        {
+            get => _name;
+            set => this.RaiseAndSetIfChanged(ref _name, value, nameof(Name));
+        }
+
+        public string? Publisher
+        {
+            get => _publisher;
+            set => this.RaiseAndSetIfChanged(ref _publisher, value, nameof(Publisher));
+        }
 
         public ObservableCollection<Author> Authors { get; } = new(Enumerable.Repeat(new Author(), 1));
         public ObservableCollection<Subject> Subjects { get; } = new(Enumerable.Repeat(new Subject(), 1));
@@ -60,13 +75,28 @@ namespace CourseWork.ViewModels
         private void ResetBook(Book value)
         {
             _book = value;
-            Authors.Clear();
-            Authors.AddRange(value.Authors);
-            Subjects.Clear();
-            Subjects.AddRange(value.Subjects);
+            Name = value.Name;
+            Publisher = value.Publisher;
+            RefillOrDefault(Authors, _book.Authors);
+            RefillOrDefault(Subjects, _book.Subjects);
             NumberOfPages = value.NumberOfPages;
             PublishingYear = value.PublishingYear.ToString();
             Cover = value.Cover;
+        }
+
+        private static void RefillOrDefault<T>(IList<T> target, IEnumerable<T> source) where T : new()
+        {
+            target.Clear();
+            var items = source.ToList();
+            if (items.Any())
+                target.AddRange(items);
+            else
+                target.Add(new T());
+        }
+
+        public void Reset()
+        {
+            ResetBook(new Book());
         }
     }
 }

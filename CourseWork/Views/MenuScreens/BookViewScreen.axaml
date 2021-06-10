@@ -34,7 +34,7 @@
                         <TextBlock Classes="image-button__text" VerticalAlignment="Center">FINISH</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Classes="image-button" Background="Transparent">
+                <Button Classes="image-button" Background="Transparent" Click="AddAnother_Click">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <Image Source="avares://CourseWork/Assets/ic-add.png" Width="24" Height="24" />
                         <TextBlock Classes="image-button__text" VerticalAlignment="Center">ADD ANOTHER</TextBlock>
@@ -80,7 +80,7 @@
                                        Stretch="Uniform" />
                                 <TextBox Classes="text-box_borderless"
                                          Watermark="Enter a name"
-                                         Text="{Binding Book.Name}" />
+                                         Text="{Binding Name}" />
                             </StackPanel>
                         </Border>
 
@@ -95,7 +95,7 @@
                                        Stretch="Uniform" />
                                 <TextBox Classes="text-box_borderless"
                                          Watermark="Enter a publisher"
-                                         Text="{Binding Book.Publisher} " />
+                                         Text="{Binding Publisher} " />
                             </StackPanel>
                         </Border>
 
