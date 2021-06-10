@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:CourseWork.ViewModels"
              xmlns:widgets="using:CourseWork.Views.Widgets"
+             xmlns:ext="using:CourseWork.Input"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.BookViewScreen">
     <UserControl.DataContext>
@@ -19,6 +20,9 @@
         <Style Selector="Border.icon-placeholder:hover">
             <Setter Property="Background" Value="#f7f7f7" />
             <Setter Property="Cursor" Value="UpArrow" />
+        </Style>
+        <Style Selector="NumericUpDown /template/ TextBox">
+            <Setter Property="ext:InputValidation.InputFilter" Value="Digits" />
         </Style>
     </UserControl.Styles>
     <DockPanel>
@@ -93,6 +97,10 @@
                             </StackPanel>
                         </Border>
 
+                        <NumericUpDown Watermark="Enter the number of pages"
+                                       Minimum="0"
+                                       BorderBrush="{DynamicResource PrimaryColor}" />
+
                         <TextBlock>Authors</TextBlock>
                         <ItemsControl Items="{Binding Authors}">
                             <ItemsControl.ItemsPanel>
@@ -120,7 +128,7 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        
+
                         <TextBlock>Subjects</TextBlock>
                         <ItemsControl Items="{Binding Subjects}">
                             <ItemsControl.ItemsPanel>
@@ -139,10 +147,10 @@
                                                    Height="24"
                                                    Source="avares://CourseWork/Assets/ic-magic-sparkles.png"
                                                    Stretch="Uniform" />
-                                            <TextBox Text="{Binding Name}" 
-                                                     Classes="text-box_borderless" 
+                                            <TextBox Text="{Binding Name}"
+                                                     Classes="text-box_borderless"
                                                      Watermark="Enter a genre"
-                                                     KeyDown="PopulatedSubjectTextBox_KeyDown"/>
+                                                     KeyDown="PopulatedSubjectTextBox_KeyDown" />
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
