@@ -20,6 +20,7 @@
         <entry key="CourseWork/Views/Widgets/DecoratedTextBox.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/ImageButton.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/MenuItem.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/Widgets/PlaceholderImageButton.axaml" value="CourseWork/CourseWork.csproj" />
       </map>
     </option>
   </component>
