@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -18,7 +19,7 @@ namespace CourseWork.Views.MenuScreens
 {
     public class BookViewScreen : UserControl
     {
-        private const int MaxAuthorsCount = 5;
+        private const int MaxPopulatedItemsCount = 5;
         private readonly PlaceholderImageButton _bookCover;
         private readonly BookViewScreenViewModel _viewModel;
         private int _isBusy;
@@ -52,12 +53,22 @@ namespace CourseWork.Views.MenuScreens
             AvaloniaXamlLoader.Load(this);
         }
 
-        private void PopulatedTextBox_KeyDown(object? sender, KeyEventArgs e)
+        private void PopulatedAuthorTextBox_KeyDown(object? sender, KeyEventArgs e)
+        {
+            GenericPopulateTextBoxHandler(_viewModel.Authors, e);
+        }
+
+        private void PopulatedSubjectTextBox_KeyDown(object? sender, KeyEventArgs e)
+        {
+            GenericPopulateTextBoxHandler(_viewModel.Subjects, e);
+        }
+
+        private static void GenericPopulateTextBoxHandler<T>(ICollection<T> items, KeyEventArgs e) where T : new()
         {
             if (e.Key != Key.Return) return;
             e.Handled = true;
-            if (_viewModel.Authors.Count >= MaxAuthorsCount) return;
-            _viewModel.Authors.Add(new Author()); // adds new text box
+            if (items.Count >= MaxPopulatedItemsCount) return;
+            items.Add(new T()); // adds new text box
         }
 
         private async void IconPlaceholder_Click(object? sender, RoutedEventArgs e)

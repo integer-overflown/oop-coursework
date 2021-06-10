@@ -114,25 +114,40 @@
                                             <TextBox Text="{Binding Name}"
                                                      Classes="text-box_borderless"
                                                      Watermark="Enter an author"
-                                                     KeyDown="PopulatedTextBox_KeyDown" />
+                                                     KeyDown="PopulatedAuthorTextBox_KeyDown" />
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-
-                        <!-- Subjects -->
-                        <Border BorderThickness="0 0 0 4"
-                                Padding="0 0 0 4"
-                                BorderBrush="{DynamicResource PrimaryColor}">
-                            <StackPanel Orientation="Horizontal" Spacing="4">
-                                <Image Width="24"
-                                       Height="24"
-                                       Source="avares://CourseWork/Assets/ic-magic-sparkles.png"
-                                       Stretch="Uniform" />
-                                <TextBox Classes="text-box_borderless" Watermark="Enter a genre" />
-                            </StackPanel>
-                        </Border>
+                        
+                        <TextBlock>Subjects</TextBlock>
+                        <ItemsControl Items="{Binding Subjects}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Spacing="4" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- Subject -->
+                                    <Border BorderThickness="0 0 0 4"
+                                            Padding="0 0 0 4"
+                                            BorderBrush="{DynamicResource PrimaryColor}">
+                                        <StackPanel Orientation="Horizontal" Spacing="4">
+                                            <Image Width="24"
+                                                   Height="24"
+                                                   Source="avares://CourseWork/Assets/ic-magic-sparkles.png"
+                                                   Stretch="Uniform" />
+                                            <TextBox Text="{Binding Name}" 
+                                                     Classes="text-box_borderless" 
+                                                     Watermark="Enter a genre"
+                                                     KeyDown="PopulatedSubjectTextBox_KeyDown"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </Border>
             </ScrollViewer>

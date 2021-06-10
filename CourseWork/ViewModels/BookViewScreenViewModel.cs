@@ -12,6 +12,7 @@ namespace CourseWork.ViewModels
         private Book _book = new();
 
         public ObservableCollection<Author> Authors { get; } = new(Enumerable.Repeat(new Author(), 1));
+        public ObservableCollection<Subject> Subjects { get; } = new(Enumerable.Repeat(new Subject(), 1));
 
         public IBitmap? Cover
         {
@@ -29,14 +30,19 @@ namespace CourseWork.ViewModels
             set
             {
                 if (_book == value) return;
-                _book = value;
-
-                Authors.Clear();
-                Authors.AddRange(value.Authors);
-                Cover = value.Cover;
-
+                ResetBook(value);
                 this.RaisePropertyChanged(nameof(Book));
             }
+        }
+
+        private void ResetBook(Book value)
+        {
+            _book = value;
+            Authors.Clear();
+            Authors.AddRange(value.Authors);
+            Subjects.Clear();
+            Subjects.AddRange(value.Subjects);
+            Cover = value.Cover;
         }
     }
 }
