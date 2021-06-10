@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Avalonia.Media.Imaging;
 using CourseWork.Models;
 using JetBrains.Annotations;
 
@@ -21,7 +23,14 @@ namespace CourseWork.Networking
             {
                 var response = await _client.GetAsync(url);
                 var responseString = await response.Content.ReadAsStringAsync();
-                return _parser.Parse(responseString);
+                var book = _parser.Parse(responseString);
+
+                if (book?.CoverUrl is null) return book;
+
+                var buf = await DownloadImage(book.CoverUrl);
+                book.Cover = new Bitmap(new MemoryStream(buf));
+
+                return book;
             }
             catch (HttpRequestException e)
             {
@@ -31,6 +40,22 @@ namespace CourseWork.Networking
             {
                 throw new ApiClientException("Operation timed out.", e);
             }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+                throw new ApiClientException("Unknown error occured.");
+            }
+        }
+
+        public async Task<IBitmap> DownloadImageBitmap(string url)
+        {
+            await using var response = await _client.GetStreamAsync(url);
+            return new Bitmap(response);
+        }
+
+        public async Task<byte[]> DownloadImage(string url)
+        {
+            return await _client.GetByteArrayAsync(url);
         }
     }
 
