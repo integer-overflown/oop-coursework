@@ -1,28 +1,37 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using CourseWork.Database;
 using CourseWork.Models;
-using Microsoft.EntityFrameworkCore;
+using DynamicData;
+using DynamicData.Binding;
 
 namespace CourseWork.ViewModels
 {
     public class OverviewScreenViewModel : ViewModelBase
     {
+        private readonly ReadOnlyObservableCollection<BookDisplayItem> _books;
+        private readonly SourceCache<Book, long> _bookSource = new(item => item.Id);
+
         public OverviewScreenViewModel()
         {
-            Refresh();
+            _bookSource
+                .Connect()
+                .Transform(book => new BookDisplayItem(book))
+                .Sort(SortExpressionComparer<BookDisplayItem>.Ascending(book => book.Content.Name!))
+                .Bind(out _books)
+                .DisposeMany()
+                .Subscribe();
             BookContext.Notifier.DataAppended += Refresh;
+            Refresh();
         }
 
-        public ObservableCollection<BookDisplayItem> Books { get; } = new();
+        public ReadOnlyObservableCollection<BookDisplayItem> Books => _books;
 
         private void Refresh()
         {
             var context = new BookContext();
-            Books.Clear();
-            context.Books
-                .Select(entity => new BookDisplayItem(entity))
-                .ForEachAsync(Books.Add);
+            _bookSource.AddOrUpdate(context.Books);
         }
 
         public readonly struct BookDisplayItem
