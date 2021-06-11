@@ -18,7 +18,7 @@ namespace CourseWork.ViewModels
         private bool _isAvailable;
         private string _isbn = "";
         private string? _isbnValidationError;
-        private bool _isSearchPending = false;
+        private bool _isSearchPending;
 
         public SearchBookByIsbnScreenViewModel()
         {
@@ -49,8 +49,10 @@ namespace CourseWork.ViewModels
             {
                 _searchResponse.OnError(e);
             }
-
-            IsSearchPending = false;
+            finally
+            {
+                IsSearchPending = false;
+            }
         });
 
         public string Isbn
