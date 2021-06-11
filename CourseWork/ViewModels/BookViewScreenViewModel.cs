@@ -15,10 +15,17 @@ namespace CourseWork.ViewModels
     public class BookViewScreenViewModel : ViewModelBase
     {
         private Book _book = new();
+        private bool _isEditable;
         private string? _name;
         private double _numberOfPages;
         private string? _publisher;
         private string? _publishingYear;
+
+        public bool IsEditable
+        {
+            get => _isEditable;
+            set => this.RaiseAndSetIfChanged(ref _isEditable, value, nameof(IsEditable));
+        }
 
         public string? Name
         {

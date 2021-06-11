@@ -20,6 +20,11 @@ namespace CourseWork.Views.MenuScreens
     public class BookViewScreen : RoutedScreen
     {
         private const int MaxPopulatedItemsCount = 5;
+
+        public static readonly DirectProperty<BookViewScreen, bool> IsEditableProperty =
+            AvaloniaProperty.RegisterDirect<BookViewScreen, bool>(nameof(IsEditable), o => o.IsEditable,
+                (o, v) => o.IsEditable = v);
+
         private readonly PlaceholderImageButton _bookCover;
         private readonly BookViewScreenViewModel _viewModel;
         private int _isBusy;
@@ -31,6 +36,12 @@ namespace CourseWork.Views.MenuScreens
             _viewModel = (BookViewScreenViewModel) DataContext!;
             _bookCover = this.FindControlStrict<PlaceholderImageButton>("BookCover");
             _viewModel.Changed.Subscribe(HandlePropertyChanged);
+        }
+
+        public bool IsEditable
+        {
+            get => _viewModel.IsEditable;
+            set => _viewModel.IsEditable = value;
         }
 
         public Book Book

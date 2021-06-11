@@ -6,7 +6,8 @@
              xmlns:widgets="using:CourseWork.Views.Widgets"
              xmlns:ext="using:CourseWork.Input"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CourseWork.Views.MenuScreens.BookViewScreen">
+             x:Class="CourseWork.Views.MenuScreens.BookViewScreen"
+             Name="Root">
     <UserControl.DataContext>
         <vm:BookViewScreenViewModel />
     </UserControl.DataContext>
@@ -23,6 +24,9 @@
         </Style>
         <Style Selector="NumericUpDown /template/ TextBox">
             <Setter Property="ext:InputValidation.InputFilter" Value="Digits" />
+        </Style>
+        <Style Selector="TextBox.text-box_borderless:disabled /template/ Border">
+            <Setter Property="Background" Value="Transparent" />
         </Style>
     </UserControl.Styles>
     <DockPanel>
@@ -51,13 +55,14 @@
         <Grid Classes="root-view" ColumnDefinitions="256 *">
             <widgets:PlaceholderImageButton Name="BookCover"
                                             Classes="icon-placeholder"
-                                            Margin="0 -16 0 0"
                                             Grid.Column="0"
                                             Height="396.8"
                                             HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Top"
                                             Background="#C4C4C4"
                                             ActualContent="{Binding Cover}"
-                                            Click="IconPlaceholder_Click">
+                                            Click="IconPlaceholder_Click"
+                                            IsEnabled="{Binding IsEditable}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Width="128" Height="128" Source="avares://CourseWork/Assets/ic-picture.png" />
                     <TextBlock FontWeight="Medium"
@@ -80,7 +85,8 @@
                                        Stretch="Uniform" />
                                 <TextBox Classes="text-box_borderless"
                                          Watermark="Enter a name"
-                                         Text="{Binding Name}" />
+                                         Text="{Binding Name}" 
+                                         IsEnabled="{Binding IsEditable}"/>
                             </StackPanel>
                         </Border>
 
@@ -95,7 +101,8 @@
                                        Stretch="Uniform" />
                                 <TextBox Classes="text-box_borderless"
                                          Watermark="Enter a publisher"
-                                         Text="{Binding Publisher} " />
+                                         Text="{Binding Publisher}"
+                                         IsEnabled="{Binding IsEditable}"/>
                             </StackPanel>
                         </Border>
 
@@ -104,7 +111,8 @@
                         <NumericUpDown Watermark="Enter the number of pages"
                                        Minimum="0"
                                        BorderBrush="{DynamicResource PrimaryColor}"
-                                       Value="{Binding NumberOfPages}" />
+                                       Value="{Binding NumberOfPages}" 
+                                       IsEnabled="{Binding IsEditable}"/>
 
                         <StackPanel Orientation="Horizontal" Spacing="4">
                             <Image Width="24"
@@ -115,7 +123,8 @@
                                      Classes="text-box_borderless"
                                      Watermark="Enter the publishing year"
                                      MaxLength="8"
-                                     ext:InputValidation.InputFilter="Digits" />
+                                     ext:InputValidation.InputFilter="Digits"
+                                     IsEnabled="{Binding IsEditable}"/>
                         </StackPanel>
 
                         <TextBlock>Authors</TextBlock>
@@ -136,10 +145,12 @@
                                                    Height="24"
                                                    Source="avares://CourseWork/Assets/ic-copyright.png"
                                                    Stretch="Uniform" />
+                                            <!-- ReSharper disable once Xaml.PossibleNullReferenceException -->
                                             <TextBox Text="{Binding Name}"
                                                      Classes="text-box_borderless"
                                                      Watermark="Enter an author"
-                                                     KeyDown="PopulatedAuthorTextBox_KeyDown" />
+                                                     KeyDown="PopulatedAuthorTextBox_KeyDown"
+                                                     IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable}" />
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
@@ -164,10 +175,12 @@
                                                    Height="24"
                                                    Source="avares://CourseWork/Assets/ic-magic-sparkles.png"
                                                    Stretch="Uniform" />
+                                            <!-- ReSharper disable once Xaml.PossibleNullReferenceException -->
                                             <TextBox Text="{Binding Name}"
                                                      Classes="text-box_borderless"
                                                      Watermark="Enter a genre"
-                                                     KeyDown="PopulatedSubjectTextBox_KeyDown" />
+                                                     KeyDown="PopulatedSubjectTextBox_KeyDown"
+                                                     IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable}"/>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
