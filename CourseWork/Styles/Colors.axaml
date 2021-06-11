@@ -12,4 +12,7 @@
     <Style Selector="TextBlock.image-button__text">
         <Setter Property="Foreground" Value="#b3ffffff" />
     </Style>
+    <Style Selector="TextBlock.image-button__text-dark">
+        <Setter Property="Foreground" Value="Black" />
+    </Style>
 </Styles>

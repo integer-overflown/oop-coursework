@@ -37,12 +37,14 @@
             <screens:SearchBookByIsbnScreen Name="SearchBookByIsbnScreen"
                                             SearchSucceeded="SearchBookByIsbnScreen_OnSearchSucceeded"
                                             SearchFailed="SearchBookByIsbnScreen_OnSearchFailed" />
+            <screens:HelpScreen />
+            <!-- Named service screens, accessible only from code-behind -->
+            <screens:NotFoundScreen Name="NotFoundScreen"
+                                    Previous="SearchBookByIsbnScreen" 
+                                    NavigatedBack="RoutedScreen_NavigatedBack" />
             <screens:BookViewScreen Name="BookViewScreen" 
                                     Previous="SearchBookByIsbnScreen" 
                                     NavigatedBack="RoutedScreen_NavigatedBack"/>
-
-            <screens:HelpScreen />
-            <!-- Named service screens, accessible only from code-behind -->
         </Carousel>
     </Grid>
 
