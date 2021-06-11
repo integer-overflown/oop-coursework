@@ -4,12 +4,14 @@ using System.Linq;
 using CourseWork.Database;
 using CourseWork.Models;
 using DynamicData;
+using DynamicData.Alias;
 using DynamicData.Binding;
 
 namespace CourseWork.ViewModels
 {
     public class OverviewScreenViewModel : ViewModelBase
     {
+        private readonly ReadOnlyObservableCollection<string> _autoCompleteItems;
         private readonly ReadOnlyObservableCollection<BookDisplayItem> _books;
         private readonly SourceCache<Book, long> _bookSource = new(item => item.Id);
 
@@ -22,11 +24,18 @@ namespace CourseWork.ViewModels
                 .Bind(out _books)
                 .DisposeMany()
                 .Subscribe();
+            _bookSource
+                .Connect()
+                .Select(book => book.Name!)
+                .Bind(out _autoCompleteItems)
+                .Subscribe();
             BookContext.Notifier.DataAppended += Refresh;
             Refresh();
         }
 
         public ReadOnlyObservableCollection<BookDisplayItem> Books => _books;
+
+        public ReadOnlyObservableCollection<string> AutoCompleteItems => _autoCompleteItems;
 
         private void Refresh()
         {
