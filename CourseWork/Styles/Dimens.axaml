@@ -15,16 +15,7 @@
     <Style Selector="widgets|BookItem Border.title-box-border">
         <Setter Property="Padding" Value="16 4 16 12" />
     </Style>
-
-    <Style Selector="widgets|BookItem Border.book-card-border">
-        <!-- TODO: shadow -->
-        <Setter Property="CornerRadius" Value="0 0 4 4" />
-    </Style>
-
-    <Style Selector="widgets|BookItem StackPanel.book-card">
-        <Setter Property="Width" Value="200" />
-    </Style>
-
+    
     <Style Selector=":is(Panel).root-view">
         <Setter Property="Margin" Value="16 24 0 0" />
     </Style>

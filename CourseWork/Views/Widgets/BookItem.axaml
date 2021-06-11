@@ -4,15 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.Widgets.BookItem">
-    <Border Classes="book-card-border">
-        <StackPanel Classes="book-card" Orientation="Vertical">
-            <Image Stretch="Uniform" Name="Cover" />
-            <Border Classes="title-box-border">
+        <StackPanel Orientation="Vertical">
+            <Image Stretch="Uniform" Name="Cover" Height="396" />
+            <Border>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Classes="title" Name="Title" />
                     <TextBlock Classes="subtitle" TextTrimming="CharacterEllipsis" Name="Subtitle" />
                 </StackPanel>
             </Border>
         </StackPanel>
-    </Border>
 </UserControl>

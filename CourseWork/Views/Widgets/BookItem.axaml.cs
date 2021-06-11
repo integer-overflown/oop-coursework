@@ -1,4 +1,5 @@
 using System;
+using System.Reactive;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -11,6 +12,7 @@ namespace CourseWork.Views.Widgets
     public class BookItem : UserControl
     {
         private const string UnknownCoverIconFile = "ic-unknown-cover.png";
+        private const double CoverAspectRatio = 1.5d; // height to width
 
         private static readonly WeakReference<IImage> UnknownCover;
 
@@ -70,6 +72,13 @@ namespace CourseWork.Views.Widgets
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+            WidthProperty.Changed.Subscribe(Observer.Create<AvaloniaPropertyChangedEventArgs>(prop =>
+            {
+                if (!ReferenceEquals(prop.Sender, this)) return;
+                var value = (double) (prop.NewValue ?? 0);
+                Console.WriteLine(value);
+                _coverView.Height = value * CoverAspectRatio;
+            }));
         }
 
         private void SetTitle(string value)

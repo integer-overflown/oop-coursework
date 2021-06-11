@@ -17,7 +17,8 @@
         </ItemsControl.ItemsPanel>
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <widgets:BookItem Title="{Binding Content.Name}" 
+                <widgets:BookItem Width="256"
+                                  Title="{Binding Content.Name}"
                                   Subtitle="{Binding FirstAuthorName}"
                                   Cover="{Binding Content.Cover}" />
             </DataTemplate>
