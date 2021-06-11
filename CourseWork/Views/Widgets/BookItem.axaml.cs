@@ -10,24 +10,30 @@ namespace CourseWork.Views.Widgets
 {
     public class BookItem : UserControl
     {
-        private string _title = "";
-        private string _subtitle = "";
-
-        private readonly Image _coverView;
-        private readonly TextBlock _titleView;
-        private readonly TextBlock _subtitleView;
+        private const string UnknownCoverIconFile = "ic-unknown-cover.png";
 
         private static readonly WeakReference<IImage> UnknownCover;
-        private const string UnknownCoverIconFile = "ic-unknown-cover.png";
+
+        public static readonly AvaloniaProperty<string> TitleProperty =
+            AvaloniaProperty.RegisterDirect<BookItem, string>(nameof(Title), o => o.Title, (o, v) => o.Title = v);
+
+        public static readonly AvaloniaProperty<string> SubtitleProperty =
+            AvaloniaProperty.RegisterDirect<BookItem, string>(nameof(Subtitle), o => o.Subtitle,
+                (o, v) => o.Subtitle = v);
+
+        public static readonly AvaloniaProperty<IImage> CoverProperty =
+            AvaloniaProperty.RegisterDirect<BookItem, IImage>(nameof(Cover), o => o.Cover,
+                (o, v) => o.Cover = v);
+
+        private readonly Image _coverView;
+        private readonly TextBlock _subtitleView;
+        private readonly TextBlock _titleView;
+        private string _subtitle = "";
+        private string _title = "";
 
         static BookItem()
         {
             UnknownCover = new WeakReference<IImage>(GetUnknownIcon());
-        }
-
-        private static Bitmap GetUnknownIcon()
-        {
-            return new(AssetLoader.GetResourceAsStream(UnknownCoverIconFile));
         }
 
         public BookItem()
@@ -38,32 +44,10 @@ namespace CourseWork.Views.Widgets
             _subtitleView = this.FindControlStrict<TextBlock>("Subtitle");
         }
 
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
-
-        public static readonly AvaloniaProperty<string> TitleProperty =
-            AvaloniaProperty.RegisterDirect<BookItem, string>(nameof(Title), o => o.Title, (o, v) => o.Title = v);
-
-        public static readonly AvaloniaProperty<string> SubtitleProperty =
-            AvaloniaProperty.RegisterDirect<BookItem, string>(nameof(Subtitle), o => o.Subtitle,
-                (o, v) => o.Subtitle = v);
-        
-        public static readonly AvaloniaProperty<IImage> CoverProperty =
-            AvaloniaProperty.RegisterDirect<BookItem, IImage>(nameof(Cover), o => o.Cover,
-                (o, v) => o.Cover = v);
-
         public string Title
         {
             get => _title;
             set => SetTitle(value);
-        }
-
-        private void SetTitle(string value)
-        {
-            _titleView.Text = value;
-            SetAndRaise(TitleProperty, ref _title, value);
         }
 
         public string Subtitle
@@ -72,23 +56,39 @@ namespace CourseWork.Views.Widgets
             set => SetSubtitle(value);
         }
 
+        public IImage Cover
+        {
+            get => _coverView.Source;
+            set => _coverView.Source = value;
+        }
+
+        private static Bitmap GetUnknownIcon()
+        {
+            return new(AssetLoader.GetResourceAsStream(UnknownCoverIconFile));
+        }
+
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
+        }
+
+        private void SetTitle(string value)
+        {
+            _titleView.Text = value;
+            SetAndRaise(TitleProperty, ref _title, value);
+        }
+
         private void SetSubtitle(string value)
         {
             _subtitleView.Text = value;
             SetAndRaise(SubtitleProperty, ref _subtitle, value);
         }
 
-        public IImage Cover
+        public override void Render(DrawingContext context)
         {
-            get => _coverView.Source;
-            set => LoadCover(value); // TODO: this doesn't raise PropertyChanged event
-        }
-
-        private void LoadCover(IImage? value)
-        {
-            IImage cover;
-            if (value is null)
+            if (_coverView.Source is null)
             {
+                IImage cover;
                 if (UnknownCover.TryGetTarget(out var unknown))
                 {
                     Console.WriteLine("Reused cached default cover");
@@ -100,10 +100,11 @@ namespace CourseWork.Views.Widgets
                     UnknownCover.SetTarget(temp);
                     cover = temp;
                 }
-            }
-            else cover = value;
 
-            _coverView.Source = cover;
+                _coverView.Source = cover;
+            }
+
+            base.Render(context);
         }
     }
 }
