@@ -17,6 +17,7 @@ namespace CourseWork.Views.MenuScreens
 
         public event ISearchAgent<Book>.SearchSucceededHandler? SearchSucceeded;
         public event ISearchAgent<Book>.SearchFailedHandler? SearchFailed;
+        public event ISearchAgent<Book>.SearchResultIsEmptyHandler? SearchResultIsEmpty;
 
         private void SubscribeToSearchResult()
         {
@@ -26,7 +27,10 @@ namespace CourseWork.Views.MenuScreens
 
         private void HandleBookSearchResult(Book? result)
         {
-            SearchSucceeded?.Invoke(new ISearchAgent<Book>.SearchSucceededEventArgs(result));
+            if (result is null)
+                SearchResultIsEmpty?.Invoke();
+            else
+                SearchSucceeded?.Invoke(new ISearchAgent<Book>.SearchSucceededEventArgs(result));
         }
 
         private void HandleBookSearchError(Exception e)

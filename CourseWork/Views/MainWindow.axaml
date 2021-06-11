@@ -36,7 +36,8 @@
             <screens:SearchScreen />
             <screens:SearchBookByIsbnScreen Name="SearchBookByIsbnScreen"
                                             SearchSucceeded="SearchBookByIsbnScreen_OnSearchSucceeded"
-                                            SearchFailed="SearchBookByIsbnScreen_OnSearchFailed" />
+                                            SearchFailed="SearchBookByIsbnScreen_OnSearchFailed" 
+                                            SearchResultIsEmpty="SearchBookByIsbnScreen_OnSearchResultIsEmpty"/>
             <screens:HelpScreen />
             <!-- Named service screens, accessible only from code-behind -->
             <screens:BookViewScreen Name="BookViewScreen"

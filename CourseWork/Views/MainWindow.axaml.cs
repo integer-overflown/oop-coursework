@@ -63,7 +63,9 @@ namespace CourseWork.Views
 
         private void SearchBookByIsbnScreen_OnSearchFailed(ISearchAgent<Book>.SearchFailedEventArgs args)
         {
-            Console.WriteLine(args.Reason);
+            var screen = _screens.FindControlStrict<SearchErrorScreen>("SearchErrorScreen");
+            screen.Reason = args.Reason;
+            _screens.SelectedItem = screen;
         }
 
         public void RoutedScreen_NavigatedBack(object sender, IRoutedScreen.ScreenNavigatedEventArgs args)
@@ -71,6 +73,11 @@ namespace CourseWork.Views
             var screen = _screens.FindControl<UserControl>((string?) args.Destination);
             if (screen is null) return;
             _screens.SelectedItem = screen;
+        }
+
+        private void SearchBookByIsbnScreen_OnSearchResultIsEmpty()
+        {
+            _screens.SelectScreenByName("NotFoundScreen");
         }
     }
 }

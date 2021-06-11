@@ -4,10 +4,13 @@ namespace CourseWork.Views.MenuScreens
     {
         delegate void SearchFailedHandler(SearchFailedEventArgs args);
 
+        delegate void SearchResultIsEmptyHandler();
+
         delegate void SearchSucceededHandler(SearchSucceededEventArgs args);
 
         event SearchSucceededHandler SearchSucceeded;
         event SearchFailedHandler SearchFailed;
+        event SearchResultIsEmptyHandler SearchResultIsEmpty;
 
         public readonly struct SearchSucceededEventArgs
         {

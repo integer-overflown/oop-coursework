@@ -21,12 +21,8 @@ namespace CourseWork.Views.MenuScreens
 
         public string? Reason
         {
-            get => GetValue(ReasonProperty);
-            set
-            {
-                _reason.Text = value;
-                SetValue(ReasonProperty, value);
-            }
+            get => _reason.Text;
+            set => _reason.Text = value;
         }
 
         private void InitializeComponent()
