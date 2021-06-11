@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using Avalonia.Media.Imaging;
 
 namespace CourseWork.Models
@@ -20,7 +19,7 @@ namespace CourseWork.Models
 
         public bool IsPresent { get; set; } = true;
         public int PublishingYear { get; set; }
-        public IEnumerable<Author> Authors { get; init; } = Enumerable.Empty<Author>();
-        public IEnumerable<Subject> Subjects { get; init; } = Enumerable.Empty<Subject>();
+        public IList<Author> Authors { get; init; } = new List<Author>();
+        public IList<Subject> Subjects { get; init; } = new List<Subject>();
     }
 }

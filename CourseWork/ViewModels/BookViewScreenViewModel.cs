@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using CourseWork.Database;
 using CourseWork.Models;
+using CourseWork.Utils;
 using DynamicData;
 using ReactiveUI;
 
@@ -113,6 +114,10 @@ namespace CourseWork.ViewModels
         public async Task Save()
         {
             await using var context = new BookContext();
+            // map items from observable collections to model's ones
+            _book.Authors.SetContent(Authors);
+            _book.Subjects.SetContent(Subjects);
+
             await context.AddAsync(_book);
             var saved = await context.SaveChangesAsync();
             BookContext.Notifier.NotifyDataAppended();
