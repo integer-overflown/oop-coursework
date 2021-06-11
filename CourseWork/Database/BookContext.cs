@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using CourseWork.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +9,15 @@ namespace CourseWork.Database
 {
     public class BookContext : DbContext
     {
-        public DbSet<Book> Books { get; set; }
         private const string DatabaseName = "eveRead.db";
+        public DbSet<Book> Books { get; set; }
+
+        public static DataChangesNotifier Notifier { get; } = new();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), DatabaseName);
+            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                DatabaseName);
             Console.WriteLine($"Located SQLite database at {dbPath}");
             optionsBuilder.UseSqlite($"Data Source={dbPath}");
         }

@@ -115,6 +115,7 @@ namespace CourseWork.ViewModels
             await using var context = new BookContext();
             await context.AddAsync(_book);
             var saved = await context.SaveChangesAsync();
+            BookContext.Notifier.NotifyDataAppended();
             Console.WriteLine($"INFO: saved {saved} records");
         }
 
