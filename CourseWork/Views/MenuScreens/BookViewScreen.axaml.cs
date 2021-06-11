@@ -17,7 +17,7 @@ using ReactiveUI;
 
 namespace CourseWork.Views.MenuScreens
 {
-    public class BookViewScreen : UserControl
+    public class BookViewScreen : RoutedScreen
     {
         private const int MaxPopulatedItemsCount = 5;
         private readonly PlaceholderImageButton _bookCover;
@@ -123,6 +123,12 @@ namespace CourseWork.Views.MenuScreens
 
             // TODO: show the error if the item is invalid
             _isSaving = 0;
+        }
+
+        private void CancelButton_Click(object? sender, RoutedEventArgs e)
+        {
+            _viewModel.Reset();
+            NavigateBack();
         }
     }
 }

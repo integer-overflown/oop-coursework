@@ -21,7 +21,11 @@
     </Window.Resources>
 
     <Grid ColumnDefinitions="Auto *">
-        <StackPanel Grid.Column="0" Name="MenuItemsSizeBar" HorizontalAlignment="Left" Width="192" Orientation="Vertical">
+        <StackPanel Grid.Column="0" 
+                    Name="MenuItemsSizeBar" 
+                    HorizontalAlignment="Left" 
+                    Width="192"
+                    Orientation="Vertical">
             <widgets:MenuItem IconSize="64" ItemName="Main page" IconSource="ic-globe.png" />
             <widgets:MenuItem IconSize="64" ItemName="Search" IconSource="ic-search.png" />
             <widgets:MenuItem IconSize="64" ItemName="Add a book" IconSource="ic-plus.png" />
@@ -30,9 +34,12 @@
         <Carousel Grid.Column="1" Name="Pages">
             <screens:OverviewScreen />
             <screens:SearchScreen />
-            <screens:SearchBookByIsbnScreen SearchSucceeded="SearchBookByIsbnScreen_OnSearchSucceeded" 
+            <screens:SearchBookByIsbnScreen Name="SearchBookByIsbnScreen"
+                                            SearchSucceeded="SearchBookByIsbnScreen_OnSearchSucceeded"
                                             SearchFailed="SearchBookByIsbnScreen_OnSearchFailed" />
-            <screens:BookViewScreen Name="BookViewScreen" />
+            <screens:BookViewScreen Name="BookViewScreen" 
+                                    Previous="SearchBookByIsbnScreen" 
+                                    NavigatedBack="RoutedScreen_NavigatedBack"/>
 
             <screens:HelpScreen />
             <!-- Named service screens, accessible only from code-behind -->

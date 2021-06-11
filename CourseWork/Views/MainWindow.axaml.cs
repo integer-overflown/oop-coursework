@@ -65,5 +65,12 @@ namespace CourseWork.Views
         {
             Console.WriteLine(args.Reason);
         }
+
+        public void RoutedScreen_NavigatedBack(object sender, IRoutedScreen.ScreenNavigatedEventArgs args)
+        {
+            var screen = _screens.FindControl<UserControl>((string?) args.Destination);
+            if (screen is null) return;
+            _screens.SelectedItem = screen;
+        }
     }
 }

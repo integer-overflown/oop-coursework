@@ -40,7 +40,7 @@
                         <TextBlock Classes="image-button__text" VerticalAlignment="Center">ADD ANOTHER</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Classes="image-button" Background="Transparent">
+                <Button Classes="image-button" Background="Transparent" Click="CancelButton_Click">
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <Image Source="avares://CourseWork/Assets/ic-discard.png" Width="24" Height="24" />
                         <TextBlock Classes="image-button__text" VerticalAlignment="Center">CANCEL</TextBlock>
