@@ -13,6 +13,6 @@
         <Setter Property="Foreground" Value="#b3ffffff" />
     </Style>
     <Style Selector="TextBlock.image-button__text-dark">
-        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryColor}" />
     </Style>
 </Styles>

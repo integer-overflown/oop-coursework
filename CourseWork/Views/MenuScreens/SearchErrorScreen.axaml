@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CourseWork.Views.MenuScreens.SearchErrorScreen">
+    <UserControl.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+    </UserControl.Styles>
+    <DockPanel>
+        <Button DockPanel.Dock="Top" Classes="image-button" Background="Transparent" Click="Back_OnClick">
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Image Source="avares://CourseWork/Assets/ic-arrow-back.png" Width="24" Height="24" />
+                <TextBlock Classes="image-button__text-dark" VerticalAlignment="Center">Back</TextBlock>
+            </StackPanel>
+        </Button>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
+            <Image Width="256" Height="256" Source="avares://CourseWork/Assets/ic-error.png" />
+            <TextBlock Width="512" TextWrapping="Wrap">
+                Something went wrong during the search request. Double-check your Internet connection or try again later.
+            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Details: " />
+                <TextBlock Name="Reason" />
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

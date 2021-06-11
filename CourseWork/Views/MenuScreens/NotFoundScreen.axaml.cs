@@ -15,9 +15,6 @@ namespace CourseWork.Views.MenuScreens
             AvaloniaXamlLoader.Load(this);
         }
 
-        private void Back_OnClick(object? sender, RoutedEventArgs e)
-        {
-            NavigateBack();
-        }
+        private void Back_OnClick(object? sender, RoutedEventArgs e) => NavigateBack();
     }
 }
