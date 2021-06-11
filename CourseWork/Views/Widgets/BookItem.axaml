@@ -5,11 +5,11 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.Widgets.BookItem">
         <StackPanel Orientation="Vertical">
-            <Image Stretch="Uniform" Name="Cover" Height="396" />
-            <Border>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Classes="title" Name="Title" />
-                    <TextBlock Classes="subtitle" TextTrimming="CharacterEllipsis" Name="Subtitle" />
+            <Image Stretch="UniformToFill" Name="Cover" Height="396" />
+            <Border Padding="12 12">
+                <StackPanel Orientation="Vertical" Spacing="4">
+                    <TextBlock Classes="book-item__title" Name="Title" TextWrapping="Wrap" />
+                    <TextBlock Classes="book-item__subtitle" TextTrimming="CharacterEllipsis" Name="Subtitle" />
                 </StackPanel>
             </Border>
         </StackPanel>

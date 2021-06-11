@@ -20,13 +20,15 @@
     </Style>
 
     <!-- BookItem styles -->
-    <Style Selector="widgets|BookItem TextBlock.title">
+    <Style Selector="TextBlock.book-item__title">
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Foreground" Value="#de000000" />
     </Style>
-    <Style Selector="widgets|BookItem TextBlock.subtitle">
+    <Style Selector="TextBlock.book-item__subtitle">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="Foreground" Value="#99000000" />
     </Style>
     
     <!-- Customized standard controls -->

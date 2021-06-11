@@ -9,19 +9,23 @@
     <Control.DataContext>
         <vm:OverviewScreenViewModel />
     </Control.DataContext>
-    <ItemsControl Items="{Binding Books}">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel />
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <widgets:BookItem Width="256"
-                                  Title="{Binding Content.Name}"
-                                  Subtitle="{Binding FirstAuthorName}"
-                                  Cover="{Binding Content.Cover}" />
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+    <ScrollViewer>
+        <ItemsControl Items="{Binding Books}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BoxShadow="0 0 20 0 Gray" Margin="16 24" CornerRadius="0 0 4 4">
+                    <widgets:BookItem Width="256"
+                                      Title="{Binding Content.Name}"
+                                      Subtitle="Jeremy Muffin"
+                                      Cover="{Binding Content.Cover}" />
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
 </UserControl>

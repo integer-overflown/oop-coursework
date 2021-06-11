@@ -76,7 +76,6 @@ namespace CourseWork.Views.Widgets
             {
                 if (!ReferenceEquals(prop.Sender, this)) return;
                 var value = (double) (prop.NewValue ?? 0);
-                Console.WriteLine(value);
                 _coverView.Height = value * CoverAspectRatio;
             }));
         }
