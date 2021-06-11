@@ -51,10 +51,14 @@ namespace CourseWork.ViewModels
             _bookSource.AddOrUpdate(context.Books);
         }
 
-        public void DisplayNameMatches(string? name)
+        public void DisplayNameMatches(string name)
         {
-            bool ActualFilter(Book book) => book.Name == name;
-            _filterSubject.OnNext(name is null ? DummyFilter : ActualFilter);
+            _filterSubject.OnNext(book => book.Name == name);
+        }
+
+        public void ClearNameFilters()
+        {
+            _filterSubject.OnNext(DummyFilter);
         }
 
         public readonly struct BookDisplayItem

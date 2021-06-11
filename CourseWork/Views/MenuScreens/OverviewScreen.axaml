@@ -6,8 +6,12 @@
              xmlns:vm="clr-namespace:CourseWork.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.OverviewScreen">
+    <UserControl.DataContext>
+        <vm:OverviewScreenViewModel />
+    </UserControl.DataContext>
     <DockPanel>
-        <AutoCompleteBox DockPanel.Dock="Top"
+        <AutoCompleteBox Name="AutoCompleteNameSearch" 
+            DockPanel.Dock="Top"
                          IsTextCompletionEnabled="True"
                          SelectionChanged="AutoCompleteBox_OnSelectionChanged"
                          Items="{Binding AutoCompleteItems}" />

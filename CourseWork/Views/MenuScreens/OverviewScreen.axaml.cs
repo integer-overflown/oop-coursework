@@ -6,12 +6,17 @@ namespace CourseWork.Views.MenuScreens
 {
     public class OverviewScreen : UserControl
     {
-        private readonly OverviewScreenViewModel _viewModel = new();
+        private readonly OverviewScreenViewModel _viewModel;
 
         public OverviewScreen()
         {
             InitializeComponent();
-            DataContext = _viewModel;
+            _viewModel = (OverviewScreenViewModel) DataContext!;
+            var nameSearch = this.FindControlStrict<AutoCompleteBox>("AutoCompleteNameSearch");
+            nameSearch.KeyUp += (_, _) =>
+            {
+                if (nameSearch.Text.Length == 0) _viewModel.ClearNameFilters();
+            };
         }
 
         private void InitializeComponent()
