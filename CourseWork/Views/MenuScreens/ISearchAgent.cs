@@ -14,9 +14,9 @@ namespace CourseWork.Views.MenuScreens
 
         public readonly struct SearchSucceededEventArgs
         {
-            public T? Result { get; }
+            public T Result { get; }
 
-            public SearchSucceededEventArgs(T? result)
+            public SearchSucceededEventArgs(T result)
             {
                 Result = result;
             }

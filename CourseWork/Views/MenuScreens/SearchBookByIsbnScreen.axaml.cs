@@ -1,4 +1,3 @@
-using System;
 using System.Reactive;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -22,20 +21,19 @@ namespace CourseWork.Views.MenuScreens
         private void SubscribeToSearchResult()
         {
             var viewModel = (SearchBookByIsbnScreenViewModel) DataContext!;
-            viewModel.SearchResult.Subscribe(Observer.Create<Book?>(HandleBookSearchResult, HandleBookSearchError));
+            viewModel.SearchResult
+                .Subscribe(Observer.Create<SearchBookByIsbnScreenViewModel.BookSearchResponse>(HandleBookSearchResult));
         }
 
-        private void HandleBookSearchResult(Book? result)
+        private void HandleBookSearchResult(SearchBookByIsbnScreenViewModel.BookSearchResponse result)
         {
-            if (result is null)
+            // the order is important
+            if (result.IsFailed)
+                SearchFailed?.Invoke(new ISearchAgent<Book>.SearchFailedEventArgs(result.ExceptionDetails!));
+            else if (result.IsEmpty)
                 SearchResultIsEmpty?.Invoke();
             else
-                SearchSucceeded?.Invoke(new ISearchAgent<Book>.SearchSucceededEventArgs(result));
-        }
-
-        private void HandleBookSearchError(Exception e)
-        {
-            SearchFailed?.Invoke(new ISearchAgent<Book>.SearchFailedEventArgs(e.Message));
+                SearchSucceeded?.Invoke(new ISearchAgent<Book>.SearchSucceededEventArgs(result.Response!));
         }
 
         private void InitializeComponent()

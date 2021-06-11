@@ -14,7 +14,7 @@ namespace CourseWork.ViewModels
 {
     public class SearchBookByIsbnScreenViewModel : ViewModelBase, INotifyDataErrorInfo
     {
-        private readonly Subject<Book?> _searchResponse = new();
+        private readonly Subject<BookSearchResponse> _searchResponse = new();
         private bool _isAvailable;
         private string _isbn = "";
         private string? _isbnValidationError;
@@ -24,6 +24,29 @@ namespace CourseWork.ViewModels
         {
             this.WhenAnyValue(o => o.Isbn).Subscribe(_ => ValidateAll());
             ErrorsChanged += (_, _) => this.RaisePropertyChanged(nameof(HasErrors));
+
+            var searchCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                try
+                {
+                    IsSearchPending = true;
+                    _searchResponse.OnNext(await SearchBook(_isbn));
+                }
+                catch (ApiClientException e)
+                {
+                    // using onError here terminates observable value flow
+                    _searchResponse.OnNext(new BookSearchResponse(e.Message));
+                }
+                finally
+                {
+                    IsSearchPending = false;
+                }
+            });
+            searchCommand.ThrownExceptions.Subscribe(exception =>
+            {
+                if (exception is not ApiClientException) throw exception;
+            });
+            PerformSearch = searchCommand;
         }
 
         public bool IsSearchPending
@@ -36,24 +59,9 @@ namespace CourseWork.ViewModels
             }
         }
 
-        public IObservable<Book?> SearchResult => _searchResponse;
+        public IObservable<BookSearchResponse> SearchResult => _searchResponse;
 
-        public ICommand PerformSearch => ReactiveCommand.CreateFromTask(async () =>
-        {
-            try
-            {
-                IsSearchPending = true;
-                _searchResponse.OnNext(await SearchBook(_isbn));
-            }
-            catch (ApiClientException e)
-            {
-                _searchResponse.OnError(e);
-            }
-            finally
-            {
-                IsSearchPending = false;
-            }
-        });
+        public ICommand PerformSearch { get; }
 
         public string Isbn
         {
@@ -95,6 +103,32 @@ namespace CourseWork.ViewModels
             var isbn = InputHelpers.FilterIsbnDashes(isbnString);
             var client = new ApiClient();
             return await client.QueryBookByIsbnAsync(isbn);
+        }
+
+        public readonly struct BookSearchResponse
+        {
+            public Book? Response { get; }
+            public string? ExceptionDetails { get; }
+
+            public bool IsEmpty => Response is null;
+            public bool IsFailed => ExceptionDetails is not null;
+
+            private BookSearchResponse(Book? response)
+            {
+                Response = response;
+                ExceptionDetails = null;
+            }
+
+            public BookSearchResponse(string? error)
+            {
+                Response = null;
+                ExceptionDetails = error;
+            }
+
+            public static implicit operator BookSearchResponse(Book? response)
+            {
+                return new(response);
+            }
         }
     }
 }

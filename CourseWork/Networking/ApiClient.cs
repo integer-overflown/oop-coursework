@@ -34,7 +34,10 @@ namespace CourseWork.Networking
             }
             catch (HttpRequestException e)
             {
-                throw new ApiClientException($"Failed due to connectivity issue, server respond {e.StatusCode}.", e);
+                var message = e.StatusCode is null
+                    ? "Couldn't communicate with the server."
+                    : $"Failed due to connectivity issue, server respond {e.StatusCode}.";
+                throw new ApiClientException(message, e);
             }
             catch (TaskCanceledException e)
             {
