@@ -55,7 +55,6 @@ namespace CourseWork.Views
 
         private void SearchBookByIsbnScreen_OnSearchSucceeded(ISearchAgent<Book>.SearchSucceededEventArgs args)
         {
-            if (args.Result == null) return;
             var screen = _screens.FindControlStrict<BookViewScreen>("BookViewScreen");
             screen.Book = args.Result;
             _screens.SelectedItem = screen;
@@ -78,6 +77,16 @@ namespace CourseWork.Views
         private void SearchBookByIsbnScreen_OnSearchResultIsEmpty()
         {
             _screens.SelectScreenByName("NotFoundScreen");
+        }
+
+        private void SearchBookByIsbnScreen_OnNavigationToScreenRequested(IInteractiveScreen.NavigateToScreenArgs args)
+        {
+            switch (args.Location)
+            {
+                case IInteractiveScreen.CommonLocations.BookViewScreen:
+                    _screens.SelectScreenByName("BookViewScreen");
+                    break;
+            }
         }
     }
 }

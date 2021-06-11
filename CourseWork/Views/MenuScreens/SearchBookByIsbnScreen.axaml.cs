@@ -1,12 +1,12 @@
 using System.Reactive;
-using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using CourseWork.Models;
 using CourseWork.ViewModels;
 
 namespace CourseWork.Views.MenuScreens
 {
-    public class SearchBookByIsbnScreen : UserControl, ISearchAgent<Book>
+    public class SearchBookByIsbnScreen : InteractiveScreen, ISearchAgent<Book>
     {
         public SearchBookByIsbnScreen()
         {
@@ -40,5 +40,8 @@ namespace CourseWork.Views.MenuScreens
         {
             AvaloniaXamlLoader.Load(this);
         }
+
+        private void AddABookManually_OnPointerDown(object? sender, PointerPressedEventArgs e) =>
+            NavigateToScreen(IInteractiveScreen.CommonLocations.BookViewScreen);
     }
 }
