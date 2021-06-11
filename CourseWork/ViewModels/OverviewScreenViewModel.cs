@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Subjects;
 using CourseWork.Database;
 using CourseWork.Models;
 using DynamicData;
@@ -15,10 +16,13 @@ namespace CourseWork.ViewModels
         private readonly ReadOnlyObservableCollection<BookDisplayItem> _books;
         private readonly SourceCache<Book, long> _bookSource = new(item => item.Id);
 
+        private readonly Subject<Func<Book, bool>> _filterSubject = new();
+
         public OverviewScreenViewModel()
         {
             _bookSource
                 .Connect()
+                .Filter(_filterSubject)
                 .Transform(book => new BookDisplayItem(book))
                 .Sort(SortExpressionComparer<BookDisplayItem>.Ascending(book => book.Content.Name!))
                 .Bind(out _books)
@@ -31,16 +35,26 @@ namespace CourseWork.ViewModels
                 .Subscribe();
             BookContext.Notifier.DataAppended += Refresh;
             Refresh();
+            _filterSubject.OnNext(DummyFilter); // forces displaying all items
         }
 
         public ReadOnlyObservableCollection<BookDisplayItem> Books => _books;
 
         public ReadOnlyObservableCollection<string> AutoCompleteItems => _autoCompleteItems;
 
+        // ReSharper disable once UnusedParameter.Local
+        private static bool DummyFilter(Book book) => true;
+
         private void Refresh()
         {
             var context = new BookContext();
             _bookSource.AddOrUpdate(context.Books);
+        }
+
+        public void DisplayNameMatches(string? name)
+        {
+            bool ActualFilter(Book book) => book.Name == name;
+            _filterSubject.OnNext(name is null ? DummyFilter : ActualFilter);
         }
 
         public readonly struct BookDisplayItem

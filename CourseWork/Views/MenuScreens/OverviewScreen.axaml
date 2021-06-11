@@ -6,13 +6,12 @@
              xmlns:vm="clr-namespace:CourseWork.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.OverviewScreen">
-    <Control.DataContext>
-        <vm:OverviewScreenViewModel />
-    </Control.DataContext>
-    <StackPanel Spacing="8">
-        <AutoCompleteBox IsTextCompletionEnabled="True"
+    <DockPanel>
+        <AutoCompleteBox DockPanel.Dock="Top"
+                         IsTextCompletionEnabled="True"
+                         SelectionChanged="AutoCompleteBox_OnSelectionChanged"
                          Items="{Binding AutoCompleteItems}" />
-        <ScrollViewer>
+        <ScrollViewer Margin="0 8 0 0">
             <ItemsControl Items="{Binding Books}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -22,14 +21,14 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BoxShadow="0 0 20 0 Gray" Margin="16 24" CornerRadius="0 0 4 4">
-                        <widgets:BookItem Width="256"
-                                          Title="{Binding Content.Name}"
-                                          Subtitle="{Binding FirstAuthorName}"
-                                          Cover="{Binding Content.Cover}" />
+                            <widgets:BookItem Width="256"
+                                              Title="{Binding Content.Name}"
+                                              Subtitle="{Binding FirstAuthorName}"
+                                              Cover="{Binding Content.Cover}" />
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-    </StackPanel>
+    </DockPanel>
 </UserControl>
