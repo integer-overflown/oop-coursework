@@ -120,10 +120,12 @@ namespace CourseWork.ViewModels
 
         public async Task Save()
         {
+            static bool IsNamePresent(dynamic value) => !string.IsNullOrEmpty(value.Name);
+
             await using var context = new BookContext();
             // map items from observable collections to model's ones
-            _book.Authors.SetContent(Authors);
-            _book.Subjects.SetContent(Subjects);
+            _book.Authors.SetContent(Authors.Where(IsNamePresent));
+            _book.Subjects.SetContent(Subjects.Where(IsNamePresent));
 
             await context.AddAsync(_book);
             var saved = await context.SaveChangesAsync();
