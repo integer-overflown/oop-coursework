@@ -101,7 +101,6 @@ namespace CourseWork.ViewModels
             get => _book;
             set
             {
-                if (_book == value) return;
                 ResetBook(value);
                 this.RaisePropertyChanged(nameof(Book));
             }
