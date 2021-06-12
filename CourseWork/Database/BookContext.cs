@@ -10,9 +10,9 @@ namespace CourseWork.Database
     public class BookContext : DbContext
     {
         private const string DatabaseName = "eveRead.db";
-        public DbSet<Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; } = null!; // suppress warning, since this property if auto-generated
 
-        public static DataChangesNotifier Notifier { get; } = new();
+        public static DataChangesNotifier<Book> Notifier { get; } = new();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

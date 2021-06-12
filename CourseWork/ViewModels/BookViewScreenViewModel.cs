@@ -153,7 +153,7 @@ namespace CourseWork.ViewModels
 
             await context.AddAsync(_book);
             var saved = await context.SaveChangesAsync();
-            BookContext.Notifier.NotifyDataAppended();
+            BookContext.Notifier.NotifyDataAppended(_book);
             Console.WriteLine($"INFO: saved {saved} records");
         }
 
@@ -161,6 +161,7 @@ namespace CourseWork.ViewModels
         {
             await using var context = new BookContext();
             context.Books.Remove(_book);
+            BookContext.Notifier.NotifyDataRemoved(_book);
             await context.SaveChangesAsync();
         }
 
