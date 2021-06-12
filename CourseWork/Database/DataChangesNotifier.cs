@@ -4,13 +4,11 @@ namespace CourseWork.Database
     {
         public delegate void DataChangedHandler(DataChangedEventArgs args);
 
-        public event DataChangedHandler? DataAppended;
         public event DataChangedHandler? DataRemoved;
-        public event DataChangedHandler? DataEdited;
+        public event DataChangedHandler? DataUpdated;
 
-        public void NotifyDataAppended(T data) => DataAppended?.Invoke(new DataChangedEventArgs(data));
         public void NotifyDataRemoved(T data) => DataRemoved?.Invoke(new DataChangedEventArgs(data));
-        public void NotifyDataEdited(T data) => DataEdited?.Invoke(new DataChangedEventArgs(data));
+        public void NotifyDataUpdated(T data) => DataUpdated?.Invoke(new DataChangedEventArgs(data));
 
         public readonly struct DataChangedEventArgs
         {

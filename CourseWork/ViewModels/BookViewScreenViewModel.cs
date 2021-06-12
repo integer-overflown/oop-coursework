@@ -151,18 +151,13 @@ namespace CourseWork.ViewModels
             _book.Authors.SetContent(Authors.Where(IsNamePresent));
             _book.Subjects.SetContent(Subjects.Where(IsNamePresent));
 
-            if (IsBookStored(_book))
-            {
-                context.Books.Update(_book);
-                BookContext.Notifier.NotifyDataEdited(_book);
-            }
-            else
-            {
-                await context.AddAsync(_book);
-                BookContext.Notifier.NotifyDataAppended(_book);
-            }
+            if (IsBookStored(_book)) context.Books.Update(_book);
+            else await context.AddAsync(_book);
 
+            // this call sets entity's ID
             var saved = await context.SaveChangesAsync();
+            // so it's important to notify AFTER the book context gets updated
+            BookContext.Notifier.NotifyDataUpdated(_book);
             Console.WriteLine($"INFO: saved {saved} records");
         }
 

@@ -33,8 +33,7 @@ namespace CourseWork.ViewModels
                 .Select(book => book.Name!)
                 .Bind(out _autoCompleteItems)
                 .Subscribe();
-            BookContext.Notifier.DataAppended += RefreshAppended;
-            BookContext.Notifier.DataEdited += RefreshAppended;
+            BookContext.Notifier.DataUpdated += RefreshUpdated;
             BookContext.Notifier.DataRemoved += RefreshRemoved;
             LoadData();
             _filterSubject.OnNext(DummyFilter); // forces displaying all items
@@ -53,7 +52,7 @@ namespace CourseWork.ViewModels
             _bookSource.AddOrUpdate(context.Books);
         }
 
-        private void RefreshAppended(DataChangesNotifier<Book>.DataChangedEventArgs args)
+        private void RefreshUpdated(DataChangesNotifier<Book>.DataChangedEventArgs args)
         {
             _bookSource.AddOrUpdate(args.Data);
         }
