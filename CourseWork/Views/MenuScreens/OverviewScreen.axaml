@@ -10,8 +10,8 @@
         <vm:OverviewScreenViewModel />
     </UserControl.DataContext>
     <DockPanel>
-        <AutoCompleteBox Name="AutoCompleteNameSearch" 
-            DockPanel.Dock="Top"
+        <AutoCompleteBox Name="AutoCompleteNameSearch"
+                         DockPanel.Dock="Top"
                          IsTextCompletionEnabled="True"
                          SelectionChanged="AutoCompleteBox_OnSelectionChanged"
                          Items="{Binding AutoCompleteItems}" />
@@ -26,9 +26,11 @@
                     <DataTemplate>
                         <Border BoxShadow="0 0 20 0 Gray" Margin="16 24" CornerRadius="0 0 4 4">
                             <widgets:BookItem Width="256"
+                                              Id="{Binding Content.Id}"
                                               Title="{Binding Content.Name}"
                                               Subtitle="{Binding FirstAuthorName}"
-                                              Cover="{Binding Content.Cover}" />
+                                              Cover="{Binding Content.Cover}"
+                                              PointerPressed="BookItem_OnPointerPressed" />
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

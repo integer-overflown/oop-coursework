@@ -32,17 +32,17 @@
             <widgets:MenuItem IconSize="64" ItemName="Help" IconSource="ic-help.png" />
         </StackPanel>
         <Carousel Grid.Column="1" Name="Pages">
-            <screens:OverviewScreen />
+            <screens:OverviewScreen Name="OverviewScreen"
+                                    NavigationToScreenRequested="OverviewScreen_OnNavigationToScreenRequested" />
             <screens:SearchScreen />
             <screens:SearchBookByIsbnScreen Name="SearchBookByIsbnScreen"
                                             SearchSucceeded="SearchBookByIsbnScreen_OnSearchSucceeded"
-                                            SearchFailed="SearchBookByIsbnScreen_OnSearchFailed" 
+                                            SearchFailed="SearchBookByIsbnScreen_OnSearchFailed"
                                             SearchResultIsEmpty="SearchBookByIsbnScreen_OnSearchResultIsEmpty"
-                                            NavigationToScreenRequested="SearchBookByIsbnScreen_OnNavigationToScreenRequested"/>
+                                            NavigationToScreenRequested="SearchBookByIsbnScreen_OnNavigationToScreenRequested" />
             <screens:HelpScreen />
             <!-- Named service screens, accessible only from code-behind -->
             <screens:BookViewScreen Name="BookViewScreen"
-                                    Previous="SearchBookByIsbnScreen"
                                     NavigatedBack="RoutedScreen_NavigatedBack" />
             <screens:NotFoundScreen Name="NotFoundScreen"
                                     Previous="SearchBookByIsbnScreen"

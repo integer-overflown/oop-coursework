@@ -16,6 +16,9 @@ namespace CourseWork.Views.Widgets
 
         private static readonly WeakReference<IImage> UnknownCover;
 
+        public static readonly AvaloniaProperty<long> IdProperty =
+            AvaloniaProperty.RegisterDirect<BookItem, long>(nameof(Id), o => o.Id, (o, v) => o.Id = v);
+
         public static readonly AvaloniaProperty<string> TitleProperty =
             AvaloniaProperty.RegisterDirect<BookItem, string>(nameof(Title), o => o.Title, (o, v) => o.Title = v);
 
@@ -45,6 +48,8 @@ namespace CourseWork.Views.Widgets
             _titleView = this.FindControlStrict<TextBlock>("Title");
             _subtitleView = this.FindControlStrict<TextBlock>("Subtitle");
         }
+
+        public long Id { get; set; }
 
         public string Title
         {

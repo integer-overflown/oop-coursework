@@ -11,6 +11,8 @@ namespace CourseWork.Views
 {
     public partial class MainWindow : Window
     {
+        private const string SearchBookByIsbnScreenKey = "SearchBookByIsbnScreen";
+        private const string OverviewScreenKey = "OverviewScreen";
         private readonly Carousel _screens;
 
         public MainWindow()
@@ -55,13 +57,14 @@ namespace CourseWork.Views
 
         private void SearchBookByIsbnScreen_OnSearchSucceeded(ISearchAgent<Book>.SearchSucceededEventArgs args)
         {
-            NavigateToBookView(args.Result);
+            NavigateToBookView(SearchBookByIsbnScreenKey, args.Result);
         }
 
-        private void NavigateToBookView(Book? book = null, bool editable = true)
+        private void NavigateToBookView(string previous, Book? book = null, bool editable = true)
         {
             var screen = _screens.FindControlStrict<BookViewScreen>("BookViewScreen");
             screen.IsEditable = editable;
+            screen.Previous = previous;
             if (book is not null) screen.Book = book;
             _screens.SelectedItem = screen;
         }
@@ -87,14 +90,14 @@ namespace CourseWork.Views
 
         private void SearchBookByIsbnScreen_OnNavigationToScreenRequested(IInteractiveScreen.NavigateToScreenArgs args)
         {
-            switch (args.Location)
-            {
-                case IInteractiveScreen.CommonLocations.BookViewScreen:
-                    NavigateToBookView();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(args));
-            }
+            if (args.Location != IInteractiveScreen.CommonLocations.BookViewScreen) return;
+            NavigateToBookView(SearchBookByIsbnScreenKey);
+        }
+
+        private void OverviewScreen_OnNavigationToScreenRequested(IInteractiveScreen.NavigateToScreenArgs args)
+        {
+            if (args.Location != IInteractiveScreen.CommonLocations.BookViewScreen) return;
+            NavigateToBookView(OverviewScreenKey, (Book?) args.Argument, false);
         }
     }
 }

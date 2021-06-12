@@ -61,6 +61,8 @@ namespace CourseWork.ViewModels
             _filterSubject.OnNext(DummyFilter);
         }
 
+        public Book GetItem(long id) => _bookSource.Lookup(id).Value;
+
         public readonly struct BookDisplayItem
         {
             public Book Content { get; }

@@ -1,10 +1,12 @@
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using CourseWork.ViewModels;
+using CourseWork.Views.Widgets;
 
 namespace CourseWork.Views.MenuScreens
 {
-    public class OverviewScreen : UserControl
+    public class OverviewScreen : InteractiveScreen
     {
         private readonly OverviewScreenViewModel _viewModel;
 
@@ -30,6 +32,14 @@ namespace CourseWork.Views.MenuScreens
             string? value;
             if (it is null || it.Count < 1 || (value = (string?) it[0]) is null) return;
             _viewModel.DisplayNameMatches(value!);
+        }
+
+        private void BookItem_OnPointerPressed(object? sender, PointerPressedEventArgs e)
+        {
+            if (sender is null) return;
+            var item = (BookItem) sender;
+            var book = _viewModel.GetItem(item.Id);
+            NavigateToScreen(IInteractiveScreen.CommonLocations.BookViewScreen, book);
         }
     }
 }
