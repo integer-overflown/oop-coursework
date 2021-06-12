@@ -31,26 +31,58 @@
     </UserControl.Styles>
     <DockPanel>
         <Border DockPanel.Dock="Top" Background="{DynamicResource PrimaryColor}">
-            <StackPanel Height="56" HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Classes="image-button" Background="Transparent" Click="FinishButton_Click">
-                    <StackPanel Orientation="Horizontal" Spacing="12">
-                        <Image Source="avares://CourseWork/Assets/ic-confirm.png" Width="24" Height="24" />
-                        <TextBlock Classes="image-button__text" VerticalAlignment="Center">FINISH</TextBlock>
+            <Panel>
+                <!-- View actions, displayed in non-editable mode -->
+                <Grid ColumnDefinitions="* Auto"
+                      Height="56"
+                      IsVisible="{Binding !IsEditable}">
+                    <StackPanel VerticalAlignment="Center" Grid.Column="0" Orientation="Horizontal">
+                        <Button Classes="image-button">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <Image Source="avares://CourseWork/Assets/ic-arrow-back-light.png" Width="24"
+                                       Height="24" />
+                                <TextBlock Classes="image-button__text" VerticalAlignment="Center">BACK</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button VerticalAlignment="Center" Classes="image-button">
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <Image Source="avares://CourseWork/Assets/ic-edit-light.png" Width="24" Height="24" />
+                                <TextBlock Classes="image-button__text" VerticalAlignment="Center">EDIT</TextBlock>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
-                </Button>
-                <Button Classes="image-button" Background="Transparent" Click="AddAnother_Click">
-                    <StackPanel Orientation="Horizontal" Spacing="12">
-                        <Image Source="avares://CourseWork/Assets/ic-add.png" Width="24" Height="24" />
-                        <TextBlock Classes="image-button__text" VerticalAlignment="Center">ADD ANOTHER</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button Classes="image-button" Background="Transparent" Click="CancelButton_Click">
-                    <StackPanel Orientation="Horizontal" Spacing="12">
-                        <Image Source="avares://CourseWork/Assets/ic-discard.png" Width="24" Height="24" />
-                        <TextBlock Classes="image-button__text" VerticalAlignment="Center">CANCEL</TextBlock>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
+                    <Button Grid.Column="1" Classes="image-button">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="12">
+                            <Image Source="avares://CourseWork/Assets/ic-delete-light.png" Width="24" Height="24" />
+                            <TextBlock Classes="image-button__text" VerticalAlignment="Center">DELETE</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <!-- Edit actions, visible when this BookView is set to be editable -->
+                <StackPanel Height="56"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal"
+                            IsVisible="{Binding IsEditable}">
+                    <Button Classes="image-button" Click="FinishButton_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Image Source="avares://CourseWork/Assets/ic-confirm.png" Width="24" Height="24" />
+                            <TextBlock Classes="image-button__text" VerticalAlignment="Center">FINISH</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="image-button" Click="AddAnother_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Image Source="avares://CourseWork/Assets/ic-add.png" Width="24" Height="24" />
+                            <TextBlock Classes="image-button__text" VerticalAlignment="Center">ADD ANOTHER</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Classes="image-button" Click="CancelButton_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Image Source="avares://CourseWork/Assets/ic-discard.png" Width="24" Height="24" />
+                            <TextBlock Classes="image-button__text" VerticalAlignment="Center">CANCEL</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Panel>
         </Border>
         <Grid Classes="root-view" ColumnDefinitions="256 *">
             <widgets:PlaceholderImageButton Name="BookCover"
@@ -85,8 +117,8 @@
                                        Stretch="Uniform" />
                                 <TextBox Classes="text-box_borderless"
                                          Watermark="Enter a name"
-                                         Text="{Binding Name}" 
-                                         IsEnabled="{Binding IsEditable}"/>
+                                         Text="{Binding Name}"
+                                         IsEnabled="{Binding IsEditable}" />
                             </StackPanel>
                         </Border>
 
@@ -102,7 +134,7 @@
                                 <TextBox Classes="text-box_borderless"
                                          Watermark="Enter a publisher"
                                          Text="{Binding Publisher}"
-                                         IsEnabled="{Binding IsEditable}"/>
+                                         IsEnabled="{Binding IsEditable}" />
                             </StackPanel>
                         </Border>
 
@@ -111,8 +143,8 @@
                         <NumericUpDown Watermark="Enter the number of pages"
                                        Minimum="0"
                                        BorderBrush="{DynamicResource PrimaryColor}"
-                                       Value="{Binding NumberOfPages}" 
-                                       IsEnabled="{Binding IsEditable}"/>
+                                       Value="{Binding NumberOfPages}"
+                                       IsEnabled="{Binding IsEditable}" />
 
                         <StackPanel Orientation="Horizontal" Spacing="4">
                             <Image Width="24"
@@ -124,7 +156,7 @@
                                      Watermark="Enter the publishing year"
                                      MaxLength="8"
                                      ext:InputValidation.InputFilter="Digits"
-                                     IsEnabled="{Binding IsEditable}"/>
+                                     IsEnabled="{Binding IsEditable}" />
                         </StackPanel>
 
                         <TextBlock>Authors</TextBlock>
@@ -180,7 +212,7 @@
                                                      Classes="text-box_borderless"
                                                      Watermark="Enter a genre"
                                                      KeyDown="PopulatedSubjectTextBox_KeyDown"
-                                                     IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable}"/>
+                                                     IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable}" />
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
