@@ -35,7 +35,23 @@ namespace CourseWork.ViewModels
                     NavigationBackRequested?.Invoke();
                 },
                 this.WhenAnyValue(v => v.Book).Select(IsBookStored));
+            FinishCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                await Save();
+                Back();
+            }, ContainsValidItem);
+            AddAnotherCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                await Save();
+                Reset();
+            }, ContainsValidItem);
         }
+
+        public ICommand FinishCommand { get; }
+        public ICommand AddAnotherCommand { get; }
+
+        private IObservable<bool> ContainsValidItem => this.WhenAnyValue(v => v.Name)
+            .Select(name => !string.IsNullOrWhiteSpace(name));
 
         public bool IsEditable
         {
@@ -142,10 +158,7 @@ namespace CourseWork.ViewModels
                 target.Add(new T());
         }
 
-        public void Reset()
-        {
-            ResetBook(new Book());
-        }
+        private void Reset() => ResetBook(new Book());
 
         public async Task Save()
         {
@@ -172,11 +185,6 @@ namespace CourseWork.ViewModels
             context.Books.Remove(_book);
             BookContext.Notifier.NotifyDataRemoved(_book);
             await context.SaveChangesAsync();
-        }
-
-        public bool ContainsValidItem()
-        {
-            return !string.IsNullOrWhiteSpace(_book.Name);
         }
     }
 }

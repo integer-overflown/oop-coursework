@@ -28,7 +28,6 @@ namespace CourseWork.Views.MenuScreens
         private readonly PlaceholderImageButton _bookCover;
         private readonly BookViewScreenViewModel _viewModel;
         private int _isBusy;
-        private int _isSaving;
 
         public BookViewScreen()
         {
@@ -117,30 +116,6 @@ namespace CourseWork.Views.MenuScreens
 
             Console.WriteLine("Unsupported lifetime");
             return null;
-        }
-
-        private void AddAnother_Click(object? sender, RoutedEventArgs e)
-        {
-            _viewModel.Reset();
-        }
-
-        private async void FinishButton_Click(object? sender, RoutedEventArgs e)
-        {
-            if (Interlocked.Exchange(ref _isSaving, 1) == 1) return;
-            if (_viewModel.ContainsValidItem())
-            {
-                await _viewModel.Save();
-                _viewModel.Reset();
-            }
-
-            // TODO: show the error if the item is invalid
-            _isSaving = 0;
-        }
-
-        private void CancelButton_Click(object? sender, RoutedEventArgs e)
-        {
-            _viewModel.Reset();
-            NavigateBack();
         }
     }
 }

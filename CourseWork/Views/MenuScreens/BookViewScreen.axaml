@@ -74,19 +74,19 @@
                     <StackPanel Grid.Column="1"
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
-                        <Button Classes="image-button" Click="FinishButton_Click">
+                        <Button Classes="image-button" Command="{Binding FinishCommand}">
                             <StackPanel Orientation="Horizontal" Spacing="12">
                                 <Image Source="avares://CourseWork/Assets/ic-confirm.png" Width="24" Height="24" />
                                 <TextBlock Classes="image-button__text" VerticalAlignment="Center">FINISH</TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Classes="image-button" Click="AddAnother_Click">
+                        <Button Classes="image-button" Command="{Binding AddAnotherCommand}">
                             <StackPanel Orientation="Horizontal" Spacing="12">
                                 <Image Source="avares://CourseWork/Assets/ic-add.png" Width="24" Height="24" />
                                 <TextBlock Classes="image-button__text" VerticalAlignment="Center">ADD ANOTHER</TextBlock>
                             </StackPanel>
                         </Button>
-                        <Button Classes="image-button" Click="CancelButton_Click">
+                        <Button Classes="image-button" Command="{Binding BackCommand}">
                             <StackPanel Orientation="Horizontal" Spacing="12">
                                 <Image Source="avares://CourseWork/Assets/ic-discard.png" Width="24" Height="24" />
                                 <TextBlock Classes="image-button__text" VerticalAlignment="Center">CANCEL</TextBlock>
