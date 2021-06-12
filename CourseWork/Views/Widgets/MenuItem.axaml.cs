@@ -18,19 +18,17 @@ namespace CourseWork.Views.Widgets
             AvaloniaProperty.RegisterDirect<MenuItem, string?>(nameof(ItemName), o => o.ItemName,
                 (o, v) => o.ItemName = v);
 
-        public static readonly AvaloniaProperty<bool> IsSelectedProperty =
-            AvaloniaProperty.RegisterDirect<MenuItem, bool>(nameof(IsSelected), o => o.IsSelected,
-                (o, v) => o.IsSelected = v);
+        public static readonly StyledProperty<bool> IsSelectedProperty =
+            AvaloniaProperty.Register<MenuItem, bool>(nameof(IsSelected));
 
         private int _iconSize = 32;
         private IImage? _iconSource;
-        private bool _isSelected;
         private string? _itemName;
 
         public bool IsSelected
         {
-            get => _isSelected;
-            set => SetAndRaise(IsSelectedProperty, ref _isSelected, value);
+            get => GetValue(IsSelectedProperty);
+            set => SetValue(IsSelectedProperty, value);
         }
 
         public IImage? IconSource

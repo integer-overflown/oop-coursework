@@ -14,23 +14,18 @@
         <vm:MainWindowViewModel />
     </Window.DataContext>
 
-    <Window.Resources>
-        <SolidColorBrush x:Key="MenuItemNameColor">#2196F3</SolidColorBrush>
-        <SolidColorBrush x:Key="MenuItemBackground">#E3F2FD</SolidColorBrush>
-        <SolidColorBrush x:Key="PrimaryColor">#006DB3</SolidColorBrush>
-    </Window.Resources>
-
     <Grid ColumnDefinitions="Auto *">
-        <StackPanel Grid.Column="0"
-                    Name="MenuItemsSizeBar"
-                    HorizontalAlignment="Left"
-                    Width="192"
-                    Orientation="Vertical">
-            <widgets:MenuItem IconSize="64" ItemName="Main page" IconSource="avares://CourseWork/Assets/ic-globe.png" />
+        <widgets:MenuItemsSidePanel Grid.Column="0"
+                                    Name="MenuItemsSizeBar"
+                                    HorizontalAlignment="Left"
+                                    Width="192"
+                                    Orientation="Vertical">
+            <widgets:MenuItem IsSelected="True" IconSize="64" ItemName="Main page"
+                              IconSource="avares://CourseWork/Assets/ic-globe.png" />
             <widgets:MenuItem IconSize="64" ItemName="Search" IconSource="avares://CourseWork/Assets/ic-search.png" />
             <widgets:MenuItem IconSize="64" ItemName="Add a book" IconSource="avares://CourseWork/Assets/ic-plus.png" />
             <widgets:MenuItem IconSize="64" ItemName="Help" IconSource="avares://CourseWork/Assets/ic-help.png" />
-        </StackPanel>
+        </widgets:MenuItemsSidePanel>
         <Carousel Grid.Column="1" Name="Pages">
             <screens:OverviewScreen Name="OverviewScreen"
                                     NavigationToScreenRequested="OverviewScreen_OnNavigationToScreenRequested" />

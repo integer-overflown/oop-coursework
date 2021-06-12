@@ -22,7 +22,11 @@
         </Setter>
     </Style>
     
-    <Style Selector="widgets|MenuItem[IsSelected=True]">
+    <Style Selector="widgets|MenuItem[IsSelected=True] /template/ Border.menu-item-border">
         <Setter Property="Background" Value="{DynamicResource MenuItemBackground}"/>
+    </Style>
+    
+    <Style Selector="widgets|MenuItem[IsPointerOver=True]">
+        <Setter Property="Cursor" Value="UpArrow" />
     </Style>
 </Styles>

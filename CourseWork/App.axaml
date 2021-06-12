@@ -13,4 +13,10 @@
         <StyleInclude Source="avares://CourseWork/Styles/Colors.axaml" />
         <StyleInclude Source="avares://CourseWork/Views/Widgets/MenuItem.axaml" />
     </Application.Styles>
+    
+    <Application.Resources>
+        <SolidColorBrush x:Key="MenuItemNameColor">#2196F3</SolidColorBrush>
+        <SolidColorBrush x:Key="MenuItemBackground">#E3F2FD</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryColor">#006DB3</SolidColorBrush>
+    </Application.Resources>
 </Application>
