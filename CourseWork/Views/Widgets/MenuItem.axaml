@@ -21,4 +21,8 @@
             </ControlTemplate>
         </Setter>
     </Style>
+    
+    <Style Selector="widgets|MenuItem[IsSelected=True]">
+        <Setter Property="Background" Value="{DynamicResource MenuItemBackground}"/>
+    </Style>
 </Styles>
