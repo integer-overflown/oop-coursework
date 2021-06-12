@@ -36,6 +36,7 @@ namespace CourseWork.Views.MenuScreens
             _viewModel = (BookViewScreenViewModel) DataContext!;
             _bookCover = this.FindControlStrict<PlaceholderImageButton>("BookCover");
             _viewModel.Changed.Subscribe(HandlePropertyChanged);
+            _viewModel.NavigationBackRequested += NavigateBack;
         }
 
         public bool IsEditable

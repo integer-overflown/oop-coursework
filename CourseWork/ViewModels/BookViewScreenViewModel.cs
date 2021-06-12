@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Avalonia.Media.Imaging;
 using CourseWork.Database;
 using CourseWork.Models;
@@ -14,12 +16,26 @@ namespace CourseWork.ViewModels
 {
     public class BookViewScreenViewModel : ViewModelBase
     {
+        public delegate void NavigateBackHandler();
+
         private Book _book = new();
         private bool _isEditable;
         private string? _name;
         private double _numberOfPages;
         private string? _publisher;
         private string? _publishingYear;
+
+        public BookViewScreenViewModel()
+        {
+            BackCommand = ReactiveCommand.Create(() => NavigationBackRequested?.Invoke());
+            EditCommand = ReactiveCommand.Create(() => IsEditable = true);
+            DeleteCommand = ReactiveCommand.Create(async () =>
+                {
+                    await Delete();
+                    NavigationBackRequested?.Invoke();
+                },
+                this.WhenAnyValue(v => v.Book).Select(IsBookStored));
+        }
 
         public bool IsEditable
         {
@@ -91,6 +107,14 @@ namespace CourseWork.ViewModels
             }
         }
 
+        public ICommand BackCommand { get; }
+        public ICommand EditCommand { get; }
+        public ICommand DeleteCommand { get; }
+
+        public event NavigateBackHandler? NavigationBackRequested;
+
+        private static bool IsBookStored(Book book) => book.Id != 0;
+
         private void ResetBook(Book value)
         {
             _book = value;
@@ -131,6 +155,13 @@ namespace CourseWork.ViewModels
             var saved = await context.SaveChangesAsync();
             BookContext.Notifier.NotifyDataAppended();
             Console.WriteLine($"INFO: saved {saved} records");
+        }
+
+        private async Task Delete()
+        {
+            await using var context = new BookContext();
+            context.Books.Remove(_book);
+            await context.SaveChangesAsync();
         }
 
         public bool ContainsValidItem()
