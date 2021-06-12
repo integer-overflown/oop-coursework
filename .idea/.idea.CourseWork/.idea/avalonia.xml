@@ -20,8 +20,10 @@
         <entry key="CourseWork/Views/Widgets/BookItem.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/BookItemsSideBar.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/DecoratedTextBox.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/Widgets/Dummy.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/ImageButton.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/MenuItem.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/Widgets/MenuItemsSidePanel.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/PlaceholderImageButton.axaml" value="CourseWork/CourseWork.csproj" />
       </map>
     </option>
