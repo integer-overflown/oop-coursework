@@ -27,7 +27,7 @@ namespace CourseWork.ViewModels
 
         public BookViewScreenViewModel()
         {
-            BackCommand = ReactiveCommand.Create(() => NavigationBackRequested?.Invoke());
+            BackCommand = ReactiveCommand.Create(Back);
             EditCommand = ReactiveCommand.Create(() => IsEditable = true);
             DeleteCommand = ReactiveCommand.Create(async () =>
                 {
@@ -109,6 +109,12 @@ namespace CourseWork.ViewModels
         public ICommand BackCommand { get; }
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
+
+        private void Back()
+        {
+            NavigationBackRequested?.Invoke();
+            Reset();
+        }
 
         public event NavigateBackHandler? NavigationBackRequested;
 
