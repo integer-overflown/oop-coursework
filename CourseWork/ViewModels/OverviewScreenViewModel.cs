@@ -34,6 +34,7 @@ namespace CourseWork.ViewModels
                 .Bind(out _autoCompleteItems)
                 .Subscribe();
             BookContext.Notifier.DataAppended += RefreshAppended;
+            BookContext.Notifier.DataEdited += RefreshAppended;
             BookContext.Notifier.DataRemoved += RefreshRemoved;
             LoadData();
             _filterSubject.OnNext(DummyFilter); // forces displaying all items

@@ -151,9 +151,18 @@ namespace CourseWork.ViewModels
             _book.Authors.SetContent(Authors.Where(IsNamePresent));
             _book.Subjects.SetContent(Subjects.Where(IsNamePresent));
 
-            await context.AddAsync(_book);
+            if (IsBookStored(_book))
+            {
+                context.Books.Update(_book);
+                BookContext.Notifier.NotifyDataEdited(_book);
+            }
+            else
+            {
+                await context.AddAsync(_book);
+                BookContext.Notifier.NotifyDataAppended(_book);
+            }
+
             var saved = await context.SaveChangesAsync();
-            BookContext.Notifier.NotifyDataAppended(_book);
             Console.WriteLine($"INFO: saved {saved} records");
         }
 
