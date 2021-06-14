@@ -63,7 +63,7 @@
                 </Grid>
             </Panel>
         </Border>
-        <Grid Classes="root-view" ColumnDefinitions="256 *">
+        <Grid Classes="root-view" ColumnDefinitions="256 *" IsEnabled="{Binding IsEditable}">
             <widgets:PlaceholderImageButton Name="BookCover"
                                             Classes="icon-placeholder"
                                             Grid.Column="0"
@@ -72,8 +72,7 @@
                                             VerticalAlignment="Top"
                                             Background="#C4C4C4"
                                             ActualContent="{Binding Cover}"
-                                            Click="IconPlaceholder_Click"
-                                            IsEnabled="{Binding IsEditable}">
+                                            Click="IconPlaceholder_Click">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Width="128" Height="128" Source="avares://CourseWork/Assets/ic-picture.png" />
                     <TextBlock FontWeight="Medium"
@@ -88,27 +87,23 @@
                         <!-- Name -->
                         <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-bookmark.png"
                                                   Watermark="Enter a name"
-                                                  Text="{Binding Name}"
-                                                  IsEnabled="{Binding IsEditable}" />
+                                                  Text="{Binding Name}" />
 
                         <!-- Publisher -->
                         <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-right-arrow.png"
                                                   Watermark="Enter a publisher"
-                                                  Text="{Binding Publisher}"
-                                                  IsEnabled="{Binding IsEditable}" />
+                                                  Text="{Binding Publisher}" />
 
                         <!-- Publishing info -->
                         <TextBlock>Publishing info</TextBlock>
                         <NumericUpDown Watermark="Enter the number of pages"
                                        Minimum="0"
                                        BorderBrush="{DynamicResource PrimaryColor}"
-                                       Value="{Binding NumberOfPages}"
-                                       IsEnabled="{Binding IsEditable}" />
+                                       Value="{Binding NumberOfPages}" />
 
                         <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-calendar.png"
                                                   Watermark="Enter the publishing year"
-                                                  Text="{Binding PublishingYear}"
-                                                  IsEnabled="{Binding IsEditable}" />
+                                                  Text="{Binding PublishingYear}" />
 
                         <TextBlock>Authors</TextBlock>
                         <ItemsControl Items="{Binding Authors}">
@@ -122,8 +117,7 @@
                                     <!-- Authors -->
                                     <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-copyright.png"
                                                               Watermark="Enter an author"
-                                                              Text="{Binding Name}"
-                                                              IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable, FallbackValue=False}" />
+                                                              Text="{Binding Name}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -141,8 +135,7 @@
                                     <widgets:DecoratedTextBox
                                         IconSource="avares://CourseWork/Assets/ic-magic-sparkles.png"
                                         Watermark="Enter a genre"
-                                        Text="{Binding Name}"
-                                        IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable, FallbackValue=False}" />
+                                        Text="{Binding Name}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
