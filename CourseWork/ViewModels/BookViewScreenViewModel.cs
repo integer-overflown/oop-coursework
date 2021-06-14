@@ -158,9 +158,9 @@ namespace CourseWork.ViewModels
                 target.Add(new T());
         }
 
-        private void Reset() => ResetBook(new Book());
+        private void Reset() => Book = new Book();
 
-        public async Task Save()
+        private async Task Save()
         {
             static bool IsNamePresent(dynamic value) => !string.IsNullOrEmpty(value.Name);
 
