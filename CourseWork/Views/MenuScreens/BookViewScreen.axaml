@@ -12,21 +12,12 @@
         <vm:BookViewScreenViewModel />
     </UserControl.DataContext>
     <UserControl.Styles>
-        <Style Selector="TextBox.text-box_borderless:focus /template/ Border">
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
-        <Style Selector="TextBox.text-box_borderless">
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
         <Style Selector="Border.icon-placeholder:hover">
             <Setter Property="Background" Value="#f7f7f7" />
             <Setter Property="Cursor" Value="UpArrow" />
         </Style>
         <Style Selector="NumericUpDown /template/ TextBox">
             <Setter Property="ext:InputValidation.InputFilter" Value="Digits" />
-        </Style>
-        <Style Selector="TextBox.text-box_borderless:disabled /template/ Border">
-            <Setter Property="Background" Value="Transparent" />
         </Style>
     </UserControl.Styles>
     <DockPanel>
@@ -95,36 +86,16 @@
                 <Border Padding="16 0 16 0">
                     <StackPanel Spacing="4">
                         <!-- Name -->
-                        <Border BorderThickness="0 0 0 4"
-                                Padding="0 0 0 4"
-                                BorderBrush="{DynamicResource PrimaryColor}">
-                            <StackPanel Orientation="Horizontal" Spacing="4">
-                                <Image Width="24"
-                                       Height="24"
-                                       Source="avares://CourseWork/Assets/ic-bookmark.png"
-                                       Stretch="Uniform" />
-                                <TextBox Classes="text-box_borderless"
-                                         Watermark="Enter a name"
-                                         Text="{Binding Name}"
-                                         IsEnabled="{Binding IsEditable}" />
-                            </StackPanel>
-                        </Border>
+                        <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-bookmark.png"
+                                                  Watermark="Enter a name"
+                                                  Text="{Binding Name}"
+                                                  IsEnabled="{Binding IsEditable}" />
 
                         <!-- Publisher -->
-                        <Border BorderThickness="0 0 0 4"
-                                Padding="0 0 0 4"
-                                BorderBrush="{DynamicResource PrimaryColor}">
-                            <StackPanel Orientation="Horizontal" Spacing="4">
-                                <Image Width="24"
-                                       Height="24"
-                                       Source="avares://CourseWork/Assets/ic-right-arrow.png"
-                                       Stretch="Uniform" />
-                                <TextBox Classes="text-box_borderless"
-                                         Watermark="Enter a publisher"
-                                         Text="{Binding Publisher}"
-                                         IsEnabled="{Binding IsEditable}" />
-                            </StackPanel>
-                        </Border>
+                        <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-right-arrow.png"
+                                                  Watermark="Enter a publisher"
+                                                  Text="{Binding Publisher}"
+                                                  IsEnabled="{Binding IsEditable}" />
 
                         <!-- Publishing info -->
                         <TextBlock>Publishing info</TextBlock>
@@ -134,18 +105,10 @@
                                        Value="{Binding NumberOfPages}"
                                        IsEnabled="{Binding IsEditable}" />
 
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <Image Width="24"
-                                   Height="24"
-                                   Source="avares://CourseWork/Assets/ic-calendar.png"
-                                   Stretch="Uniform" />
-                            <TextBox Text="{Binding PublishingYear}"
-                                     Classes="text-box_borderless"
-                                     Watermark="Enter the publishing year"
-                                     MaxLength="8"
-                                     ext:InputValidation.InputFilter="Digits"
-                                     IsEnabled="{Binding IsEditable}" />
-                        </StackPanel>
+                        <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-calendar.png"
+                                                  Watermark="Enter the publishing year"
+                                                  Text="{Binding PublishingYear}"
+                                                  IsEnabled="{Binding IsEditable}" />
 
                         <TextBlock>Authors</TextBlock>
                         <ItemsControl Items="{Binding Authors}">
@@ -157,22 +120,10 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <!-- Authors -->
-                                    <Border BorderThickness="0 0 0 4"
-                                            Padding="0 0 0 4"
-                                            BorderBrush="{DynamicResource PrimaryColor}">
-                                        <StackPanel Orientation="Horizontal" Spacing="4">
-                                            <Image Width="24"
-                                                   Height="24"
-                                                   Source="avares://CourseWork/Assets/ic-copyright.png"
-                                                   Stretch="Uniform" />
-                                            <!-- ReSharper disable once Xaml.PossibleNullReferenceException -->
-                                            <TextBox Text="{Binding Name}"
-                                                     Classes="text-box_borderless"
-                                                     Watermark="Enter an author"
-                                                     KeyDown="PopulatedAuthorTextBox_KeyDown"
-                                                     IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable}" />
-                                        </StackPanel>
-                                    </Border>
+                                    <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-copyright.png"
+                                                              Watermark="Enter an author"
+                                                              Text="{Binding Name}"
+                                                              IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable, FallbackValue=False}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -187,22 +138,11 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <!-- Subject -->
-                                    <Border BorderThickness="0 0 0 4"
-                                            Padding="0 0 0 4"
-                                            BorderBrush="{DynamicResource PrimaryColor}">
-                                        <StackPanel Orientation="Horizontal" Spacing="4">
-                                            <Image Width="24"
-                                                   Height="24"
-                                                   Source="avares://CourseWork/Assets/ic-magic-sparkles.png"
-                                                   Stretch="Uniform" />
-                                            <!-- ReSharper disable once Xaml.PossibleNullReferenceException -->
-                                            <TextBox Text="{Binding Name}"
-                                                     Classes="text-box_borderless"
-                                                     Watermark="Enter a genre"
-                                                     KeyDown="PopulatedSubjectTextBox_KeyDown"
-                                                     IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable}" />
-                                        </StackPanel>
-                                    </Border>
+                                    <widgets:DecoratedTextBox
+                                        IconSource="avares://CourseWork/Assets/ic-magic-sparkles.png"
+                                        Watermark="Enter a genre"
+                                        Text="{Binding Name}"
+                                        IsEnabled="{Binding ElementName=Root, Path=DataContext.IsEditable, FallbackValue=False}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

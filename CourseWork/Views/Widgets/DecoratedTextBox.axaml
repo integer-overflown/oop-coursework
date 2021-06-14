@@ -1,0 +1,39 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:widgets="using:CourseWork.Views.Widgets">
+    <Design.PreviewWith>
+        <widgets:DecoratedTextBox />
+    </Design.PreviewWith>
+
+    <Style Selector="TextBox.text-box_borderless:disabled /template/ Border">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="TextBox.text-box_borderless:focus /template/ Border">
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="TextBox.text-box_borderless">
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <Style Selector="widgets|DecoratedTextBox">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderThickness="0 0 0 4"
+                        Padding="0 0 0 4"
+                        BorderBrush="{DynamicResource PrimaryColor}">
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+                        <Image Width="{TemplateBinding IconSize}"
+                               Height="{TemplateBinding IconSize}"
+                               Source="{TemplateBinding IconSource}"
+                               Stretch="Uniform" />
+                        <TextBox Classes="text-box_borderless"
+                                 Watermark="{TemplateBinding Watermark}"
+                                 Text="{TemplateBinding Text}"
+                                 IsEnabled="{TemplateBinding IsEnabled}" />
+                    </StackPanel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

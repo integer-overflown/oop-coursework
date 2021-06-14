@@ -13,6 +13,7 @@
         <StyleInclude Source="avares://CourseWork/Styles/Colors.axaml" />
         <StyleInclude Source="avares://CourseWork/Views/Widgets/MenuItem.axaml" />
         <StyleInclude Source="avares://CourseWork/Views/Widgets/ImageButton.axaml" />
+        <StyleInclude Source="avares://CourseWork/Views/Widgets/DecoratedTextBox.axaml" />
     </Application.Styles>
     
     <Application.Resources>

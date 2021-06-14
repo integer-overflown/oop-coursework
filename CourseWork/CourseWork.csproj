@@ -21,5 +21,9 @@
             <DependentUpon>MenuItem.axaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Update="Views\Widgets\DecoratedTextBox.axaml.cs">
+            <DependentUpon>DecoratedTextBox.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 </Project>
