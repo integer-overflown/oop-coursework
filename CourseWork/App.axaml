@@ -12,6 +12,7 @@
         <StyleInclude Source="avares://CourseWork/Styles/Fonts.axaml" />
         <StyleInclude Source="avares://CourseWork/Styles/Colors.axaml" />
         <StyleInclude Source="avares://CourseWork/Views/Widgets/MenuItem.axaml" />
+        <StyleInclude Source="avares://CourseWork/Views/Widgets/ImageButton.axaml" />
     </Application.Styles>
     
     <Application.Resources>

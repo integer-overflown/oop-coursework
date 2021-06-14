@@ -1,0 +1,25 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:widgets="using:CourseWork.Views.Widgets">
+    <Design.PreviewWith>
+        <widgets:ImageButton />
+    </Design.PreviewWith>
+
+    <Style Selector="widgets|ImageButton">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Button Classes="image-button" Command="{TemplateBinding Command}">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Image Width="{TemplateBinding IconSize}"
+                               Height="{TemplateBinding IconSize}"
+                               Source="{TemplateBinding IconSource}" />
+                        <TextBlock Classes="image-button__text" 
+                                   VerticalAlignment="Center" 
+                                   Text="{TemplateBinding Text}"/>
+                    </StackPanel>
+                </Button>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

@@ -37,61 +37,37 @@
                       Height="56"
                       IsVisible="{Binding !IsEditable}">
                     <StackPanel VerticalAlignment="Center" Grid.Column="0" Orientation="Horizontal">
-                        <Button Classes="image-button" Command="{Binding BackCommand}">
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Image Source="avares://CourseWork/Assets/ic-arrow-back-light.png" Width="24"
-                                       Height="24" />
-                                <TextBlock Classes="image-button__text" VerticalAlignment="Center">BACK</TextBlock>
-                            </StackPanel>
-                        </Button>
-                        <Button VerticalAlignment="Center" 
-                                Classes="image-button"
-                                Command="{Binding EditCommand}">
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Image Source="avares://CourseWork/Assets/ic-edit-light.png" Width="24" Height="24" />
-                                <TextBlock Classes="image-button__text" VerticalAlignment="Center">EDIT</TextBlock>
-                            </StackPanel>
-                        </Button>
+                        <widgets:ImageButton IconSource="avares://CourseWork/Assets/ic-arrow-back-light.png"
+                                             Command="{Binding BackCommand}"
+                                             Text="BACK" />
+                        <widgets:ImageButton Command="{Binding EditCommand}"
+                                             IconSource="avares://CourseWork/Assets/ic-edit-light.png"
+                                             Text="EDIT" />
                     </StackPanel>
-                    <Button Grid.Column="1" Classes="image-button" Command="{Binding DeleteCommand}">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="12">
-                            <Image Source="avares://CourseWork/Assets/ic-delete-light.png" Width="24" Height="24" />
-                            <TextBlock Classes="image-button__text" VerticalAlignment="Center">DELETE</TextBlock>
-                        </StackPanel>
-                    </Button>
+                    <widgets:ImageButton Grid.Column="1"
+                                         IconSource="avares://CourseWork/Assets/ic-delete-light.png"
+                                         Text="DELETE"
+                                         Command="{Binding DeleteCommand}" />
                 </Grid>
                 <!-- Edit actions, visible when this BookView is set to be editable -->
                 <Grid ColumnDefinitions="Auto *"
                       Height="56"
                       IsVisible="{Binding IsEditable}">
-                    <Button Grid.Column="0" Classes="image-button" Command="{Binding BackCommand}">
-                        <StackPanel Orientation="Horizontal" Spacing="12">
-                            <Image Source="avares://CourseWork/Assets/ic-arrow-back-light.png" Width="24"
-                                   Height="24" />
-                            <TextBlock Classes="image-button__text" VerticalAlignment="Center">BACK</TextBlock>
-                        </StackPanel>
-                    </Button>
+                    <widgets:ImageButton IconSource="avares://CourseWork/Assets/ic-arrow-back-light.png"
+                                         Command="{Binding BackCommand}"
+                                         Text="BACK" />
                     <StackPanel Grid.Column="1"
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
-                        <Button Classes="image-button" Command="{Binding FinishCommand}">
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Image Source="avares://CourseWork/Assets/ic-confirm.png" Width="24" Height="24" />
-                                <TextBlock Classes="image-button__text" VerticalAlignment="Center">FINISH</TextBlock>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="image-button" Command="{Binding AddAnotherCommand}">
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Image Source="avares://CourseWork/Assets/ic-add.png" Width="24" Height="24" />
-                                <TextBlock Classes="image-button__text" VerticalAlignment="Center">ADD ANOTHER</TextBlock>
-                            </StackPanel>
-                        </Button>
-                        <Button Classes="image-button" Command="{Binding BackCommand}">
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Image Source="avares://CourseWork/Assets/ic-discard.png" Width="24" Height="24" />
-                                <TextBlock Classes="image-button__text" VerticalAlignment="Center">CANCEL</TextBlock>
-                            </StackPanel>
-                        </Button>
+                        <widgets:ImageButton IconSource="avares://CourseWork/Assets/ic-confirm.png"
+                                             Text="FINISH"
+                                             Command="{Binding FinishCommand}" />
+                        <widgets:ImageButton IconSource="avares://CourseWork/Assets/ic-add.png"
+                                             Text="ADD ANOTHER"
+                                             Command="{Binding AddAnotherCommand}" />
+                        <widgets:ImageButton IconSource="avares://CourseWork/Assets/ic-discard.png"
+                                             Text="CANCEL"
+                                             Command="{Binding BackCommand}" />
                     </StackPanel>
                 </Grid>
             </Panel>
