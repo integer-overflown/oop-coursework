@@ -15,7 +15,7 @@
                                Source="{TemplateBinding IconSource}" />
                         <TextBlock Foreground="{DynamicResource MenuItemNameColor}"
                                    HorizontalAlignment="Center"
-                                   Text="{TemplateBinding ItemName}" />
+                                   Text="{TemplateBinding Text}" />
                     </StackPanel>
                 </Border>
             </ControlTemplate>

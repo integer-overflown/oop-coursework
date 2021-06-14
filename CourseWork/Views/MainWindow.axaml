@@ -20,11 +20,11 @@
                                     HorizontalAlignment="Left"
                                     Width="192"
                                     Orientation="Vertical">
-            <widgets:MenuItem IsSelected="True" IconSize="64" ItemName="Main page"
+            <widgets:MenuItem IsSelected="True" IconSize="64" Text="Main page"
                               IconSource="avares://CourseWork/Assets/ic-globe.png" />
-            <widgets:MenuItem IconSize="64" ItemName="Search" IconSource="avares://CourseWork/Assets/ic-search.png" />
-            <widgets:MenuItem IconSize="64" ItemName="Add a book" IconSource="avares://CourseWork/Assets/ic-plus.png" />
-            <widgets:MenuItem IconSize="64" ItemName="Help" IconSource="avares://CourseWork/Assets/ic-help.png" />
+            <widgets:MenuItem IconSize="64" Text="Search" IconSource="avares://CourseWork/Assets/ic-search.png" />
+            <widgets:MenuItem IconSize="64" Text="Add a book" IconSource="avares://CourseWork/Assets/ic-plus.png" />
+            <widgets:MenuItem IconSize="64" Text="Help" IconSource="avares://CourseWork/Assets/ic-help.png" />
         </widgets:MenuItemsSidePanel>
         <Carousel Grid.Column="1" Name="Pages">
             <screens:OverviewScreen Name="OverviewScreen"
