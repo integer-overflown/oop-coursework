@@ -11,7 +11,6 @@
         <entry key="CourseWork/Views/MenuScreens/AddBookScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/BookViewScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/ConfirmBookAdditionScreen.axaml" value="CourseWork/CourseWork.csproj" />
-        <entry key="CourseWork/Views/Widgets/DecoratedTextBox.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/ErrorScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/HelpScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/NotFoundScreen.axaml" value="CourseWork/CourseWork.csproj" />
@@ -26,6 +25,9 @@
         <entry key="CourseWork/Views/Widgets/MenuItem.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/MenuItemsSidePanel.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/Widgets/PlaceholderImageButton.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/Widgets/RoundToggleButton.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/Widgets/ToggleButton.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/Widgets/TogglePanel.axaml" value="CourseWork/CourseWork.csproj" />
       </map>
     </option>
   </component>
