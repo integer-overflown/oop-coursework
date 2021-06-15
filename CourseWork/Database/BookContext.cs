@@ -9,15 +9,18 @@ namespace CourseWork.Database
 {
     public class BookContext : DbContext
     {
-        private const string DatabaseName = "eveRead.db";
+        private const string DatabaseName = "main.db";
+        private const string ApplicationName = "eveRead";
         public DbSet<Book> Books { get; set; } = null!; // suppress warning, since this property if auto-generated
 
         public static DataChangesNotifier<Book> Notifier { get; } = new();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                DatabaseName);
+            var appFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                ApplicationName);
+            Directory.CreateDirectory(appFolderPath);
+            var dbPath = Path.Combine(appFolderPath, DatabaseName);
             Console.WriteLine($"Located SQLite database at {dbPath}");
             optionsBuilder.UseSqlite($"Data Source={dbPath}");
         }
