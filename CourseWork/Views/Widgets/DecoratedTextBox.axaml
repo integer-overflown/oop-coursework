@@ -29,7 +29,7 @@
                                Stretch="Uniform" />
                         <TextBox Classes="text-box_borderless"
                                  Watermark="{TemplateBinding Watermark}"
-                                 Text="{TemplateBinding Text}"
+                                 Text="{TemplateBinding Text, Mode=TwoWay}"
                                  IsEnabled="{TemplateBinding IsEnabled}" />
                     </StackPanel>
                 </Border>
