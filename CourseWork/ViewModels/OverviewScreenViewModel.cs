@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Subjects;
@@ -17,6 +18,7 @@ namespace CourseWork.ViewModels
         private readonly SourceCache<Book, long> _bookSource = new(item => item.Id);
 
         private readonly Subject<Func<Book, bool>> _filterSubject = new();
+        private readonly Subject<IComparer<BookDisplayItem>> _sortSubject = new();
 
         public OverviewScreenViewModel()
         {
@@ -24,7 +26,7 @@ namespace CourseWork.ViewModels
                 .Connect()
                 .Filter(_filterSubject)
                 .Transform(book => new BookDisplayItem(book))
-                .Sort(SortExpressionComparer<BookDisplayItem>.Ascending(book => book.Content.Name!))
+                .Sort(_sortSubject)
                 .Bind(out _books)
                 .DisposeMany()
                 .Subscribe();
@@ -36,7 +38,10 @@ namespace CourseWork.ViewModels
             BookContext.Notifier.DataUpdated += RefreshUpdated;
             BookContext.Notifier.DataRemoved += RefreshRemoved;
             LoadData();
-            _filterSubject.OnNext(DummyFilter); // forces displaying all items
+            // forces displaying all items
+            _filterSubject.OnNext(DummyFilter);
+            // default sorting by name
+            _sortSubject.OnNext(SortExpressionComparer<BookDisplayItem>.Ascending(book => book.Content.Name!));
         }
 
         public ReadOnlyObservableCollection<BookDisplayItem> Books => _books;

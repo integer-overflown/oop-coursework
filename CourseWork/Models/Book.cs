@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Avalonia.Media.Imaging;
+using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace CourseWork.Models
@@ -16,6 +17,7 @@ namespace CourseWork.Models
         {
         }
 
+        [UsedImplicitly]
         private Book(ILazyLoader loader)
         {
             _loader = loader;
