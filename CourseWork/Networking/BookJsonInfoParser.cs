@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using CourseWork.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace CourseWork.Networking
@@ -13,7 +14,18 @@ namespace CourseWork.Networking
 
         public Book? Parse(string input)
         {
-            var result = JObject.Parse(input);
+            JObject result;
+            try
+            {
+                result = JObject.Parse(input);
+            }
+            catch (JsonReaderException)
+            {
+                Console.WriteLine("Failed to parse server response:");
+                Console.WriteLine(input);
+                throw;
+            }
+
             JToken? book;
             if (!result.HasValues || (book = result.Root.First?.First) == null) return null;
 
