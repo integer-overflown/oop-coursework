@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using CourseWork.ViewModels;
 using CourseWork.Views.Widgets;
@@ -9,6 +10,7 @@ namespace CourseWork.Views.MenuScreens
     public class OverviewScreen : InteractiveScreen
     {
         private readonly OverviewScreenViewModel _viewModel;
+        private object? _activeFilter;
 
         public OverviewScreen()
         {
@@ -31,7 +33,7 @@ namespace CourseWork.Views.MenuScreens
             var it = e.AddedItems;
             string? value;
             if (it is null || it.Count < 1 || (value = (string?) it[0]) is null) return;
-            _viewModel.DisplayNameMatches(value!);
+            _viewModel.DisplayNameMatches(value);
         }
 
         private void BookItem_OnPointerPressed(object? sender, PointerPressedEventArgs e)
@@ -40,6 +42,23 @@ namespace CourseWork.Views.MenuScreens
             var item = (BookItem) sender;
             var book = _viewModel.GetItem(item.Id);
             NavigateToScreen(IInteractiveScreen.CommonLocations.BookViewScreen, book);
+        }
+
+        private void FilterEmptyAuthors_OnChecked(object? sender, RoutedEventArgs e)
+        {
+            _viewModel.FilterEmptyAuthors();
+            _activeFilter = sender;
+        }
+
+        private void FilterUnknownCovers_OnChecked(object? sender, RoutedEventArgs e)
+        {
+            _viewModel.FilterUnknownCovers();
+            _activeFilter = sender;
+        }
+
+        private void Filter_OnUnchecked(object? sender, RoutedEventArgs e)
+        {
+            if (ReferenceEquals(_activeFilter, sender)) _viewModel.ResetFilters();
         }
     }
 }

@@ -16,14 +16,17 @@ namespace CourseWork.ViewModels
         private readonly ReadOnlyObservableCollection<string> _autoCompleteItems;
         private readonly ReadOnlyObservableCollection<BookDisplayItem> _books;
         private readonly SourceCache<Book, long> _bookSource = new(item => item.Id);
-
         private readonly Subject<Func<Book, bool>> _filterSubject = new();
+
+        // we need to distinguish these filters, because they may be applied simultaneously
+        private readonly Subject<Func<Book, bool>> _nameMatchSubject = new();
         private readonly Subject<IComparer<BookDisplayItem>> _sortSubject = new();
 
         public OverviewScreenViewModel()
         {
             _bookSource
                 .Connect()
+                .Filter(_nameMatchSubject)
                 .Filter(_filterSubject)
                 .Transform(book => new BookDisplayItem(book))
                 .Sort(_sortSubject)
@@ -38,7 +41,10 @@ namespace CourseWork.ViewModels
             BookContext.Notifier.DataUpdated += RefreshUpdated;
             BookContext.Notifier.DataRemoved += RefreshRemoved;
             LoadData();
+
             // forces displaying all items
+            // apply no filter on startup
+            _nameMatchSubject.OnNext(DummyFilter);
             _filterSubject.OnNext(DummyFilter);
             // default sorting by name
             _sortSubject.OnNext(SortExpressionComparer<BookDisplayItem>.Ascending(book => book.Content.Name!));
@@ -47,6 +53,13 @@ namespace CourseWork.ViewModels
         public ReadOnlyObservableCollection<BookDisplayItem> Books => _books;
 
         public ReadOnlyObservableCollection<string> AutoCompleteItems => _autoCompleteItems;
+
+        private static bool AuthorFilter(Book book) => book.Authors.Count > 0;
+        private static bool CoverFilter(Book book) => book.Cover != null;
+
+        public void FilterEmptyAuthors() => _filterSubject.OnNext(AuthorFilter);
+        public void FilterUnknownCovers() => _filterSubject.OnNext(CoverFilter);
+        public void ResetFilters() => _filterSubject.OnNext(DummyFilter);
 
         // ReSharper disable once UnusedParameter.Local
         private static bool DummyFilter(Book book) => true;
@@ -67,15 +80,8 @@ namespace CourseWork.ViewModels
             _bookSource.Edit(editor => editor.Remove(args.Data));
         }
 
-        public void DisplayNameMatches(string name)
-        {
-            _filterSubject.OnNext(book => book.Name == name);
-        }
-
-        public void ClearNameFilters()
-        {
-            _filterSubject.OnNext(DummyFilter);
-        }
+        public void DisplayNameMatches(string name) => _nameMatchSubject.OnNext(book => book.Name == name);
+        public void ClearNameFilters() => _nameMatchSubject.OnNext(DummyFilter);
 
         public Book GetItem(long id) => _bookSource.Lookup(id).Value;
 
