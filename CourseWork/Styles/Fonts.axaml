@@ -47,4 +47,9 @@
         <Setter Property="Foreground" Value="{DynamicResource PrimaryColor}" />
         <Setter Property="Cursor" Value="UpArrow" />
     </Style>
+    
+    <Style Selector="TextBlock.placeholder">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Foreground" Value="#99000000" />
+    </Style>
 </Styles>

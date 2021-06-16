@@ -4,11 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:widgets="clr-namespace:CourseWork.Views.Widgets"
              xmlns:vm="clr-namespace:CourseWork.ViewModels"
+             xmlns:input="using:CourseWork.Input"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.OverviewScreen">
     <UserControl.DataContext>
         <vm:OverviewScreenViewModel />
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <input:IntIsEqualConverter x:Key="IntIsEqualConverter" />
+    </UserControl.Resources>
     <DockPanel>
         <StackPanel Margin="16 16 16 8" Spacing="4" DockPanel.Dock="Top">
             <AutoCompleteBox Name="AutoCompleteNameSearch"
@@ -30,25 +34,41 @@
             </widgets:TogglePanel>
         </StackPanel>
         <ScrollViewer>
-            <ItemsControl Items="{Binding Books}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BoxShadow="0 0 20 0 Gray" Margin="16 24" CornerRadius="0 0 4 4">
-                            <widgets:BookItem Width="256"
-                                              Id="{Binding Content.Id}"
-                                              Title="{Binding Content.Name}"
-                                              Subtitle="{Binding FirstAuthorName}"
-                                              Cover="{Binding Content.Cover}"
-                                              PointerPressed="BookItem_OnPointerPressed" />
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <Panel>
+                <ItemsControl Name="BookItems" Items="{Binding Books}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BoxShadow="0 0 20 0 Gray" Margin="16 24" CornerRadius="0 0 4 4">
+                                <widgets:BookItem Width="256"
+                                                  Id="{Binding Content.Id}"
+                                                  Title="{Binding Content.Name}"
+                                                  Subtitle="{Binding FirstAuthorName}"
+                                                  Cover="{Binding Content.Cover}"
+                                                  PointerPressed="BookItem_OnPointerPressed" />
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <!-- Placeholder -->
+                <TextBlock HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"
+                           Classes="placeholder"
+                           Text="Nothing here yet">
+                    <TextBlock.IsVisible>
+                        <Binding Path="#BookItems.ItemCount" 
+                                 Converter="{StaticResource IntIsEqualConverter}">
+                            <Binding.ConverterParameter>
+                                <x:Int32>0</x:Int32>
+                            </Binding.ConverterParameter>
+                        </Binding>
+                    </TextBlock.IsVisible>
+                </TextBlock>
+            </Panel>
         </ScrollViewer>
     </DockPanel>
 </UserControl>
