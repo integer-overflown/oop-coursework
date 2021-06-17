@@ -3,7 +3,12 @@
         xmlns:widgets="clr-namespace:CourseWork.Views.Widgets">
     <Design.PreviewWith>
         <Border Padding="20">
-            <!-- Add Controls for Previewer Here -->
+            <StackPanel>
+                <TextBlock Classes="h1">Heading 1</TextBlock>
+                <TextBlock Classes="h2">Heading 2 - a little smaller</TextBlock>
+                <TextBlock Classes="h3">Heading 3 gives a meaningful title</TextBlock>
+                <TextBlock Classes="link">A useful link</TextBlock>
+            </StackPanel>
         </Border>
     </Design.PreviewWith>
 
@@ -30,7 +35,7 @@
         <Setter Property="FontWeight" Value="Regular" />
         <Setter Property="Foreground" Value="#99000000" />
     </Style>
-    
+
     <!-- Customized standard controls -->
     <Style Selector="TextBlock.image-button__text">
         <Setter Property="FontWeight" Value="Medium" />
@@ -40,19 +45,30 @@
     <Style Selector=":is(TextBlock).h1">
         <Setter Property="FontSize" Value="32" />
         <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Margin" Value="0 0 0 8" />
+    </Style>
+
+    <Style Selector=":is(TextBlock).h2">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Margin" Value="0 4 0 4" />
     </Style>
     
+    <Style Selector=":is(TextBlock).h3">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Margin" Value="0 4 0 8" />
+    </Style>
+
     <Style Selector=":is(TextBlock).link">
         <Setter Property="TextDecorations" Value="Underline" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryColor}" />
         <Setter Property="Cursor" Value="UpArrow" />
     </Style>
-    
+
     <Style Selector="TextBlock.placeholder">
         <Setter Property="FontSize" Value="20" />
         <Setter Property="Foreground" Value="#99000000" />
     </Style>
-    
+
     <Style Selector="TextBlock.button-light">
         <Setter Property="FontWeight" Value="Medium" />
     </Style>

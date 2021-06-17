@@ -19,6 +19,9 @@
         <Style Selector="NumericUpDown /template/ TextBox">
             <Setter Property="ext:InputValidation.InputFilter" Value="Digits" />
         </Style>
+        <Style Selector="TextBlock.subcategory">
+            <Setter Property="Margin" Value="0 12 0 8" />
+        </Style>
     </UserControl.Styles>
     <DockPanel>
         <Border DockPanel.Dock="Top" Background="{DynamicResource PrimaryColor}">
@@ -84,6 +87,10 @@
             <ScrollViewer Grid.Column="1">
                 <Border Padding="16 0 16 0">
                     <StackPanel Spacing="4">
+                        <TextBlock Classes="h1">Book info</TextBlock>
+                        
+                        <CheckBox IsChecked="True">Is present</CheckBox>
+                        
                         <!-- Name -->
                         <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-bookmark.png"
                                                   Watermark="Enter a name"
@@ -95,7 +102,7 @@
                                                   Text="{Binding Publisher}" />
 
                         <!-- Publishing info -->
-                        <TextBlock>Publishing info</TextBlock>
+                        <TextBlock Classes="h3 subcategory">Publishing info</TextBlock>
                         <NumericUpDown Watermark="Enter the number of pages"
                                        Minimum="0"
                                        BorderBrush="{DynamicResource PrimaryColor}"
@@ -105,7 +112,7 @@
                                                   Watermark="Enter the publishing year"
                                                   Text="{Binding PublishingYear}" />
 
-                        <TextBlock>Authors</TextBlock>
+                        <TextBlock Classes="h3 subcategory">Authors</TextBlock>
                         <ItemsControl Items="{Binding Authors}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -122,7 +129,7 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <TextBlock>Subjects</TextBlock>
+                        <TextBlock Classes="h3 subcategory">Subjects</TextBlock>
                         <ItemsControl Items="{Binding Subjects}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -139,6 +146,11 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+                        
+                        <TextBlock Classes="h3 subcategory">Your review</TextBlock>
+                        <TextBox Watermark="Comments, opinion, notes and everything" 
+                                 AcceptsReturn="True"
+                                 Margin="0 0 0 24" />
                     </StackPanel>
                 </Border>
             </ScrollViewer>
