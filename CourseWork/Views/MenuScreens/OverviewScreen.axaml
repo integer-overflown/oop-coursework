@@ -19,7 +19,7 @@
                              IsTextCompletionEnabled="True"
                              Watermark="Search by the name"
                              SelectionChanged="AutoCompleteBox_OnSelectionChanged"
-                             Text="{Binding NameSearchText, Mode=OneWayToSource}"
+                             Text="{Binding NameSearchText}"
                              Items="{Binding AutoCompleteItems}" />
             <widgets:TogglePanel Name="FilterPanel" Orientation="Horizontal" Spacing="8">
                 <ToggleButton Classes="round-toggle-button"

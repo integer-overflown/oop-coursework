@@ -71,6 +71,11 @@ namespace CourseWork.Views.MenuScreens
             _viewModel.SetFilter(filter);
         }
 
+        public void SetNameFilter(Func<Book, bool> filter)
+        {
+            _viewModel.SetNameFilter(filter);
+        }
+
         public void SetNameQuery(string? name)
         {
             _viewModel.NameSearchText = name;

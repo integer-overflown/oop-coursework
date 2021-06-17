@@ -28,18 +28,21 @@ namespace CourseWork.Views.MenuScreens
 
         private void Search_OnClick(object? sender, RoutedEventArgs e)
         {
-            FiltersSet?.Invoke(new FiltersSetEventArgs(_viewModel.Name, _viewModel.CreateFilter()));
+            FiltersSet?.Invoke(new FiltersSetEventArgs(_viewModel.Name, _viewModel.CreateFilter(),
+                _viewModel.CreateNameFilter()));
         }
 
         public readonly struct FiltersSetEventArgs
         {
             public string? TargetName { get; }
-            public Func<Book, bool> Filter { get; }
+            public Func<Book, bool> GenericFilter { get; }
+            public Func<Book, bool> NameFilter { get; }
 
-            public FiltersSetEventArgs(string? targetName, Func<Book, bool> filter)
+            public FiltersSetEventArgs(string? targetName, Func<Book, bool> genericFilter, Func<Book, bool> nameFilter)
             {
                 TargetName = targetName;
-                Filter = filter;
+                GenericFilter = genericFilter;
+                NameFilter = nameFilter;
             }
         }
     }

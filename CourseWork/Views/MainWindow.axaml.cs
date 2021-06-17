@@ -112,7 +112,8 @@ namespace CourseWork.Views
         private void SearchScreen_OnFiltersSet(SearchScreen.FiltersSetEventArgs args)
         {
             var overview = _screens.FindControlStrict<OverviewScreen>(OverviewScreenKey);
-            overview.SetFilter(args.Filter);
+            overview.SetFilter(args.GenericFilter);
+            overview.SetNameFilter(args.NameFilter);
             overview.SetNameQuery(args.TargetName);
             _viewModel.CurrentScreenIndex = OverviewScreenIndex;
             _menuItems.SelectedIndex = OverviewScreenIndex;

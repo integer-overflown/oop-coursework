@@ -69,6 +69,7 @@ namespace CourseWork.ViewModels
         public void FilterUnknownCovers() => _filterSubject.OnNext(CoverFilter);
         public void ResetFilters() => _filterSubject.OnNext(DummyFilter);
         public void SetFilter(Func<Book, bool> filter) => _filterSubject.OnNext(filter);
+        public void SetNameFilter(Func<Book, bool> filter) => _nameMatchSubject.OnNext(filter);
 
         // ReSharper disable once UnusedParameter.Local
         private static bool DummyFilter(Book book) => true;

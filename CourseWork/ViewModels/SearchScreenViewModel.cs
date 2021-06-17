@@ -18,6 +18,8 @@ namespace CourseWork.ViewModels
                            && SubjectFilter(book, Subject);
         }
 
+        public Func<Book, bool> CreateNameFilter() => book => NameFilter(book, Name);
+
         private static bool NotNullAndContains(string? s, string value)
         {
             return s != null && s.Contains(value, StringComparison.OrdinalIgnoreCase);
@@ -40,6 +42,11 @@ namespace CourseWork.ViewModels
         private static bool PublisherFilter(Book book, string? publisher)
         {
             return string.IsNullOrWhiteSpace(publisher) || NotNullAndContains(book.Publisher, publisher);
+        }
+
+        private static bool NameFilter(Book book, string? name)
+        {
+            return string.IsNullOrWhiteSpace(name) || NotNullAndContains(book.Name, name);
         }
     }
 }
