@@ -41,6 +41,16 @@
                               Unchecked="Filter_OnUnchecked">
                     Hide unknown covers
                 </ToggleButton>
+                <ToggleButton Classes="round-toggle-button"
+                              Checked="ShowPresent_OnChecked"
+                              Unchecked="Filter_OnUnchecked">
+                    Show only present
+                </ToggleButton>
+                <ToggleButton Classes="round-toggle-button"
+                              Checked="ShowAbsent_OnChecked"
+                              Unchecked="Filter_OnUnchecked">
+                    Show absent
+                </ToggleButton>
             </widgets:TogglePanel>
         </StackPanel>
         <ScrollViewer>

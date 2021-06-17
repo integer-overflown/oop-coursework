@@ -87,5 +87,18 @@ namespace CourseWork.Views.MenuScreens
             _viewModel.ClearAllFilters();
             _viewModel.NameSearchText = null;
         }
+
+        private void ShowPresent_OnChecked(object? sender, RoutedEventArgs e)
+        {
+            _viewModel.FilterAbsent();
+            _activeFilter = sender;
+        }
+
+
+        private void ShowAbsent_OnChecked(object? sender, RoutedEventArgs e)
+        {
+            _viewModel.FilterPresent();
+            _activeFilter = sender;
+        }
     }
 }

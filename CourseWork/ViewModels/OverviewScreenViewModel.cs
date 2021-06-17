@@ -71,6 +71,12 @@ namespace CourseWork.ViewModels
         public void SetFilter(Func<Book, bool> filter) => _filterSubject.OnNext(filter);
         public void SetNameFilter(Func<Book, bool> filter) => _nameMatchSubject.OnNext(filter);
 
+        public void FilterAbsent() => _filterSubject.OnNext(BookPresentFilter);
+        public void FilterPresent() => _filterSubject.OnNext(BookAbsentFilter);
+
+        private static bool BookPresentFilter(Book book) => book.IsPresent;
+        private static bool BookAbsentFilter(Book book) => !book.IsPresent;
+
         public void ClearAllFilters()
         {
             _nameMatchSubject.OnNext(DummyFilter);
