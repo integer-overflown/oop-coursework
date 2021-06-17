@@ -41,16 +41,5 @@ namespace CourseWork.ViewModels
         {
             return string.IsNullOrWhiteSpace(publisher) || NotNullAndContains(book.Publisher, publisher);
         }
-
-        private Func<Book, bool> GetFilter(string property, string? param)
-        {
-            return property switch
-            {
-                nameof(Author) => book => AuthorFilter(book, param),
-                nameof(Publisher) => book => PublisherFilter(book, param),
-                nameof(Subject) => book => SubjectFilter(book, param),
-                _ => throw new ArgumentException("Failed to match filter to property.", nameof(property))
-            };
-        }
     }
 }

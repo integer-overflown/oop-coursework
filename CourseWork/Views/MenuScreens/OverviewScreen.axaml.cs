@@ -1,7 +1,9 @@
+using System;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using CourseWork.Models;
 using CourseWork.ViewModels;
 using CourseWork.Views.Widgets;
 
@@ -9,6 +11,7 @@ namespace CourseWork.Views.MenuScreens
 {
     public class OverviewScreen : InteractiveScreen
     {
+        private readonly TogglePanel _filterPanel;
         private readonly OverviewScreenViewModel _viewModel;
         private object? _activeFilter;
 
@@ -21,6 +24,7 @@ namespace CourseWork.Views.MenuScreens
             {
                 if (nameSearch.Text.Length == 0) _viewModel.ClearNameFilters();
             };
+            _filterPanel = this.FindControlStrict<TogglePanel>("FilterPanel");
         }
 
         private void InitializeComponent()
@@ -59,6 +63,17 @@ namespace CourseWork.Views.MenuScreens
         private void Filter_OnUnchecked(object? sender, RoutedEventArgs e)
         {
             if (ReferenceEquals(_activeFilter, sender)) _viewModel.ResetFilters();
+        }
+
+        public void SetFilter(Func<Book, bool> filter)
+        {
+            _filterPanel.UncheckAll();
+            _viewModel.SetFilter(filter);
+        }
+
+        public void SetNameQuery(string? name)
+        {
+            _viewModel.NameSearchText = name;
         }
     }
 }

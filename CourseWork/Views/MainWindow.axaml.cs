@@ -99,5 +99,13 @@ namespace CourseWork.Views
             if (args.Location != IInteractiveScreen.CommonLocations.BookViewScreen) return;
             NavigateToBookView(OverviewScreenKey, (Book?) args.Argument, false);
         }
+
+        private void SearchScreen_OnFiltersSet(SearchScreen.FiltersSetEventArgs args)
+        {
+            var overview = _screens.FindControlStrict<OverviewScreen>(OverviewScreenKey);
+            overview.SetFilter(args.Filter);
+            overview.SetNameQuery(args.TargetName);
+            _screens.SelectedItem = overview;
+        }
     }
 }

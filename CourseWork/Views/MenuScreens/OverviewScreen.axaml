@@ -19,8 +19,9 @@
                              IsTextCompletionEnabled="True"
                              Watermark="Search by the name"
                              SelectionChanged="AutoCompleteBox_OnSelectionChanged"
+                             Text="{Binding NameSearchText, Mode=OneWayToSource}"
                              Items="{Binding AutoCompleteItems}" />
-            <widgets:TogglePanel Orientation="Horizontal" Spacing="8">
+            <widgets:TogglePanel Name="FilterPanel" Orientation="Horizontal" Spacing="8">
                 <ToggleButton Classes="round-toggle-button"
                               Checked="FilterEmptyAuthors_OnChecked"
                               Unchecked="Filter_OnUnchecked">

@@ -8,6 +8,7 @@ using CourseWork.Models;
 using DynamicData;
 using DynamicData.Alias;
 using DynamicData.Binding;
+using ReactiveUI;
 
 namespace CourseWork.ViewModels
 {
@@ -21,6 +22,7 @@ namespace CourseWork.ViewModels
         // we need to distinguish these filters, because they may be applied simultaneously
         private readonly Subject<Func<Book, bool>> _nameMatchSubject = new();
         private readonly Subject<IComparer<BookDisplayItem>> _sortSubject = new();
+        private string? _nameSearchText;
 
         public OverviewScreenViewModel()
         {
@@ -50,6 +52,12 @@ namespace CourseWork.ViewModels
             _sortSubject.OnNext(SortExpressionComparer<BookDisplayItem>.Ascending(book => book.Content.Name!));
         }
 
+        public string? NameSearchText
+        {
+            get => _nameSearchText;
+            set => this.RaiseAndSetIfChanged(ref _nameSearchText, value, nameof(NameSearchText));
+        }
+
         public ReadOnlyObservableCollection<BookDisplayItem> Books => _books;
 
         public ReadOnlyObservableCollection<string> AutoCompleteItems => _autoCompleteItems;
@@ -60,6 +68,7 @@ namespace CourseWork.ViewModels
         public void FilterEmptyAuthors() => _filterSubject.OnNext(AuthorFilter);
         public void FilterUnknownCovers() => _filterSubject.OnNext(CoverFilter);
         public void ResetFilters() => _filterSubject.OnNext(DummyFilter);
+        public void SetFilter(Func<Book, bool> filter) => _filterSubject.OnNext(filter);
 
         // ReSharper disable once UnusedParameter.Local
         private static bool DummyFilter(Book book) => true;

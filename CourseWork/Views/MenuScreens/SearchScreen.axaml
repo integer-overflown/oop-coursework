@@ -28,6 +28,6 @@
                                       Watermark="Enter a subject"
                                       Text="{Binding Subject}" />
         </StackPanel>
-        <Button Classes="button-light">SEARCH</Button>
+        <Button Classes="button-light" Click="Search_OnClick">SEARCH</Button>
     </StackPanel>
 </UserControl>

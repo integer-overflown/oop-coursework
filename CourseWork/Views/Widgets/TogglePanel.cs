@@ -31,5 +31,12 @@ namespace CourseWork.Views.Widgets
                 };
             }
         }
+
+        public void UncheckAll()
+        {
+            if (_checked is null) return;
+            _checked.IsChecked = false;
+            _checked = null;
+        }
     }
 }
