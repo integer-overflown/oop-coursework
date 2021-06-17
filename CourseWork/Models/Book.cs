@@ -25,8 +25,8 @@ namespace CourseWork.Models
 
         public long Id { get; set; }
         public int NumberOfPages { get; set; }
-
         [Required] public string? Name { get; set; }
+        public string? Comment { get; set; }
 
         public string? Publisher { get; set; }
         public IBitmap? Cover { get; set; }

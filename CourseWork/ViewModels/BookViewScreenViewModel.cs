@@ -122,6 +122,18 @@ namespace CourseWork.ViewModels
             }
         }
 
+        public bool IsPresent
+        {
+            get => _book.IsPresent;
+            set => _book.IsPresent = value;
+        }
+
+        public string? Comment
+        {
+            get => _book.Comment;
+            set => _book.Comment = value;
+        }
+
         public ICommand BackCommand { get; }
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
