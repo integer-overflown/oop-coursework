@@ -2,7 +2,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:widgets="clr-namespace:CourseWork.Views.Widgets"
+             xmlns:vm="clr-namespace:CourseWork.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.SearchScreen">
-    Search screen!
+    <UserControl.DataContext>
+        <vm:SearchScreenViewModel />
+    </UserControl.DataContext>
+    <StackPanel Classes="root-view" Spacing="8">
+        <TextBlock Classes="h1">Advanced book search</TextBlock>
+        <StackPanel>
+            <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-bookmark.png"
+                                      Watermark="Enter a name"
+                                      Text="{Binding Name}" />
+
+            <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-right-arrow.png"
+                                      Watermark="Enter a publisher"
+                                      Text="{Binding Publisher}" />
+
+            <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-copyright.png"
+                                      Watermark="Enter an author"
+                                      Text="{Binding Author}" />
+
+            <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-magic-sparkles.png"
+                                      Watermark="Enter a subject"
+                                      Text="{Binding Subject}" />
+        </StackPanel>
+        <Button Classes="button-light">SEARCH</Button>
+    </StackPanel>
 </UserControl>

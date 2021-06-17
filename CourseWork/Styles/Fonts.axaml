@@ -52,4 +52,8 @@
         <Setter Property="FontSize" Value="20" />
         <Setter Property="Foreground" Value="#99000000" />
     </Style>
+    
+    <Style Selector="TextBlock.button-light">
+        <Setter Property="FontWeight" Value="Medium" />
+    </Style>
 </Styles>

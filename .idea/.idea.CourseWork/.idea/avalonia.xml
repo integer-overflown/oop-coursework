@@ -10,6 +10,7 @@
         <entry key="CourseWork/Views/MainWindow.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/AddBookScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/BookViewScreen.axaml" value="CourseWork/CourseWork.csproj" />
+        <entry key="CourseWork/Views/MenuScreens/Components.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/ConfirmBookAdditionScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/ErrorScreen.axaml" value="CourseWork/CourseWork.csproj" />
         <entry key="CourseWork/Views/MenuScreens/HelpScreen.axaml" value="CourseWork/CourseWork.csproj" />
