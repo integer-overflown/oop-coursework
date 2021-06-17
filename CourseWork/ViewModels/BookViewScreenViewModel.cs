@@ -125,7 +125,11 @@ namespace CourseWork.ViewModels
         public bool IsPresent
         {
             get => _book.IsPresent;
-            set => _book.IsPresent = value;
+            set
+            {
+                _book.IsPresent = value;
+                this.RaisePropertyChanged(nameof(IsPresent));
+            }
         }
 
         public string? Comment
@@ -158,6 +162,8 @@ namespace CourseWork.ViewModels
             NumberOfPages = value.NumberOfPages;
             PublishingYear = value.PublishingYear.ToString();
             Cover = value.Cover;
+            IsPresent = value.IsPresent;
+            Comment = value.Comment;
         }
 
         private static void RefillOrDefault<T>(IList<T> target, IEnumerable<T> source) where T : new()
