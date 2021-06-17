@@ -18,6 +18,10 @@
     
     <Style Selector="Button.button-light">
         <Setter Property="Background" Value="#E3F2FD" />
-        <Setter Property="Foreground" Value="#006DB3" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <Style Selector="Button.button-light:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#ebf6ff"/>
     </Style>
 </Styles>

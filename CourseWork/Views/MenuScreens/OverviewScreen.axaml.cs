@@ -80,5 +80,12 @@ namespace CourseWork.Views.MenuScreens
         {
             _viewModel.NameSearchText = name;
         }
+
+        private void ClearFilters_OnClick(object? sender, RoutedEventArgs e)
+        {
+            _filterPanel.UncheckAll();
+            _viewModel.ClearAllFilters();
+            _viewModel.NameSearchText = null;
+        }
     }
 }
