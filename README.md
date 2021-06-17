@@ -4,7 +4,7 @@ An application that enables user to add, remove and maintain their books, e.g. h
 
 Made with love and **Avalonia**
 
-##Build
+## Build
 To produce and run .NET dll file:
 ```
 cd %SOURCE%
