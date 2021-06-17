@@ -6,6 +6,7 @@ using Avalonia.Markup.Xaml;
 using CourseWork.Models;
 using CourseWork.ViewModels;
 using CourseWork.Views.MenuScreens;
+using CourseWork.Views.Widgets;
 
 namespace CourseWork.Views
 {
@@ -13,12 +14,20 @@ namespace CourseWork.Views
     {
         private const string SearchBookByIsbnScreenKey = "SearchBookByIsbnScreen";
         private const string OverviewScreenKey = "OverviewScreen";
+        private const int OverviewScreenIndex = 0;
+        private readonly MenuItemsSidePanel _menuItems;
+
         private readonly Carousel _screens;
+        private readonly MainWindowViewModel _viewModel;
+
 
         public MainWindow()
         {
             InitializeComponent();
+            _viewModel = (MainWindowViewModel) DataContext!;
             _screens = this.FindControlStrict<Carousel>("Pages");
+            _menuItems = this.FindControlStrict<MenuItemsSidePanel>("MenuItemsSizeBar");
+            AttachListeners();
 #if DEBUG
             this.AttachDevTools();
 #endif
@@ -27,23 +36,23 @@ namespace CourseWork.Views
 
         private void SetupPageChangeListeners()
         {
-            if (DataContext is MainWindowViewModel viewModel)
+            _viewModel.Changed.Subscribe(args =>
             {
-                viewModel.Changed.Subscribe(args =>
-                {
-                    if (args.PropertyName != nameof(viewModel.CurrentScreenIndex)) return;
-                    _screens.SelectedIndex = viewModel.CurrentScreenIndex;
-                });
-            }
+                if (args.PropertyName != nameof(_viewModel.CurrentScreenIndex)) return;
+                _screens.SelectedIndex = _viewModel.CurrentScreenIndex;
+            });
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
-            var menuItems = this.FindControlStrict<StackPanel>("MenuItemsSizeBar");
-            for (var i = 0; i < menuItems.Children.Count; ++i)
+        }
+
+        private void AttachListeners()
+        {
+            for (var i = 0; i < _menuItems.Children.Count; ++i)
             {
-                AttachIndexUpdateOnClick(menuItems.Children[i], i);
+                AttachIndexUpdateOnClick(_menuItems.Children[i], i);
             }
         }
 
@@ -105,7 +114,8 @@ namespace CourseWork.Views
             var overview = _screens.FindControlStrict<OverviewScreen>(OverviewScreenKey);
             overview.SetFilter(args.Filter);
             overview.SetNameQuery(args.TargetName);
-            _screens.SelectedItem = overview;
+            _viewModel.CurrentScreenIndex = OverviewScreenIndex;
+            _menuItems.SelectedIndex = OverviewScreenIndex;
         }
     }
 }

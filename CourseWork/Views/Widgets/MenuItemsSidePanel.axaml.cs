@@ -9,11 +9,26 @@ namespace CourseWork.Views.Widgets
     public class MenuItemsSidePanel : StackPanel
     {
         private MenuItem? _selected;
+        private int _selectedIndex;
 
         public MenuItemsSidePanel()
         {
             InitializeComponent();
             Children.CollectionChanged += ChildAdded;
+        }
+
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                if (value >= Children.Count) return;
+                var child = (MenuItem) Children[value];
+                if (_selected != null) _selected.IsSelected = false;
+                child.IsSelected = true;
+                _selected = child;
+                _selectedIndex = value;
+            }
         }
 
         private void ChildAdded(object? sender, NotifyCollectionChangedEventArgs args)
