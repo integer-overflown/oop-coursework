@@ -66,7 +66,7 @@
                 </Grid>
             </Panel>
         </Border>
-        <Grid Classes="root-view" ColumnDefinitions="256 *" IsEnabled="{Binding IsEditable}">
+        <Grid Classes="root-view" ColumnDefinitions="256 *">
             <widgets:PlaceholderImageButton Name="BookCover"
                                             Classes="icon-placeholder"
                                             Grid.Column="0"
@@ -75,7 +75,8 @@
                                             VerticalAlignment="Top"
                                             Background="#C4C4C4"
                                             ActualContent="{Binding Cover}"
-                                            Click="IconPlaceholder_Click">
+                                            Click="IconPlaceholder_Click"
+                                            IsEnabled="{Binding IsEditable}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Width="128" Height="128" Source="avares://CourseWork/Assets/ic-picture.png" />
                     <TextBlock FontWeight="Medium"
@@ -85,12 +86,12 @@
                 </StackPanel>
             </widgets:PlaceholderImageButton>
             <ScrollViewer Grid.Column="1">
-                <Border Padding="16 0 16 0">
+                <Border Padding="16 0 16 0" IsEnabled="{Binding IsEditable}">
                     <StackPanel Spacing="4">
                         <TextBlock Classes="h1">Book info</TextBlock>
-                        
+
                         <CheckBox IsChecked="{Binding IsPresent}">Is present</CheckBox>
-                        
+
                         <!-- Name -->
                         <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-bookmark.png"
                                                   Watermark="Enter a name"
@@ -146,13 +147,13 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        
+
                         <TextBlock Classes="h3 subcategory">Your review</TextBlock>
-                        <TextBox Watermark="Comments, opinion, notes and everything" 
+                        <TextBox Watermark="Comments, opinion, notes and everything"
                                  AcceptsReturn="True"
                                  Margin="0 0 0 24"
                                  TextWrapping="Wrap"
-                                 Text="{Binding Comment}"/>
+                                 Text="{Binding Comment}" />
                     </StackPanel>
                 </Border>
             </ScrollViewer>

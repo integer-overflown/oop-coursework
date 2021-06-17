@@ -15,7 +15,8 @@
     </Window.DataContext>
 
     <Grid ColumnDefinitions="Auto *">
-        <widgets:MenuItemsSidePanel Grid.Column="0"
+        <Border Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="Gray">
+        <widgets:MenuItemsSidePanel
                                     Name="MenuItemsSizeBar"
                                     HorizontalAlignment="Left"
                                     Width="192"
@@ -26,6 +27,7 @@
             <widgets:MenuItem IconSize="64" Text="Add a book" IconSource="avares://CourseWork/Assets/ic-plus.png" />
             <widgets:MenuItem IconSize="64" Text="Help" IconSource="avares://CourseWork/Assets/ic-help.png" />
         </widgets:MenuItemsSidePanel>
+        </Border>
         <Carousel Grid.Column="1" Name="Pages">
             <screens:OverviewScreen Name="OverviewScreen"
                                     NavigationToScreenRequested="OverviewScreen_OnNavigationToScreenRequested" />

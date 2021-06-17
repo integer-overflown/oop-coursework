@@ -11,7 +11,7 @@
     </UserControl.DataContext>
     <StackPanel Classes="root-view" Spacing="8">
         <TextBlock Classes="h1">Advanced book search</TextBlock>
-        <StackPanel>
+        <StackPanel Margin="0 0 8 0">
             <widgets:DecoratedTextBox IconSource="avares://CourseWork/Assets/ic-bookmark.png"
                                       Watermark="Enter a name"
                                       Text="{Binding Name}" />
