@@ -135,7 +135,11 @@ namespace CourseWork.ViewModels
         public string? Comment
         {
             get => _book.Comment;
-            set => _book.Comment = value;
+            set
+            {
+                _book.Comment = value;
+                this.RaisePropertyChanged(nameof(Comment));
+            }
         }
 
         public ICommand BackCommand { get; }
