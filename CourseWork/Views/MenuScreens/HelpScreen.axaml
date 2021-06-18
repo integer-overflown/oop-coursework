@@ -4,5 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CourseWork.Views.MenuScreens.HelpScreen">
-    Help!
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" Margin="12">
+            <TextBlock Classes="h1">Welcome to eveRead</TextBlock>
+            <TextBlock Classes="p">This application enables you to add, maintain and edit books, for example your home library's ones</TextBlock>
+            <TextBlock Classes="h2">Getting started</TextBlock>
+            <TextBlock Classes="p">After the first launch you won't likely see anything on main screen except for message 'Nothing here yet'. The reason is you haven't added any book to the app. See chapter 'Adding a book' for a quick guide about adding a book</TextBlock>
+            <TextBlock Classes="p">On the left side panel you can find main app's destinations. On 'Main page' you will be able to see your books, search them and apply filters</TextBlock>
+            <TextBlock Classes="p">'Search' screen allows you to perform more advanced search with multiple criteria</TextBlock>
+            <TextBlock Classes="p">'Add a book' is the screen where you can browse your books by ISBN code. Note, this requires Internet-connection, since our app uses Internet Archive's Open Library to provide you with most complete and open book database, where you are likely to find any book you want. You can add a book manually if it can't be found though. See 'Adding a book' chapter</TextBlock>
+            <TextBlock Classes="h2">Adding a book</TextBlock>
+            <TextBlock Classes="p">To search a book by ISBN enter this code into corresponding field. You may refer to further help with finding ISBN on your book on that page by hovering an 'ISBN' text in title. Make sure you are connected to the Internet. If anything goes right, you will see the next screen with all the data filled. However, you can edit it as you like before editing. See 'Viewing a book' for complete reference.</TextBlock>
+            <TextBlock Classes="p">Nevertheless, if an error occurs or your book can't be found, you can add it manually by clicking 'add a book manually' link in the bottom. You will be navigated to the another screen where you can fill everything out.</TextBlock>
+            <TextBlock Classes="h2">Viewing a book</TextBlock>
+            <TextBlock Classes="p">When you add a book from 'Add a book' panel, you will be navigated to this screen to complete addition. By clicking image button you can edit or add a cover for you book. Scroll down to see the text bok where you can leave your comment. After finishing, click 'Finish' on the top bar. You may choose to add another book by clicking 'Add another'. By clicking 'Cancel' you're able to leave this screen without saving the book</TextBlock>
+            <TextBlock Classes="p">When clicking a book on a main screen, you will also see this screen except it will be shown in read-only mode. You can view and find any particular information, but if you are going to edit this book, click 'Edit' on the top bar to switch to editing mode</TextBlock>
+            <TextBlock Classes="h2">Searching</TextBlock>
+            <TextBlock Classes="p">You can browse a book by a name from main screen using text box in its top. By clicking filter buttons a little below you can customize what to see, hiding anything that doesn't satisfy a filter chosen. To cancel the filter click highlighted button again</TextBlock>
+            <TextBlock Classes="p">On the 'Search' panel you may find several field by which to perform search. For example, if you intend to find all books about writing software, you may enter 'software' word in subjects field. After filling fields up, click 'Search' to proceed</TextBlock>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

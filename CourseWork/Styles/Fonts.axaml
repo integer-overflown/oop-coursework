@@ -52,10 +52,16 @@
         <Setter Property="FontSize" Value="24" />
         <Setter Property="Margin" Value="0 4 0 4" />
     </Style>
-    
+
     <Style Selector=":is(TextBlock).h3">
         <Setter Property="FontSize" Value="18" />
         <Setter Property="Margin" Value="0 4 0 8" />
+    </Style>
+
+    <Style Selector=":is(TextBlock).p">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="0 0 0 12" />
     </Style>
 
     <Style Selector=":is(TextBlock).link">
